@@ -1565,19 +1565,19 @@
         [
           "Select Mirror", 
           "COMMAND", 
-          "", 
+          "MOD_MIRROR", 
           "bpy.ops.mesh.select_mirror(extend=True)"
         ], 
         [
           "Select Boundary Loop", 
           "COMMAND", 
-          "GRID", 
+          "PROP_CON", 
           "bpy.ops.mesh.region_to_loop()"
         ], 
         [
           "Select Loop Inner-Region", 
           "COMMAND", 
-          "UV_FACESEL", 
+          "PROP_ON", 
           "bpy.ops.mesh.loop_to_region()"
         ], 
         [
