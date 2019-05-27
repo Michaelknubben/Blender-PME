@@ -34,7 +34,7 @@
           "Grow Loop", 
           "COMMAND", 
           "NONE", 
-          "bpy.ops.mesh.z_grow_loop()"
+          "bpy.ops.mesh.grow_loop()"
         ]
       ], 
       "SCRIPT", 
@@ -232,13 +232,13 @@
           "Screen Left", 
           "HOTKEY", 
           "PLAY_REVERSE", 
-          "ctrl+LEFT_ARROW"
+          "ctrl+PAGE_UP"
         ], 
         [
           "Screen Right", 
           "HOTKEY", 
           "PLAY", 
-          "ctrl+RIGHT_ARROW"
+          "ctrl+PAGE_DOWN"
         ], 
         [
           "Header", 
@@ -1749,14 +1749,14 @@
         [
           "Modeling", 
           "COMMAND", 
-          "OBJECT_DATAMODE", 
-          "bpy.ops.pme.screen_set(name=\"01 - Default\")"
+          "VIEW3D", 
+          "bpy.ops.pme.screen_set(name='Modeling')"
         ], 
         [
           "UV", 
           "COMMAND", 
-          "FACESEL_HLT", 
-          "bpy.ops.pme.screen_set(name=\"02 - UV Editing\")"
+          "UV", 
+          "bpy.ops.pme.screen_set(name=\"UV Editing\")"
         ], 
         [
           "Pie Menu Editor", 
@@ -2149,7 +2149,7 @@
           "Shrink Loop", 
           "COMMAND", 
           "", 
-          "bpy.ops.mesh.z_shrink_loop()"
+          "bpy.ops.mesh.shrink_loop()"
         ]
       ], 
       "SCRIPT", 
@@ -2593,52 +2593,52 @@
       "shift+SPACE", 
       [
         [
-          "Node Editor", 
+          "Shader Editor", 
           "COMMAND", 
-          "NODETREE", 
-          "bpy.ops.object.view_menu(variable=\"NODE_EDITOR\")"
+          "NONE", 
+          "bpy.context.area.ui_type = 'ShaderNodeTree'"
         ], 
         [
           "Image Editor", 
           "COMMAND", 
-          "IMAGE_COL", 
-          "bpy.ops.object.view_menu(variable=\"IMAGE_EDITOR\")"
+          "IMAGE_DATA", 
+          "bpy.context.area.ui_type = 'VIEW'"
         ], 
         [
           "Join Area", 
           "COMMAND", 
           "FULLSCREEN_EXIT", 
-          "bpy.ops.area.joinarea()"
+          "bpy.ops.screen.area_join()"
         ], 
         [
-          "View 3D", 
+          "3D View", 
           "COMMAND", 
           "VIEW3D", 
-          "bpy.ops.object.view_menu(variable=\"VIEW_3D\")"
+          "bpy.context.area.ui_type = 'VIEW_3D'"
         ], 
         [
           "File Properties Etc", 
-          "COMMAND", 
+          "MENU", 
           "FILE_SCRIPT", 
-          "open_menu(\"WindowTypeSub 1\")"
+          "WindowTypeSub 1"
         ], 
         [
           "Animation Etc", 
-          "COMMAND", 
+          "MENU", 
           "ACTION_TWEAK", 
-          "open_menu(\"WindowTypeSub 2\")"
+          "WindowTypeSub 2"
         ], 
         [
           "Split Vertical", 
           "COMMAND", 
           "TRIA_RIGHT", 
-          "bpy.ops.split.vertical()"
+          "bpy.ops.screen.area_split(direction='VERTICAL')"
         ], 
         [
           "Split Horizontal", 
           "COMMAND", 
           "TRIA_DOWN", 
-          "bpy.ops.split.horizontal()"
+          "bpy.ops.screen.area_split(direction='HORIZONTAL')"
         ]
       ], 
       "PMENU", 
@@ -2663,6 +2663,12 @@
           "COMMAND", 
           "", 
           "bpy.ops.mesh.dissolve_mode(use_verts=False)"
+        ], 
+        [
+          "Limited Dissolve", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.dissolve_limited()"
         ]
       ], 
       "SCRIPT", 
@@ -2776,10 +2782,10 @@
           "row"
         ], 
         [
-          "Limited Dissolve                             ", 
+          "Limited Dissolve", 
           "COMMAND", 
-          "STICKY_UVS_LOC", 
-          "bpy.ops.delete.limiteddissolve()"
+          "", 
+          "bpy.ops.mesh.dissolve_limited()"
         ], 
         [
           "row?vspacer=NONE"
@@ -2787,7 +2793,7 @@
         [
           "Delete Edge Loop", 
           "COMMAND", 
-          "BORDER_LASSO", 
+          "", 
           "bpy.ops.mesh.delete_edgeloop()"
         ], 
         [
@@ -2796,12 +2802,66 @@
         [
           "Edge Collapse", 
           "COMMAND", 
-          "UV_EDGESEL", 
+          "", 
           "bpy.ops.mesh.edge_collapse()"
         ]
       ], 
       "DIALOG", 
       "pd?pd_box=&pd_panel=0", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Pea Context", 
+      "Armature, Curve, Lattice, Mesh, Object Mode, Pose, Text, Text Generic, Weight Paint, Weight Paint Vertex Selection", 
+      "BUTTON4MOUSE", 
+      [
+        [
+          "Modifiers", 
+          "COMMAND", 
+          "RESTRICT_VIEW_OFF", 
+          "bpy.ops.object.toggle_apply_modifiers_view()"
+        ], 
+        [
+          "Show X-Ray", 
+          "PROP", 
+          "NONE", 
+          "C.space_data.shading.show_xray"
+        ], 
+        [
+          "Context Menu", 
+          "CUSTOM", 
+          "QUESTION", 
+          "execute_script(\"scripts/context_sensitive_slot.py\", frame=True)"
+        ], 
+        [
+          "Redo Last", 
+          "COMMAND", 
+          "SCRIPTWIN", 
+          "bpy.ops.screen.redo_last()"
+        ], 
+        [
+          "Subsurf", 
+          "CUSTOM", 
+          "#MOD_SUBSURF", 
+          "mods = [m for m in C.active_object.modifiers if m.type == 'SUBSURF']; m = mods and mods[0]; operator(L, \"wm.context_toggle\", text, icon, icon_value=icon_value, data_path=\"active_object.modifiers['%s'].show_viewport\" % m.name) if m else operator(L, \"object.modifier_add\", text, icon, icon_value=icon_value, type='SUBSURF')"
+        ], 
+        [
+          "Mirror", 
+          "CUSTOM", 
+          "#MOD_MIRROR", 
+          "mods = [m for m in C.active_object.modifiers if m.type == 'MIRROR']; m = mods and mods[0]; operator(L, \"wm.context_toggle\", text, icon, icon_value=icon_value, data_path=\"active_object.modifiers['%s'].show_viewport\" % m.name) if m else operator(L, \"object.modifier_add\", text, icon, icon_value=icon_value, type='MIRROR')"
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ]
+      ], 
+      "PMENU", 
+      "pm?pm_radius=50", 
       "PRESS", 
       "", 
       ""
@@ -2986,7 +3046,7 @@
           "bpy.ops.mesh.merge(type='CURSOR')"
         ], 
         [
-          "Remove Doubles", 
+          "Merge By Distance", 
           "COMMAND", 
           "FORCE_CHARGE", 
           "bpy.ops.mesh.remove_doubles()"
@@ -3034,7 +3094,7 @@
           "Loop Select", 
           "COMMAND", 
           "", 
-          "bpy.ops.mesh.loop_select(extend=True, deselect=False, toggle=False)"
+          "bpy.ops.mesh.loop_select(extend=False, deselect=False, toggle=False)"
         ]
       ], 
       "SCRIPT", 
@@ -3254,57 +3314,27 @@
       ""
     ], 
     [
-      "Pea RMB", 
-      "Armature, Curve, Lattice, Mesh, Object Mode, Pose, Text, Text Generic, Weight Paint, Weight Paint Vertex Selection", 
-      "BUTTON4MOUSE", 
+      "Select Linked/Flat", 
+      "Mesh", 
+      "LEFTMOUSE", 
       [
         [
-          "Modifiers", 
+          "Select Linked Flat Faces", 
           "COMMAND", 
-          "RESTRICT_VIEW_OFF", 
-          "bpy.ops.object.toggle_apply_modifiers_view()"
+          "", 
+          "bpy.ops.mesh.faces_select_linked_flat()"
         ], 
         [
-          "Occlude", 
-          "PROP", 
-          "ORTHO", 
-          "bpy.context.space_data.use_occlude_geometry"
-        ], 
-        [
-          "Context Menu", 
-          "CUSTOM", 
-          "QUESTION", 
-          "execute_script(\"scripts/context_sensitive_slot.py\", frame=True)"
-        ], 
-        [
-          "Redo Last", 
+          "Select Linked", 
           "COMMAND", 
-          "SCRIPTWIN", 
-          "bpy.ops.screen.redo_last()"
-        ], 
-        [
-          "Subsurf", 
-          "CUSTOM", 
-          "#MOD_SUBSURF", 
-          "mods = [m for m in C.active_object.modifiers if m.type == 'SUBSURF']; m = mods and mods[0]; operator(L, \"wm.context_toggle\", text, icon, icon_value=icon_value, data_path=\"active_object.modifiers['%s'].show_viewport\" % m.name) if m else operator(L, \"object.modifier_add\", text, icon, icon_value=icon_value, type='SUBSURF')"
-        ], 
-        [
-          "Mirror", 
-          "CUSTOM", 
-          "#MOD_MIRROR", 
-          "mods = [m for m in C.active_object.modifiers if m.type == 'MIRROR']; m = mods and mods[0]; operator(L, \"wm.context_toggle\", text, icon, icon_value=icon_value, data_path=\"active_object.modifiers['%s'].show_viewport\" % m.name) if m else operator(L, \"object.modifier_add\", text, icon, icon_value=icon_value, type='MIRROR')"
-        ], 
-        [
-          ""
-        ], 
-        [
-          ""
+          "", 
+          "bpy.ops.mesh.select_linked_pick(delimit={'SEAM'})"
         ]
       ], 
-      "PMENU", 
-      "pm?pm_radius=50", 
-      "PRESS", 
-      "", 
+      "SCRIPT", 
+      "s?", 
+      "DOUBLE_CLICK", 
+      "return C.scene.tool_settings.mesh_select_mode[2]", 
       ""
     ], 
     [
@@ -3401,30 +3431,6 @@
       "mo?confirm=True", 
       "PRESS", 
       "return \"wcone\" in C.active_object.name.lower()", 
-      ""
-    ], 
-    [
-      "Select Linked/Flat", 
-      "Mesh", 
-      "LEFTMOUSE", 
-      [
-        [
-          "Select Linked Flat Faces", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.faces_select_linked_flat()"
-        ], 
-        [
-          "Select Linked", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.select_linked_pick(delimit={'SEAM'})"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?", 
-      "DOUBLE_CLICK", 
-      "return C.scene.tool_settings.mesh_select_mode[2]", 
       ""
     ], 
     [
@@ -3544,10 +3550,10 @@
           "bpy.context.scene.tool_settings.snap_element = 'INCREMENT'; bpy.context.scene.tool_settings.use_snap_grid_absolute = True"
         ], 
         [
-          "Align Rotation", 
-          "COMMAND", 
+          "Align Rotation to Target", 
+          "PROP", 
           "SNAP_NORMAL", 
-          "bpy.ops.snap.alignrotation()"
+          "C.scene.tool_settings.use_snap_align_rotation"
         ], 
         [
           "Snap Target", 
@@ -3558,7 +3564,7 @@
       ], 
       "PMENU", 
       "pm?", 
-      "PRESS", 
+      "TWEAK", 
       "", 
       ""
     ], 
@@ -3971,6 +3977,24 @@
       ""
     ], 
     [
+      "Loop Select Add", 
+      "Mesh", 
+      "ctrl+shift+LEFTMOUSE", 
+      [
+        [
+          "Loop Select", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.loop_select(extend=True, deselect=False, toggle=False)"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?s_undo=True", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
       "Face", 
       "Window", 
       "", 
@@ -4327,46 +4351,46 @@
       "O", 
       [
         [
-          " Connected", 
-          "COMMAND", 
-          "PROP_CON", 
-          "bpy.ops.proportional_edt.connected()"
+          "Connected Only", 
+          "PROP", 
+          "", 
+          "bpy.context.scene.tool_settings.use_proportional_connected"
         ], 
         [
-          " projected ", 
-          "COMMAND", 
-          "SNAP_NORMAL", 
-          "bpy.ops.proportional_edt.projected()"
+          "Projected from View", 
+          "PROP", 
+          "", 
+          "C.scene.tool_settings.use_proportional_projected"
         ], 
         [
           "Smooth", 
           "COMMAND", 
           "SMOOTHCURVE", 
-          "bpy.ops.proportional_edt.smooth()"
+          "C.scene.tool_settings.proportional_edit_falloff = 'SMOOTH'"
         ], 
         [
-          "Proportional Edit EditMode", 
-          "COMMAND", 
-          "PROP_OFF", 
-          "bpy.ops.proportional_edt.active()"
-        ], 
-        [
-          " Sphere", 
-          "COMMAND", 
-          "SPHERECURVE", 
-          "bpy.ops.proportional_edt.sphere()"
-        ], 
-        [
-          " Root", 
-          "COMMAND", 
-          "ROOTCURVE", 
-          "bpy.ops.proportional_edt.root()"
-        ], 
-        [
-          " Constant", 
+          "Constant", 
           "COMMAND", 
           "NOCURVE", 
-          "bpy.ops.proportional_edt.constant()"
+          "bpy.context.scene.tool_settings.proportional_edit_falloff = 'CONSTANT'"
+        ], 
+        [
+          "Linear", 
+          "COMMAND", 
+          "LINCURVE", 
+          "bpy.context.scene.tool_settings.proportional_edit_falloff = 'LINEAR'"
+        ], 
+        [
+          "Root", 
+          "COMMAND", 
+          "ROOTCURVE", 
+          "bpy.context.scene.tool_settings.proportional_edit_falloff = 'ROOT'"
+        ], 
+        [
+          "Sphere", 
+          "COMMAND", 
+          "SPHERECURVE", 
+          "bpy.context.scene.tool_settings.proportional_edit_falloff = 'SPHERE'"
         ], 
         [
           "Proportional List", 
@@ -4377,7 +4401,7 @@
       ], 
       "PMENU", 
       "pm?", 
-      "PRESS", 
+      "TWEAK", 
       "", 
       ""
     ], 
@@ -5686,9 +5710,9 @@
           "row"
         ], 
         [
-          "Only Edges&Faces                             ", 
+          "Only Edges&Faces", 
           "COMMAND", 
-          "SPACE2", 
+          "", 
           "bpy.ops.mesh.delete(type='EDGE_FACE')"
         ], 
         [
@@ -5697,7 +5721,7 @@
         [
           "Only Faces", 
           "COMMAND", 
-          "UV_FACESEL", 
+          "", 
           "bpy.ops.mesh.delete(type='ONLY_FACE')"
         ]
       ], 
@@ -6383,6 +6407,66 @@
           "COMMAND", 
           "", 
           "bpy.ops.object.vertex_group_set_active()"
+        ]
+      ], 
+      "PMENU", 
+      "pm?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Pie Menu", 
+      "Window", 
+      "alt+SPACE", 
+      [
+        [
+          "Normal", 
+          "COMMAND", 
+          "ORIENTATION_NORMAL", 
+          "bpy.context.scene.type = 'NORMAL'"
+        ], 
+        [
+          "View", 
+          "COMMAND", 
+          "ORIENTATION_VIEW", 
+          "bpy.context.scene.type = 'VIEW'"
+        ], 
+        [
+          "Local", 
+          "COMMAND", 
+          "ORIENTATION_LOCAL", 
+          "C.scene.transform_orientation_slots[0].type = 'LOCAL'"
+        ], 
+        [
+          "Global", 
+          "COMMAND", 
+          "ORIENTATION_GLOBAL", 
+          "C.scene.transform_orientation_slots[0].type = 'GLOBAL'"
+        ], 
+        [
+          "Gimbal", 
+          "COMMAND", 
+          "ORIENTATION_GIMBAL", 
+          "bpy.context.scene.type = 'GIMBAL'"
+        ], 
+        [
+          "Cursor", 
+          "COMMAND", 
+          "ORIENTATION_CURSOR", 
+          "bpy.context.scene.type = 'CURSOR'"
+        ], 
+        [
+          "", 
+          "CUSTOM", 
+          "NONE", 
+          "L.column().prop(C.scene.transform_orientation_slots[0], 'type', text=slot, icon=icon, icon_value=icon_value)"
+        ], 
+        [
+          "Create Orientation", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.transform.create_orientation(use=True)"
         ]
       ], 
       "PMENU", 
@@ -7757,6 +7841,24 @@
       ""
     ], 
     [
+      "Tools", 
+      "Window", 
+      "ctrl+SPACE", 
+      [
+        [
+          "Tools", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.wm.toolbar()"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
       "Snap Set: Retopo", 
       "Window", 
       "", 
@@ -7935,6 +8037,60 @@
       ], 
       "PANEL", 
       "pg?pg_region=HEADER&pg_space=INFO", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Pivot Point", 
+      "Window", 
+      "alt+Q", 
+      [
+        [
+          "Active Element", 
+          "COMMAND", 
+          "PIVOT_ACTIVE", 
+          "bpy.context.scene.tool_settings.transform_pivot_point = 'ACTIVE_ELEMENT'"
+        ], 
+        [
+          "Median Point", 
+          "COMMAND", 
+          "PIVOT_MEDIAN", 
+          "bpy.context.scene.tool_settings.transform_pivot_point = 'MEDIAN_POINT'"
+        ], 
+        [
+          "Individual Origins", 
+          "COMMAND", 
+          "PIVOT_INDIVIDUAL", 
+          "bpy.context.scene.tool_settings.transform_pivot_point = 'INDIVIDUAL_ORIGINS'"
+        ], 
+        [
+          "Cursor", 
+          "COMMAND", 
+          "PIVOT_CURSOR", 
+          "bpy.context.scene.tool_settings.transform_pivot_point = 'CURSOR'"
+        ], 
+        [
+          "Bounding Box Center", 
+          "COMMAND", 
+          "PIVOT_BOUNDBOX", 
+          "C.scene.tool_settings.transform_pivot_point = 'BOUNDING_BOX_CENTER'"
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ], 
+        [
+          "Only Origins", 
+          "PROP", 
+          "CENTER_ONLY", 
+          "C.scene.tool_settings.use_transform_pivot_point_align"
+        ]
+      ], 
+      "PMENU", 
+      "pm?", 
       "PRESS", 
       "", 
       ""
@@ -8386,10 +8542,10 @@
           "C.space_data.context = 'OBJECT'"
         ], 
         [
-          "Render", 
+          "Modifier", 
           "COMMAND", 
-          "RENDER_STILL", 
-          "C.space_data.context = 'RENDER'"
+          "MODIFIER", 
+          "C.space_data.context = 'MODIFIER'"
         ], 
         [
           "Data", 
@@ -8404,10 +8560,10 @@
           "C.space_data.context = 'MATERIAL'"
         ], 
         [
-          "Modifier", 
+          "Render", 
           "COMMAND", 
-          "MODIFIER", 
-          "C.space_data.context = 'MODIFIER'"
+          "RENDER_STILL", 
+          "C.space_data.context = 'RENDER'"
         ], 
         [
           ""
