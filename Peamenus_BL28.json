@@ -34,7 +34,7 @@
           "Grow Loop", 
           "COMMAND", 
           "NONE", 
-          "bpy.ops.mesh.grow_loop()"
+          "bpy.ops.mesh.z_grow_loop()"
         ]
       ], 
       "SCRIPT", 
@@ -242,9 +242,9 @@
         ], 
         [
           "Header", 
-          "COMMAND", 
+          "PROP", 
           "GRIP", 
-          "bpy.ops.screen.header()"
+          "C.space_data.show_region_header"
         ], 
         [
           "Toggle Fullscreen Area", 
@@ -255,20 +255,20 @@
         [
           "Tool Shelf", 
           "HOTKEY", 
-          "GO_LEFT", 
+          "TOOL_SETTINGS", 
           "T"
         ], 
         [
           "Properties", 
           "HOTKEY", 
-          "UI", 
+          "ASSET_MANAGER", 
           "N"
         ], 
         [
           "File", 
           "COMMAND", 
           "FILE_BLANK", 
-          "bpy.ops.wm.call_menu(name=\"INFO_MT_file\")"
+          "bpy.ops.wm.call_menu(name='TOPBAR_MT_file')"
         ], 
         [
           "Viewport Screens", 
@@ -720,24 +720,6 @@
       ], 
       "MACRO", 
       "m?", 
-      "PRESS", 
-      "", 
-      ""
-    ], 
-    [
-      "Stack Key", 
-      "Window", 
-      "shift+X", 
-      [
-        [
-          "Dissolve Selection", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.dissolve_mode(use_verts=True)"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?", 
       "PRESS", 
       "", 
       ""
@@ -1742,6 +1724,12 @@
           "COMMAND", 
           "", 
           "bpy.ops.mesh.shortest_path_pick(use_fill=False)"
+        ], 
+        [
+          "Fill Region", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.shortest_path_pick(use_fill=True)"
         ]
       ], 
       "SCRIPT", 
@@ -2161,7 +2149,7 @@
           "Shrink Loop", 
           "COMMAND", 
           "", 
-          "bpy.ops.mesh.shrink_loop()"
+          "bpy.ops.mesh.z_shrink_loop()"
         ]
       ], 
       "SCRIPT", 
@@ -2655,6 +2643,30 @@
       ], 
       "PMENU", 
       "pm?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Dissolve Stack", 
+      "Mesh", 
+      "ctrl+X", 
+      [
+        [
+          "Dissolve Selection", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.dissolve_mode(use_verts=True)"
+        ], 
+        [
+          "Dissolve Selection Keep Verts", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.dissolve_mode(use_verts=False)"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?s_undo=True", 
       "PRESS", 
       "", 
       ""
@@ -6380,60 +6392,6 @@
       ""
     ], 
     [
-      "Pie Menu", 
-      "UV Editor", 
-      "Z", 
-      [
-        [
-          "Normalized Coordinates", 
-          "PROP", 
-          "LINENUMBERS_ON", 
-          "C.space_data.uv_editor.show_normalized_coords"
-        ], 
-        [
-          "Draw Other Objects", 
-          "MENU", 
-          "VISIBLE_IPO_ON", 
-          "UV Show Other"
-        ], 
-        [
-          "UV Drawing Types", 
-          "MENU", 
-          "MOD_LATTICE", 
-          "UV Drawing Types"
-        ], 
-        [
-          "UV Stretch", 
-          "MENU", 
-          "COLOR_BLUE", 
-          "UV Stretch"
-        ], 
-        [
-          "Draw Faces", 
-          "PROP", 
-          "MOD_TRIANGULATE", 
-          "C.space_data.uv_editor.show_faces"
-        ], 
-        [
-          "Draw Modified Edges", 
-          "PROP", 
-          "MOD_SUBSURF", 
-          "C.space_data.uv_editor.show_modified_edges"
-        ], 
-        [
-          ""
-        ], 
-        [
-          ""
-        ]
-      ], 
-      "PMENU", 
-      "pm?", 
-      "PRESS", 
-      "", 
-      ""
-    ], 
-    [
       "Lattice Create", 
       "Curve, Grease Pencil Stroke Edit Mode, Image Paint, Lattice, Mesh, Object Mode, Sculpt, Vertex Paint, Weight Paint", 
       "ctrl+shift+alt+Q", 
@@ -8013,8 +7971,8 @@
     ], 
     [
       "View Selected/All", 
-      "Mesh", 
-      "", 
+      "3D View", 
+      "alt+LEFTMOUSE", 
       [
         [
           "View Selected", 
@@ -8031,7 +7989,7 @@
       ], 
       "SCRIPT", 
       "s?", 
-      "PRESS", 
+      "DOUBLE_CLICK", 
       "", 
       ""
     ], 
@@ -8051,6 +8009,60 @@
       "pg?pg_region=HEADER&pg_space=INFO", 
       "PRESS", 
       "return C.active_object and C.active_object.type == 'EMPTY'", 
+      ""
+    ], 
+    [
+      "\u00d9V Shading Menu", 
+      "UV Editor", 
+      "Z", 
+      [
+        [
+          "Normalized Coordinates", 
+          "PROP", 
+          "LINENUMBERS_ON", 
+          "C.space_data.uv_editor.show_normalized_coords"
+        ], 
+        [
+          "Draw Other Objects", 
+          "MENU", 
+          "VISIBLE_IPO_ON", 
+          "UV Show Other"
+        ], 
+        [
+          "UV Drawing Types", 
+          "MENU", 
+          "MOD_LATTICE", 
+          "UV Drawing Types"
+        ], 
+        [
+          "UV Stretch", 
+          "MENU", 
+          "COLOR_BLUE", 
+          "UV Stretch"
+        ], 
+        [
+          "Draw Faces", 
+          "PROP", 
+          "MOD_TRIANGULATE", 
+          "C.space_data.uv_editor.show_faces"
+        ], 
+        [
+          "Draw Modified Edges", 
+          "PROP", 
+          "MOD_SUBSURF", 
+          "C.space_data.uv_editor.show_modified_edges"
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ]
+      ], 
+      "PMENU", 
+      "pm?", 
+      "PRESS", 
+      "", 
       ""
     ], 
     [
@@ -9179,6 +9191,24 @@
       ""
     ], 
     [
+      "UV Select Linked", 
+      "Window", 
+      "LEFTMOUSE", 
+      [
+        [
+          "Select Linked Pick", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.uv.select_linked_pick(extend=False, deselect=False, location=(0.46985501050949097, 0.6371889710426331))"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "HOLD", 
+      "", 
+      ""
+    ], 
+    [
       "Armature", 
       "Mesh, Metaball, Object Mode", 
       "", 
@@ -9728,6 +9758,24 @@
       ""
     ], 
     [
+      "UV Select Linked Add", 
+      "Window", 
+      "shift+LEFTMOUSE", 
+      [
+        [
+          "Select Linked Pick", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.uv.select_linked_pick(extend=True, deselect=False, location=(0.469855, 0.637189))"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "HOLD", 
+      "", 
+      ""
+    ], 
+    [
       "Align Cube", 
       "Window", 
       "", 
@@ -9796,6 +9844,24 @@
       "MACRO", 
       "m?", 
       "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "UV Select Linked Remove", 
+      "Window", 
+      "ctrl+LEFTMOUSE", 
+      [
+        [
+          "Select Linked Pick", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.uv.select_linked_pick(extend=True, deselect=True, location=(0.46985501050949097, 0.6371889710426331))"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "HOLD", 
       "", 
       ""
     ], 
