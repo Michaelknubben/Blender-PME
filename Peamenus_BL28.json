@@ -725,6 +725,24 @@
       ""
     ], 
     [
+      "Stack Key", 
+      "Window", 
+      "shift+X", 
+      [
+        [
+          "Dissolve Selection", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.dissolve_mode(use_verts=True)"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
       "PeaUV", 
       "3D View", 
       "", 
@@ -2890,12 +2908,6 @@
           "row"
         ], 
         [
-          "Shortest Path Fill", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.shortest_path_pick(use_fill=True)"
-        ], 
-        [
           "Checker Deselect", 
           "COMMAND", 
           "", 
@@ -2903,12 +2915,6 @@
         ], 
         [
           "row"
-        ], 
-        [
-          "Select Mirror", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.select_mirror()"
         ], 
         [
           "Select Sharp Edges", 
@@ -2927,7 +2933,7 @@
         ]
       ], 
       "DIALOG", 
-      "pd?pd_box=&pd_panel=0", 
+      "pd?pd_box=False&pd_panel=0&pd_title=False", 
       "PRESS", 
       "", 
       ""
@@ -2935,7 +2941,7 @@
     [
       "Mesh: Merge", 
       "Mesh", 
-      "ctrl+X", 
+      "shift+X", 
       [
         [
           "At First", 
@@ -3406,7 +3412,7 @@
       "SCRIPT", 
       "s?", 
       "DOUBLE_CLICK", 
-      "", 
+      "return C.scene.tool_settings.mesh_select_mode[2]", 
       ""
     ], 
     [
@@ -7384,7 +7390,7 @@
       "SCRIPT", 
       "s?", 
       "DOUBLE_CLICK", 
-      "", 
+      "return C.scene.tool_settings.mesh_select_mode[2]", 
       ""
     ], 
     [
@@ -9437,6 +9443,30 @@
       "pg?pg_region=HEADER&pg_space=INFO", 
       "PRESS", 
       "return C.active_object and C.active_object.type == 'LAMP'", 
+      ""
+    ], 
+    [
+      "Select Sharp Edges", 
+      "Mesh", 
+      "LEFTMOUSE", 
+      [
+        [
+          "Select Similar", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.select_similar(type='FACE_ANGLE', threshold=0.01)"
+        ], 
+        [
+          "Select Linked", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.select_linked_pick(delimit={'SEAM'})"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "DOUBLE_CLICK", 
+      "return C.scene.tool_settings.mesh_select_mode[1]", 
       ""
     ], 
     [
