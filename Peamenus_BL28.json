@@ -206,6 +206,24 @@
       ""
     ], 
     [
+      "Delete:Vertex", 
+      "Mesh", 
+      "X", 
+      [
+        [
+          "Delete", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.delete(type='VERT')"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "PRESS", 
+      "return C.scene.tool_settings.mesh_select_mode[0]", 
+      ""
+    ], 
+    [
       "Helpers Hide/Show", 
       "Curve, Grease Pencil Stroke Edit Mode, Image Paint, Lattice, Mesh, Object Mode, Sculpt, Vertex Paint, Weight Paint", 
       "", 
@@ -247,10 +265,10 @@
           "C.space_data.show_region_header"
         ], 
         [
-          "Toggle Fullscreen Area", 
+          "Fullscreen", 
           "COMMAND", 
           "FULLSCREEN_ENTER", 
-          "bpy.ops.screen.screen_full_area(use_hide_panels=True)"
+          "bpy.ops.screen.screen_full_area(use_hide_panels=True),bpy.ops.wm.window_fullscreen_toggle()"
         ], 
         [
           "Tool Shelf", 
@@ -552,7 +570,7 @@
       ], 
       "PMENU", 
       "pm?", 
-      "PRESS", 
+      "HOLD", 
       "", 
       ""
     ], 
@@ -572,6 +590,30 @@
           "COMMAND", 
           "NONE", 
           "C.object.data.WSphere.smoothed = False"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Shading Toggle", 
+      "Window", 
+      "Z", 
+      [
+        [
+          "Show Overlays = True", 
+          "COMMAND", 
+          "NONE", 
+          "C.space_data.overlay.show_overlays = True"
+        ], 
+        [
+          "Show Overlays = False", 
+          "COMMAND", 
+          "NONE", 
+          "C.space_data.overlay.show_overlays = False"
         ]
       ], 
       "SCRIPT", 
@@ -720,6 +762,60 @@
       ], 
       "MACRO", 
       "m?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Shading Menu 1", 
+      "Window", 
+      "Z", 
+      [
+        [
+          "Wireframe", 
+          "COMMAND", 
+          "MOD_WIREFRAME", 
+          "C.space_data.shading.type = 'WIREFRAME'"
+        ], 
+        [
+          "Solid", 
+          "COMMAND", 
+          "SHADING_SOLID", 
+          "C.space_data.shading.type = 'SOLID'"
+        ], 
+        [
+          "Show X-Ray", 
+          "PROP", 
+          "XRAY", 
+          "C.space_data.shading.show_xray"
+        ], 
+        [
+          "Show Overlays", 
+          "PROP", 
+          "OVERLAY", 
+          "C.space_data.overlay.show_overlays"
+        ], 
+        [
+          "Material", 
+          "COMMAND", 
+          "SHADING_TEXTURE", 
+          "C.space_data.shading.type = 'MATERIAL'"
+        ], 
+        [
+          "Rendered", 
+          "COMMAND", 
+          "SHADING_RENDERED", 
+          "C.space_data.shading.type = 'RENDERED'"
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ]
+      ], 
+      "PMENU", 
+      "pm?", 
       "PRESS", 
       "", 
       ""
@@ -2159,6 +2255,42 @@
       ""
     ], 
     [
+      "Shading Menu 2", 
+      "Window", 
+      "shift+Z", 
+      [
+        [
+          ""
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ]
+      ], 
+      "PMENU", 
+      "pm?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
       "UV Pivot", 
       "UV Editor", 
       "alt+Q", 
@@ -2824,21 +2956,21 @@
           "bpy.ops.object.toggle_apply_modifiers_view()"
         ], 
         [
-          "Show X-Ray", 
+          " X-Ray", 
           "PROP", 
-          "NONE", 
+          "XRAY", 
           "C.space_data.shading.show_xray"
         ], 
         [
           "Context Menu", 
           "CUSTOM", 
           "QUESTION", 
-          "execute_script(\"scripts/context_sensitive_slot.py\", frame=True)"
+          "execute_script(\"scripts/command_context_sensitive_menu.py\")"
         ], 
         [
           "Redo Last", 
           "COMMAND", 
-          "SCRIPTWIN", 
+          "PREFERENCES", 
           "bpy.ops.screen.redo_last()"
         ], 
         [
@@ -2861,7 +2993,7 @@
         ]
       ], 
       "PMENU", 
-      "pm?pm_radius=50", 
+      "pm?", 
       "PRESS", 
       "", 
       ""
@@ -3314,26 +3446,20 @@
       ""
     ], 
     [
-      "Select Linked/Flat", 
+      "Delete:Face", 
       "Mesh", 
-      "LEFTMOUSE", 
+      "X", 
       [
         [
-          "Select Linked Flat Faces", 
+          "Delete", 
           "COMMAND", 
-          "", 
-          "bpy.ops.mesh.faces_select_linked_flat()"
-        ], 
-        [
-          "Select Linked", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.select_linked_pick(delimit={'SEAM'})"
+          "NONE", 
+          "bpy.ops.mesh.delete(type='FACE')"
         ]
       ], 
       "SCRIPT", 
       "s?", 
-      "DOUBLE_CLICK", 
+      "PRESS", 
       "return C.scene.tool_settings.mesh_select_mode[2]", 
       ""
     ], 
@@ -3431,6 +3557,30 @@
       "mo?confirm=True", 
       "PRESS", 
       "return \"wcone\" in C.active_object.name.lower()", 
+      ""
+    ], 
+    [
+      "Select Linked/Flat", 
+      "Mesh", 
+      "LEFTMOUSE", 
+      [
+        [
+          "Select Linked Flat Faces", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.faces_select_linked_flat()"
+        ], 
+        [
+          "Select Linked", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.select_linked_pick(delimit={'SEAM'})"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "DOUBLE_CLICK", 
+      "return C.scene.tool_settings.mesh_select_mode[2]", 
       ""
     ], 
     [
@@ -3974,6 +4124,24 @@
       "s?", 
       "HOLD", 
       "", 
+      ""
+    ], 
+    [
+      "Delete:Edge", 
+      "Mesh", 
+      "X", 
+      [
+        [
+          "Delete", 
+          "COMMAND", 
+          "NONE", 
+          "bpy.ops.mesh.delete(type='EDGE')"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "PRESS", 
+      "return C.scene.tool_settings.mesh_select_mode[1]", 
       ""
     ], 
     [
@@ -6356,7 +6524,7 @@
         ]
       ], 
       "DIALOG", 
-      "pd?", 
+      "pd?pd_title=False", 
       "PRESS", 
       "", 
       ""
