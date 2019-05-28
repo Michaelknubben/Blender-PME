@@ -808,10 +808,16 @@
           "C.space_data.shading.type = 'RENDERED'"
         ], 
         [
-          ""
+          "Gizmos", 
+          "PROP", 
+          "GIZMO", 
+          "C.space_data.show_gizmo"
         ], 
         [
-          ""
+          "Wires", 
+          "PROP", 
+          "MOD_WIREFRAME", 
+          "C.space_data.overlay.show_wireframes"
         ]
       ], 
       "PMENU", 
@@ -3027,20 +3033,20 @@
         [
           "Snap = False", 
           "COMMAND", 
-          "TEXT", 
-          "bpy.context.scene.tool_settings.use_snap = False"
+          "SNAP_OFF", 
+          "C.scene.tool_settings.use_snap = False"
         ], 
         [
-          "Snap Element = 'INCREMENT'", 
+          "Snap Element = {'INCREMENT'}", 
           "COMMAND", 
-          "TEXT", 
-          "bpy.context.scene.tool_settings.snap_element = 'INCREMENT'"
+          "NONE", 
+          "C.scene.tool_settings.snap_elements = {'INCREMENT'}"
         ], 
         [
           "Absolute Grid Snap = False", 
           "COMMAND", 
-          "TEXT", 
-          "bpy.context.scene.tool_settings.use_snap_grid_absolute = False"
+          "NONE", 
+          "C.scene.tool_settings.use_snap_grid_absolute = False"
         ]
       ], 
       "MACRO", 
@@ -3667,37 +3673,37 @@
           "Vertex", 
           "COMMAND", 
           "SNAP_VERTEX", 
-          "bpy.context.scene.tool_settings.snap_element = 'VERTEX'"
+          "bpy.context.scene.tool_settings.snap_elements = {'VERTEX'}"
         ], 
         [
           "Face", 
           "COMMAND", 
           "SNAP_FACE", 
-          "bpy.context.scene.tool_settings.snap_element = 'FACE'"
+          "bpy.context.scene.tool_settings.snap_elements = {'FACE'}"
         ], 
         [
           "Edge", 
           "COMMAND", 
           "SNAP_EDGE", 
-          "bpy.context.scene.tool_settings.snap_element = 'EDGE'"
+          "bpy.context.scene.tool_settings.snap_elements = {'EDGE'}"
         ], 
         [
           "Increment", 
           "COMMAND", 
           "SNAP_INCREMENT", 
-          "bpy.context.scene.tool_settings.snap_element = 'INCREMENT'; bpy.context.scene.tool_settings.use_snap_grid_absolute = False"
+          "bpy.context.scene.tool_settings.snap_elements = {'INCREMENT'}"
         ], 
         [
           "Volume", 
           "COMMAND", 
           "SNAP_VOLUME", 
-          "bpy.context.scene.tool_settings.snap_element = 'VOLUME'"
+          "bpy.context.scene.tool_settings.snap_elements = {'VOLUME'}"
         ], 
         [
-          "Absolute", 
-          "COMMAND", 
+          "Absolute Grid Snap", 
+          "PROP", 
           "SNAP_GRID", 
-          "bpy.context.scene.tool_settings.snap_element = 'INCREMENT'; bpy.context.scene.tool_settings.use_snap_grid_absolute = True"
+          "C.scene.tool_settings.use_snap_grid_absolute"
         ], 
         [
           "Align Rotation to Target", 
@@ -3714,7 +3720,7 @@
       ], 
       "PMENU", 
       "pm?", 
-      "TWEAK", 
+      "PRESS", 
       "", 
       ""
     ], 
@@ -4044,20 +4050,20 @@
         [
           "Snap = False", 
           "COMMAND", 
-          "TEXT", 
-          "bpy.context.scene.tool_settings.use_snap = False"
+          "SNAP_OFF", 
+          "C.scene.tool_settings.use_snap = False"
         ], 
         [
-          "Snap Element = 'VERTEX'", 
+          "Snap Element = {'VERTEX'}", 
           "COMMAND", 
-          "TEXT", 
-          "bpy.context.scene.tool_settings.snap_element = 'VERTEX'"
+          "NONE", 
+          "C.scene.tool_settings.snap_elements = {'VERTEX'}"
         ], 
         [
           "Snap Target = 'CLOSEST'", 
           "COMMAND", 
-          "TEXT", 
-          "bpy.context.scene.tool_settings.snap_target = 'CLOSEST'"
+          "NONE", 
+          "C.scene.tool_settings.snap_target = 'CLOSEST'"
         ], 
         [
           "Project to Self = True", 
@@ -4066,10 +4072,10 @@
           "bpy.context.scene.tool_settings.use_snap_self = True"
         ], 
         [
-          "Snap Align Rotation = False", 
+          "Align Rotation to Target = False", 
           "COMMAND", 
-          "TEXT", 
-          "bpy.context.scene.tool_settings.use_snap_align_rotation = False"
+          "NONE", 
+          "C.scene.tool_settings.use_snap_align_rotation = False"
         ]
       ], 
       "MACRO", 
@@ -6242,7 +6248,7 @@
         ]
       ], 
       "DIALOG", 
-      "pd?pd_box=False", 
+      "pd?pd_title=False", 
       "PRESS", 
       "", 
       ""
@@ -9300,13 +9306,13 @@
         [
           "Unhide", 
           "COMMAND", 
-          "RESTRICT_VIEW_OFF", 
+          "HIDE_OFF", 
           "bpy.ops.mesh.select_all(action='INVERT');bpy.ops.mesh.reveal();bpy.ops.mesh.select_all(action='INVERT')"
         ], 
         [
           "Hide", 
           "COMMAND", 
-          "RESTRICT_VIEW_ON", 
+          "HIDE_ON", 
           "bpy.ops.mesh.hide(unselected=False)"
         ], 
         [
@@ -9336,7 +9342,7 @@
         [
           "Align Face / Front", 
           "MENU", 
-          "", 
+          "ORIENTATION_NORMAL", 
           "Align Face / Front"
         ], 
         [
@@ -10002,13 +10008,13 @@
         [
           "Unhide", 
           "COMMAND", 
-          "RESTRICT_VIEW_OFF", 
+          "HIDE_OFF", 
           "bpy.ops.object.select_all(action='INVERT');bpy.ops.object.hide_view_clear();bpy.ops.object.select_all(action='INVERT')"
         ], 
         [
           "Hide", 
           "COMMAND", 
-          "RESTRICT_VIEW_ON", 
+          "HIDE_ON", 
           "bpy.ops.object.hide_view_set(unselected=False)"
         ], 
         [
