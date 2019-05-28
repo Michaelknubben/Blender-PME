@@ -655,31 +655,31 @@
           "Snap = False", 
           "COMMAND", 
           "TEXT", 
-          "bpy.context.scene.tool_settings.use_snap = False"
+          "C.scene.tool_settings.use_snap = False"
         ], 
         [
-          "Snap Element = 'FACE'", 
+          "Snap Element = {'FACE'}", 
           "COMMAND", 
           "TEXT", 
-          "bpy.context.scene.tool_settings.snap_element = 'FACE'"
+          "C.scene.tool_settings.snap_elements = {'FACE'}"
         ], 
         [
-          "Snap Align Rotation = True", 
+          "Align Rotation to Target = True", 
           "COMMAND", 
           "TEXT", 
-          "bpy.context.scene.tool_settings.use_snap_align_rotation = True"
+          "C.scene.tool_settings.use_snap_align_rotation = True"
         ], 
         [
           "Snap Target = 'CENTER'", 
           "COMMAND", 
           "TEXT", 
-          "bpy.context.scene.tool_settings.snap_target = 'CENTER'"
+          "C.scene.tool_settings.snap_target = 'CENTER'"
         ], 
         [
           "Project Individual Elements = False", 
           "COMMAND", 
           "TEXT", 
-          "bpy.context.scene.tool_settings.use_snap_project = False"
+          "C.scene.tool_settings.use_snap_project = False"
         ]
       ], 
       "MACRO", 
@@ -2726,6 +2726,57 @@
       ""
     ], 
     [
+      "Modeselektor GP", 
+      "3D View", 
+      "TAB", 
+      [
+        [
+          ""
+        ], 
+        [
+          ""
+        ], 
+        [
+          "Set Object Mode", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.object.mode_set(mode='EDIT_GPENCIL')"
+        ], 
+        [
+          "Set Object Mode", 
+          "COMMAND", 
+          "OBJECT_DATAMODE", 
+          "bpy.ops.object.mode_set(mode='OBJECT')"
+        ], 
+        [
+          ""
+        ], 
+        [
+          "Set Object Mode", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.object.mode_set(mode='SCULPT_GPENCIL')"
+        ], 
+        [
+          "Set Object Mode", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.object.mode_set(mode='WEIGHT_GPENCIL')"
+        ], 
+        [
+          "Set Object Mode", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.object.mode_set(mode='PAINT_GPENCIL')"
+        ]
+      ], 
+      "PMENU", 
+      "pm?", 
+      "PRESS", 
+      "return C.active_object and C.active_object.type == 'GREASE'", 
+      ""
+    ], 
+    [
       "WindowType Pie", 
       "Window", 
       "shift+SPACE", 
@@ -3033,19 +3084,19 @@
         [
           "Snap = False", 
           "COMMAND", 
-          "SNAP_OFF", 
+          "TEXT", 
           "C.scene.tool_settings.use_snap = False"
         ], 
         [
           "Snap Element = {'INCREMENT'}", 
           "COMMAND", 
-          "NONE", 
+          "TEXT", 
           "C.scene.tool_settings.snap_elements = {'INCREMENT'}"
         ], 
         [
           "Absolute Grid Snap = False", 
           "COMMAND", 
-          "NONE", 
+          "TEXT", 
           "C.scene.tool_settings.use_snap_grid_absolute = False"
         ]
       ], 
@@ -3120,17 +3171,17 @@
         [
           "Checker Deselect", 
           "COMMAND", 
-          "", 
+          "TEXTURE", 
           "bpy.ops.mesh.select_nth()"
         ], 
         [
           "row"
         ], 
         [
-          "Select Sharp Edges", 
+          "Select 60\u00b0", 
           "COMMAND", 
-          "", 
-          "bpy.ops.mesh.edges_select_sharp()"
+          "MESH_CUBE", 
+          "bpy.ops.mesh.edges_select_sharp(sharpness=1.0471975803375244)"
         ], 
         [
           "row"
@@ -3138,7 +3189,7 @@
         [
           "Select Random", 
           "COMMAND", 
-          "", 
+          "SHADERFX", 
           "bpy.ops.mesh.select_random(seed=1)"
         ]
       ], 
@@ -3316,25 +3367,64 @@
           "Snap = False", 
           "COMMAND", 
           "TEXT", 
-          "bpy.context.scene.tool_settings.use_snap = False"
+          "C.scene.tool_settings.use_snap = False"
         ], 
         [
-          "Snap Element = 'VOLUME'", 
+          "Snap Element = {'VOLUME'}", 
           "COMMAND", 
           "TEXT", 
-          "bpy.context.scene.tool_settings.snap_element = 'VOLUME'"
+          "C.scene.tool_settings.snap_elements = {'VOLUME'}"
         ], 
         [
           "Snap Target = 'CENTER'", 
           "COMMAND", 
           "TEXT", 
-          "bpy.context.scene.tool_settings.snap_target = 'CENTER'"
+          "C.scene.tool_settings.snap_target = 'CENTER'"
         ]
       ], 
       "MACRO", 
       "m?", 
       "PRESS", 
       "", 
+      ""
+    ], 
+    [
+      "Modeselektor Curve", 
+      "Window", 
+      "TAB", 
+      [
+        [
+          ""
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ], 
+        [
+          "Object Mode", 
+          "COMMAND", 
+          "OBJECT_DATAMODE", 
+          "bpy.ops.object.editmode_toggle()"
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ]
+      ], 
+      "PMENU", 
+      "pm?", 
+      "PRESS", 
+      "return C.active_object and C.active_object.type == 'CURVE'", 
       ""
     ], 
     [
@@ -3720,7 +3810,7 @@
       ], 
       "PMENU", 
       "pm?", 
-      "PRESS", 
+      "TWEAK", 
       "", 
       ""
     ], 
@@ -3895,31 +3985,31 @@
           "Snap = False", 
           "COMMAND", 
           "TEXT", 
-          "bpy.context.scene.tool_settings.use_snap = False"
+          "C.scene.tool_settings.use_snap = False"
         ], 
         [
-          "Snap Element = 'EDGE'", 
+          "Snap Element = {'EDGE'}", 
           "COMMAND", 
           "TEXT", 
-          "bpy.context.scene.tool_settings.snap_element = 'EDGE'"
+          "C.scene.tool_settings.snap_elements = {'EDGE'}"
         ], 
         [
           "Snap Target = 'CENTER'", 
           "COMMAND", 
           "TEXT", 
-          "bpy.context.scene.tool_settings.snap_target = 'CENTER'"
+          "C.scene.tool_settings.snap_target = 'CENTER'"
         ], 
         [
-          "Project to Self = True", 
+          "Project onto Self = True", 
           "COMMAND", 
           "TEXT", 
-          "bpy.context.scene.tool_settings.use_snap_self = True"
+          "C.scene.tool_settings.use_snap_self = True"
         ], 
         [
-          "Snap Align Rotation = False", 
+          "Align Rotation to Target = False", 
           "COMMAND", 
           "TEXT", 
-          "bpy.context.scene.tool_settings.use_snap_align_rotation = False"
+          "C.scene.tool_settings.use_snap_align_rotation = False"
         ]
       ], 
       "MACRO", 
@@ -4050,31 +4140,31 @@
         [
           "Snap = False", 
           "COMMAND", 
-          "SNAP_OFF", 
+          "TEXT", 
           "C.scene.tool_settings.use_snap = False"
         ], 
         [
           "Snap Element = {'VERTEX'}", 
           "COMMAND", 
-          "NONE", 
+          "TEXT", 
           "C.scene.tool_settings.snap_elements = {'VERTEX'}"
         ], 
         [
           "Snap Target = 'CLOSEST'", 
           "COMMAND", 
-          "NONE", 
+          "TEXT", 
           "C.scene.tool_settings.snap_target = 'CLOSEST'"
         ], 
         [
-          "Project to Self = True", 
+          "Project onto Self = True", 
           "COMMAND", 
           "TEXT", 
-          "bpy.context.scene.tool_settings.use_snap_self = True"
+          "C.scene.tool_settings.use_snap_self = True"
         ], 
         [
           "Align Rotation to Target = False", 
           "COMMAND", 
-          "NONE", 
+          "TEXT", 
           "C.scene.tool_settings.use_snap_align_rotation = False"
         ]
       ], 
@@ -4767,26 +4857,26 @@
         [
           "Closest", 
           "COMMAND", 
-          "", 
-          "bpy.ops.object.snaptargetvariable(variable=\"CLOSEST\")"
+          "NONE", 
+          "C.scene.tool_settings.snap_target = 'CLOSEST'"
         ], 
         [
           "Median", 
           "COMMAND", 
-          "", 
-          "bpy.ops.object.snaptargetvariable(variable=\"MEDIAN\")"
+          "NONE", 
+          "C.scene.tool_settings.snap_target = 'MEDIAN'"
         ], 
         [
           "Center", 
           "COMMAND", 
-          "", 
-          "bpy.ops.object.snaptargetvariable(variable=\"CENTER\")"
+          "NONE", 
+          "C.scene.tool_settings.snap_target = 'CENTER'"
         ], 
         [
           "Active", 
           "COMMAND", 
-          "", 
-          "bpy.ops.object.snaptargetvariable(variable=\"ACTIVE\")"
+          "NONE", 
+          "C.scene.tool_settings.snap_target = 'ACTIVE'"
         ], 
         [
           ""
@@ -7474,7 +7564,7 @@
           "Select Side", 
           "CUSTOM", 
           "", 
-          "L.label(text, icon=icon, icon_value=icon_value)"
+          "L.label(text=text, icon=icon, icon_value=icon_value)"
         ], 
         [
           "X", 
@@ -7498,16 +7588,19 @@
           "row"
         ], 
         [
-          "Multi Select Loops", 
+          "Multi Select", 
+          "CUSTOM", 
+          "", 
+          "L.label(text=text, icon=icon, icon_value=icon_value)"
+        ], 
+        [
+          "Loops", 
           "COMMAND", 
           "", 
           "bpy.ops.mesh.loop_multi_select(ring=False)"
         ], 
         [
-          "spacer?hsep=SPACER"
-        ], 
-        [
-          "Multi Select Rings", 
+          "Rings", 
           "COMMAND", 
           "", 
           "bpy.ops.mesh.loop_multi_select(ring=True)"
@@ -7699,19 +7792,19 @@
           "Snap = False", 
           "COMMAND", 
           "TEXT", 
-          "bpy.context.scene.tool_settings.use_snap = False"
+          "C.scene.tool_settings.use_snap = False"
         ], 
         [
-          "Snap Element = 'INCREMENT'", 
+          "Snap Element = {'INCREMENT'}", 
           "COMMAND", 
           "TEXT", 
-          "bpy.context.scene.tool_settings.snap_element = 'INCREMENT'"
+          "C.scene.tool_settings.snap_elements = {'INCREMENT'}"
         ], 
         [
           "Snap Target = 'ACTIVE'", 
           "COMMAND", 
           "TEXT", 
-          "bpy.context.scene.tool_settings.snap_target = 'ACTIVE'"
+          "C.scene.tool_settings.snap_target = 'ACTIVE'"
         ], 
         [
           "Absolute Grid Snap = True", 
@@ -8041,13 +8134,13 @@
           "Snap = True", 
           "COMMAND", 
           "TEXT", 
-          "bpy.context.scene.tool_settings.use_snap = True"
+          "C.scene.tool_settings.use_snap = True"
         ], 
         [
-          "Snap Element = 'FACE'", 
+          "Snap Element = {'FACE'}", 
           "COMMAND", 
           "TEXT", 
-          "bpy.context.scene.tool_settings.snap_element = 'FACE'"
+          "C.scene.tool_settings.snap_elements = {'FACE'}"
         ]
       ], 
       "MACRO", 
@@ -9690,7 +9783,7 @@
     ], 
     [
       "Modeselektor", 
-      "Curve, Grease Pencil Stroke Edit Mode, Image Paint, Lattice, Mesh, Object Mode, Sculpt, Vertex Paint, Weight Paint", 
+      "Image Paint, Lattice, Mesh, Object Mode, Sculpt, Vertex Paint, Weight Paint", 
       "TAB", 
       [
         [
