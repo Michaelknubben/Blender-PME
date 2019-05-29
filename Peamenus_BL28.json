@@ -2840,6 +2840,66 @@
       ""
     ], 
     [
+      "Editor Pie", 
+      "Window", 
+      "shift+SPACE", 
+      [
+        [
+          "Outliner", 
+          "COMMAND", 
+          "TRIA_RIGHT", 
+          "bpy.ops.pme.sidearea_toggle(area='OUTLINER', side='RIGHT')"
+        ], 
+        [
+          "Properties", 
+          "COMMAND", 
+          "TRIA_RIGHT", 
+          "bpy.ops.pme.sidearea_toggle(area='PROPERTIES', side='RIGHT')"
+        ], 
+        [
+          "Join Area", 
+          "COMMAND", 
+          "FULLSCREEN_EXIT", 
+          "bpy.ops.screen.area_join(min_x=2204, min_y=1213, max_x=2196, max_y=1205)"
+        ], 
+        [
+          "Split Horizontal", 
+          "COMMAND", 
+          "SNAP_PEEL_OBJECT", 
+          "bpy.ops.screen.area_split(direction='HORIZONTAL')"
+        ], 
+        [
+          "File Properties Etc", 
+          "MENU", 
+          "FILE_SCRIPT", 
+          "WindowTypeSub 1"
+        ], 
+        [
+          "Animation Etc", 
+          "MENU", 
+          "ACTION_TWEAK", 
+          "WindowTypeSub 2"
+        ], 
+        [
+          "Editor List L", 
+          "MENU", 
+          "NONE", 
+          "@Editor List L"
+        ], 
+        [
+          "Editor List R", 
+          "MENU", 
+          "IMAGE_DATA", 
+          "@@Editor List R"
+        ]
+      ], 
+      "PMENU", 
+      "pm?", 
+      "TWEAK", 
+      "", 
+      ""
+    ], 
+    [
       "Modeselektor GP", 
       "3D View", 
       "TAB", 
@@ -2888,66 +2948,6 @@
       "pm?", 
       "PRESS", 
       "return C.active_object and C.active_object.type == 'GREASE'", 
-      ""
-    ], 
-    [
-      "WindowType Pie", 
-      "Window", 
-      "shift+SPACE", 
-      [
-        [
-          "Shader Editor", 
-          "COMMAND", 
-          "NONE", 
-          "bpy.context.area.ui_type = 'ShaderNodeTree'"
-        ], 
-        [
-          "Image Editor", 
-          "COMMAND", 
-          "IMAGE_DATA", 
-          "bpy.context.area.ui_type = 'VIEW'"
-        ], 
-        [
-          "Join Area", 
-          "COMMAND", 
-          "FULLSCREEN_EXIT", 
-          "bpy.ops.screen.area_join()"
-        ], 
-        [
-          "3D View", 
-          "COMMAND", 
-          "VIEW3D", 
-          "bpy.context.area.ui_type = 'VIEW_3D'"
-        ], 
-        [
-          "File Properties Etc", 
-          "MENU", 
-          "FILE_SCRIPT", 
-          "WindowTypeSub 1"
-        ], 
-        [
-          "Animation Etc", 
-          "MENU", 
-          "ACTION_TWEAK", 
-          "WindowTypeSub 2"
-        ], 
-        [
-          "Split Vertical", 
-          "COMMAND", 
-          "TRIA_RIGHT", 
-          "bpy.ops.screen.area_split(direction='VERTICAL')"
-        ], 
-        [
-          "Split Horizontal", 
-          "COMMAND", 
-          "TRIA_DOWN", 
-          "bpy.ops.screen.area_split(direction='HORIZONTAL')"
-        ]
-      ], 
-      "PMENU", 
-      "pm?", 
-      "PRESS", 
-      "", 
       ""
     ], 
     [
@@ -3498,6 +3498,45 @@
       ], 
       "MACRO", 
       "m?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Editor List R", 
+      "Window", 
+      "", 
+      [
+        [
+          "row"
+        ], 
+        [
+          "Dope Sheet", 
+          "COMMAND", 
+          "ACTION", 
+          "bpy.context.area.ui_type = '<UNKNOWN ENUM>'"
+        ], 
+        [
+          "row?"
+        ], 
+        [
+          "Timeline", 
+          "COMMAND", 
+          "TIME", 
+          "bpy.context.area.ui_type = 'TIMELINE'"
+        ], 
+        [
+          "row?"
+        ], 
+        [
+          "Graph", 
+          "COMMAND", 
+          "GRAPH", 
+          "bpy.context.area.ui_type = '<UNKNOWN ENUM>'"
+        ]
+      ], 
+      "DIALOG", 
+      "pd?pd_panel=1", 
       "PRESS", 
       "", 
       ""
@@ -6129,6 +6168,45 @@
       ], 
       "DIALOG", 
       "pd?pd_box=&pd_panel=0", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Editor List L", 
+      "Window", 
+      "", 
+      [
+        [
+          "row"
+        ], 
+        [
+          "3D View", 
+          "COMMAND", 
+          "VIEW3D", 
+          "bpy.context.area.ui_type = 'VIEW_3D'"
+        ], 
+        [
+          "row?"
+        ], 
+        [
+          "UV", 
+          "COMMAND", 
+          "UV", 
+          "bpy.context.area.ui_type = 'UV'"
+        ], 
+        [
+          "row?"
+        ], 
+        [
+          "Shader", 
+          "COMMAND", 
+          "NODE_MATERIAL", 
+          "bpy.context.area.ui_type = 'ShaderNodeTree'"
+        ]
+      ], 
+      "DIALOG", 
+      "pd?pd_panel=1", 
       "PRESS", 
       "", 
       ""
@@ -8913,6 +8991,27 @@
       ], 
       "PMENU", 
       "pm?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "EditorType", 
+      "Window", 
+      "shift+SPACE", 
+      [
+        [
+          "row"
+        ], 
+        [
+          "Editor Type", 
+          "CUSTOM", 
+          "NONE", 
+          "L.column(align=True).prop(C.area, 'ui_type', expand=True)"
+        ]
+      ], 
+      "DIALOG", 
+      "pd?pd_panel=2&pd_title=False&pd_width=130", 
       "PRESS", 
       "", 
       ""
