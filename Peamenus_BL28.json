@@ -265,21 +265,21 @@
           "C.space_data.show_region_header"
         ], 
         [
-          "Fullscreen", 
-          "COMMAND", 
-          "FULLSCREEN_ENTER", 
-          "bpy.ops.screen.screen_full_area(use_hide_panels=True),bpy.ops.wm.window_fullscreen_toggle()"
+          "Tool Settings", 
+          "PROP", 
+          "TOOL_SETTINGS", 
+          "C.space_data.show_region_tool_header"
         ], 
         [
           "Tool Shelf", 
           "HOTKEY", 
-          "TOOL_SETTINGS", 
+          "MENU_PANEL", 
           "T"
         ], 
         [
           "Properties", 
           "HOTKEY", 
-          "ASSET_MANAGER", 
+          "MOD_TRIANGULATE", 
           "N"
         ], 
         [
@@ -297,7 +297,7 @@
       ], 
       "PMENU", 
       "pm?", 
-      "PRESS", 
+      "TWEAK", 
       "", 
       ""
     ], 
@@ -737,31 +737,19 @@
       ""
     ], 
     [
-      "Convert Edges to Curve", 
-      "3D View", 
-      "", 
+      "Stack Key", 
+      "Window", 
+      "SPACE", 
       [
         [
-          "Add Duplicate", 
+          "Fullscreen", 
           "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.mesh.duplicate_move(MESH_OT_duplicate={\"mode\":1}, TRANSFORM_OT_translate={\"value\":(0, 0, 0), \"constraint_axis\":(False, False, False), \"constraint_orientation\":'GLOBAL', \"mirror\":False, \"proportional\":'DISABLED', \"proportional_edit_falloff\":'SMOOTH', \"proportional_size\":1, \"snap\":False, \"snap_target\":'CLOSEST', \"snap_point\":(0, 0, 0), \"snap_align\":False, \"snap_normal\":(0, 0, 0), \"gpencil_strokes\":False, \"texture_space\":False, \"remove_on_cancel\":False, \"release_confirm\":False})"
-        ], 
-        [
-          "Separate", 
-          "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.mesh.separate(type='SELECTED')"
-        ], 
-        [
-          "Command 3", 
-          "COMMAND", 
-          "TEXT", 
-          ""
+          "", 
+          "bpy.ops.screen.screen_full_area(use_hide_panels=True),bpy.ops.wm.window_fullscreen_toggle()"
         ]
       ], 
-      "MACRO", 
-      "m?", 
+      "SCRIPT", 
+      "s?", 
       "PRESS", 
       "", 
       ""
@@ -790,10 +778,10 @@
           "C.space_data.shading.show_xray"
         ], 
         [
-          "Show Overlays", 
-          "PROP", 
-          "OVERLAY", 
-          "C.space_data.overlay.show_overlays"
+          "Grid On/Off", 
+          "MENU", 
+          "GRID", 
+          "Grid On/Off"
         ], 
         [
           "Material", 
@@ -822,6 +810,36 @@
       ], 
       "PMENU", 
       "pm?", 
+      "TWEAK", 
+      "", 
+      ""
+    ], 
+    [
+      "Convert Edges to Curve", 
+      "3D View", 
+      "", 
+      [
+        [
+          "Add Duplicate", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.mesh.duplicate_move(MESH_OT_duplicate={\"mode\":1}, TRANSFORM_OT_translate={\"value\":(0, 0, 0), \"constraint_axis\":(False, False, False), \"constraint_orientation\":'GLOBAL', \"mirror\":False, \"proportional\":'DISABLED', \"proportional_edit_falloff\":'SMOOTH', \"proportional_size\":1, \"snap\":False, \"snap_target\":'CLOSEST', \"snap_point\":(0, 0, 0), \"snap_align\":False, \"snap_normal\":(0, 0, 0), \"gpencil_strokes\":False, \"texture_space\":False, \"remove_on_cancel\":False, \"release_confirm\":False})"
+        ], 
+        [
+          "Separate", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.mesh.separate(type='SELECTED')"
+        ], 
+        [
+          "Command 3", 
+          "COMMAND", 
+          "TEXT", 
+          ""
+        ]
+      ], 
+      "MACRO", 
+      "m?", 
       "PRESS", 
       "", 
       ""
@@ -1997,6 +2015,99 @@
       ""
     ], 
     [
+      "Shading 2 Panel", 
+      "Window", 
+      "", 
+      [
+        [
+          "row?"
+        ], 
+        [
+          "Grid", 
+          "MENU", 
+          "GRID", 
+          "Grid On/Off"
+        ], 
+        [
+          "spacer?hsep=COLUMN"
+        ], 
+        [
+          "Tool Settings", 
+          "PROP", 
+          "TOOL_SETTINGS", 
+          "C.space_data.show_region_tool_header"
+        ], 
+        [
+          "row"
+        ], 
+        [
+          "Face Orientation", 
+          "PROP", 
+          "DOT", 
+          "C.space_data.overlay.show_face_orientation"
+        ], 
+        [
+          "Hidden Wire", 
+          "PROP", 
+          "DOT", 
+          "C.space_data.overlay.show_occlude_wire"
+        ], 
+        [
+          "Show Weights", 
+          "PROP", 
+          "DOT", 
+          "C.space_data.overlay.show_weight"
+        ], 
+        [
+          "Stat Vis", 
+          "PROP", 
+          "DOT", 
+          "C.space_data.overlay.show_statvis"
+        ], 
+        [
+          "row?"
+        ], 
+        [
+          "Type", 
+          "PROP", 
+          "NONE", 
+          "C.scene.tool_settings.statvis.type"
+        ], 
+        [
+          "row?"
+        ], 
+        [
+          "Sharp", 
+          "PROP", 
+          "DOT", 
+          "C.space_data.overlay.show_edge_sharp"
+        ], 
+        [
+          "Creases", 
+          "PROP", 
+          "DOT", 
+          "C.space_data.overlay.show_edge_crease"
+        ], 
+        [
+          "Bevel Weights", 
+          "PROP", 
+          "DOT", 
+          "C.space_data.overlay.show_edge_bevel_weight"
+        ], 
+        [
+          "Seams", 
+          "PROP", 
+          "DOT", 
+          "C.space_data.overlay.show_edge_seams"
+        ]
+      ], 
+      "DIALOG", 
+      "pd?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
       "Snap Sets", 
       "Mesh, Object Mode", 
       "ctrl+shift+TAB", 
@@ -2262,7 +2373,7 @@
     ], 
     [
       "Shading Menu 2", 
-      "Window", 
+      "3D View", 
       "shift+Z", 
       [
         [
@@ -2272,7 +2383,10 @@
           ""
         ], 
         [
-          ""
+          "Shading 2 Panel", 
+          "MENU", 
+          "", 
+          "@Shading 2 Panel"
         ], 
         [
           ""
@@ -4666,6 +4780,30 @@
       "PMENU", 
       "pm?", 
       "TWEAK", 
+      "", 
+      ""
+    ], 
+    [
+      "Grid On/Off", 
+      "Window", 
+      "", 
+      [
+        [
+          "Grid Off", 
+          "COMMAND", 
+          "", 
+          "C.space_data.overlay.show_axis_x = False; C.space_data.overlay.show_axis_y = False; C.space_data.overlay.show_axis_z = False; C.space_data.overlay.show_floor = False"
+        ], 
+        [
+          "Grid On", 
+          "COMMAND", 
+          "NONE", 
+          "C.space_data.overlay.show_axis_x = True; C.space_data.overlay.show_axis_y = True; C.space_data.overlay.show_axis_z =False; C.space_data.overlay.show_floor = True"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "PRESS", 
       "", 
       ""
     ], 
