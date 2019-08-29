@@ -1,0 +1,23 @@
+{
+  "version": "1.15.21", 
+  "menus": [
+    [
+      "Select Dropdown", 
+      "Window", 
+      "LEFTMOUSE", 
+      [
+        [
+          "Activate/Select", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.view3d.select(enumerate=True, toggle=False)"
+        ]
+      ], 
+      "MACRO", 
+      "m?", 
+      "HOLD", 
+      "", 
+      ""
+    ]
+  ]
+}
