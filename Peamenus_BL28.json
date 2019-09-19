@@ -2537,6 +2537,24 @@
       ""
     ], 
     [
+      "Sculpt: Mask Clear", 
+      "Sculpt", 
+      "alt+A", 
+      [
+        [
+          "Clear Mask", 
+          "COMMAND", 
+          "PANEL_CLOSE", 
+          "bpy.ops.paint.mask_flood_fill(mode='VALUE', value=0.0)"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
       "Align Active", 
       "Window", 
       "", 
@@ -3978,6 +3996,45 @@
       ], 
       "PMENU", 
       "pm?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Sculpt Mask Tools", 
+      "Window", 
+      "", 
+      [
+        [
+          "row"
+        ], 
+        [
+          "Checker Deselect", 
+          "COMMAND", 
+          "TEXTURE", 
+          "bpy.ops.mesh.select_nth()"
+        ], 
+        [
+          "row"
+        ], 
+        [
+          "Select 60\u00b0", 
+          "COMMAND", 
+          "MESH_CUBE", 
+          "bpy.ops.mesh.edges_select_sharp(sharpness=1.0471975803375244)"
+        ], 
+        [
+          "row"
+        ], 
+        [
+          "Select Random", 
+          "COMMAND", 
+          "SHADERFX", 
+          "bpy.ops.mesh.select_random(seed=1)"
+        ]
+      ], 
+      "DIALOG", 
+      "pd?pd_box=False&pd_panel=0&pd_title=False", 
       "PRESS", 
       "", 
       ""
@@ -6882,20 +6939,20 @@
         [
           "Shrink Mask", 
           "COMMAND", 
-          "PROP_CON", 
+          "REMOVE", 
           "bpy.ops.sculpt.mask_filter(filter_type='SHRINK', auto_iteration_count=True)"
         ], 
         [
           "Grow Mask", 
           "COMMAND", 
-          "PROP_ON", 
+          "ADD", 
           "bpy.ops.sculpt.mask_filter(filter_type='GROW', auto_iteration_count=True)"
         ], 
         [
-          "Clear Mask", 
-          "COMMAND", 
-          "MOD_MIRROR", 
-          "bpy.ops.paint.mask_flood_fill(mode='VALUE', value=0.0)"
+          "Sculpt Select Tools 1", 
+          "MENU", 
+          "PANEL_CLOSE", 
+          "@Sculpt Mask Tools"
         ], 
         [
           "Invert Mask", 
@@ -6906,31 +6963,31 @@
         [
           "Smooth Mask", 
           "COMMAND", 
-          "ARROW_LEFTRIGHT", 
+          "SPHERECURVE", 
           "bpy.ops.sculpt.mask_filter(filter_type='SMOOTH', auto_iteration_count=True)"
         ], 
         [
           "Sharpen Mask", 
           "COMMAND", 
-          "COLLAPSEMENU", 
+          "SHARPCURVE", 
           "bpy.ops.sculpt.mask_filter(filter_type='SHARPEN', auto_iteration_count=True)"
         ], 
         [
           "Decrease Contrast", 
           "COMMAND", 
-          "", 
+          "PROP_OFF", 
           "bpy.ops.sculpt.mask_filter(filter_type='CONTRAST_DECREASE', auto_iteration_count=False)"
         ], 
         [
           "Increase Contrast", 
           "COMMAND", 
-          "", 
+          "PROP_CON", 
           "bpy.ops.sculpt.mask_filter(filter_type='CONTRAST_INCREASE', auto_iteration_count=False)"
         ]
       ], 
       "PMENU", 
       "pm?", 
-      "PRESS", 
+      "TWEAK", 
       "", 
       ""
     ], 
