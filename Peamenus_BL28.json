@@ -237,6 +237,24 @@
       ], 
       "SCRIPT", 
       "s?s_undo=True", 
+      "DOUBLE_CLICK", 
+      "", 
+      ""
+    ], 
+    [
+      "3D: Snap View Ortho", 
+      "3D View Generic", 
+      "alt+LEFTMOUSE", 
+      [
+        [
+          "Snap View Ortho", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.view3d.view_snap()"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
       "PRESS", 
       "", 
       ""
@@ -257,24 +275,6 @@
       "s?", 
       "TWEAK", 
       "", 
-      ""
-    ], 
-    [
-      "Panel Group Lattice", 
-      "Window", 
-      "", 
-      [
-        [
-          "Properties LATTICE", 
-          "MENU", 
-          "", 
-          "Properties LATTICE"
-        ]
-      ], 
-      "PANEL", 
-      "pg?pg_region=HEADER&pg_space=INFO", 
-      "PRESS", 
-      "return C.active_object and C.active_object.type == 'LATTICE'", 
       ""
     ], 
     [
@@ -308,6 +308,42 @@
       ""
     ], 
     [
+      "Mesh: Fill Region", 
+      "Mesh", 
+      "ctrl+LEFTMOUSE", 
+      [
+        [
+          "Fill Region", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.shortest_path_pick(use_fill=True)"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?s_undo=True", 
+      "HOLD", 
+      "", 
+      ""
+    ], 
+    [
+      "Panel Group Lattice", 
+      "Window", 
+      "", 
+      [
+        [
+          "Properties LATTICE", 
+          "MENU", 
+          "", 
+          "Properties LATTICE"
+        ]
+      ], 
+      "PANEL", 
+      "pg?pg_region=HEADER&pg_space=INFO", 
+      "PRESS", 
+      "return C.active_object and C.active_object.type == 'LATTICE'", 
+      ""
+    ], 
+    [
       "Panel Group Empty", 
       "Window", 
       "", 
@@ -323,63 +359,6 @@
       "pg?pg_region=HEADER&pg_space=INFO", 
       "PRESS", 
       "return C.active_object and C.active_object.type == 'EMPTY'", 
-      ""
-    ], 
-    [
-      "Visibility Pie Object", 
-      "Object Mode", 
-      "MIDDLEMOUSE", 
-      [
-        [
-          "Unhide", 
-          "COMMAND", 
-          "HIDE_OFF", 
-          "bpy.ops.object.select_all(action='INVERT');bpy.ops.object.hide_view_clear();bpy.ops.object.select_all(action='INVERT')"
-        ], 
-        [
-          "Hide", 
-          "COMMAND", 
-          "HIDE_ON", 
-          "bpy.ops.object.hide_view_set(unselected=False)"
-        ], 
-        [
-          "View Selected/All", 
-          "MENU", 
-          "ZOOM_PREVIOUS", 
-          "View Selected/All"
-        ], 
-        [
-          "Local", 
-          "HOTKEY", 
-          "GHOST_ENABLED", 
-          "NUMPAD_SLASH"
-        ], 
-        [
-          "Lock to Cursor", 
-          "PROP", 
-          "CURSOR", 
-          "bpy.context.space_data.lock_cursor"
-        ], 
-        [
-          "View Lock to Active/Clear", 
-          "MENU", 
-          "LOCKED", 
-          "View Lock to Active/Clear"
-        ], 
-        [
-          ""
-        ], 
-        [
-          "Hide Unselected", 
-          "HOTKEY", 
-          "RESTRICT_SELECT_ON", 
-          "shift+H"
-        ]
-      ], 
-      "PMENU", 
-      "pm?", 
-      "TWEAK", 
-      "", 
       ""
     ], 
     [
@@ -1346,6 +1325,66 @@
       ""
     ], 
     [
+      "Mesh: Visibility Pie", 
+      "Mesh", 
+      "MIDDLEMOUSE", 
+      [
+        [
+          "Unhide", 
+          "COMMAND", 
+          "HIDE_OFF", 
+          "bpy.ops.mesh.select_all(action='INVERT');bpy.ops.mesh.reveal();bpy.ops.mesh.select_all(action='INVERT')"
+        ], 
+        [
+          "Hide", 
+          "COMMAND", 
+          "HIDE_ON", 
+          "bpy.ops.mesh.hide(unselected=False)"
+        ], 
+        [
+          "View Selected/All", 
+          "MENU", 
+          "ZOOM_PREVIOUS", 
+          "3D: View Selected/All"
+        ], 
+        [
+          "Local", 
+          "HOTKEY", 
+          "GHOST_ENABLED", 
+          "NUMPAD_SLASH"
+        ], 
+        [
+          "Lock to Cursor", 
+          "PROP", 
+          "CURSOR", 
+          "bpy.context.space_data.lock_cursor"
+        ], 
+        [
+          "View Lock to Active/Clear", 
+          "MENU", 
+          "LOCKED", 
+          "View Lock to Active/Clear"
+        ], 
+        [
+          "Align Face / Front", 
+          "MENU", 
+          "ORIENTATION_NORMAL", 
+          "Align Face / Front"
+        ], 
+        [
+          "Hide Unselected", 
+          "COMMAND", 
+          "RESTRICT_SELECT_ON", 
+          "bpy.ops.mesh.hide(unselected=True)"
+        ]
+      ], 
+      "PMENU", 
+      "pm?", 
+      "TWEAK", 
+      "", 
+      ""
+    ], 
+    [
       "Modeselektor", 
       "Image Paint, Lattice, Mesh, Object Mode, Sculpt, Vertex Paint, Weight Paint", 
       "TAB", 
@@ -1401,30 +1440,6 @@
       ], 
       "PMENU", 
       "pm?", 
-      "PRESS", 
-      "", 
-      ""
-    ], 
-    [
-      "Solidify Modal", 
-      "3D View", 
-      "", 
-      [
-        [
-          "Add Modifier", 
-          "INVOKE", 
-          "", 
-          "a = bpy.context.active_object.modifiers.new(\"Solidify\", \"SOLIDIFY\").name;"
-        ], 
-        [
-          "Thickness", 
-          "PROP", 
-          "MOUSEMOVE;;;;", 
-          "bpy.context.object.modifiers[a].thickness"
-        ]
-      ], 
-      "MODAL", 
-      "mo?", 
       "PRESS", 
       "", 
       ""
@@ -1487,6 +1502,30 @@
       ""
     ], 
     [
+      "Solidify Modal", 
+      "3D View", 
+      "", 
+      [
+        [
+          "Add Modifier", 
+          "INVOKE", 
+          "", 
+          "a = bpy.context.active_object.modifiers.new(\"Solidify\", \"SOLIDIFY\").name;"
+        ], 
+        [
+          "Thickness", 
+          "PROP", 
+          "MOUSEMOVE;;;;", 
+          "bpy.context.object.modifiers[a].thickness"
+        ]
+      ], 
+      "MODAL", 
+      "mo?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
       "Shrink Selection", 
       "Mesh", 
       "shift+WHEELDOWNMOUSE", 
@@ -1518,7 +1557,7 @@
       ], 
       "SCRIPT", 
       "s?s_undo=True", 
-      "DOUBLE_CLICK", 
+      "PRESS", 
       "", 
       ""
     ], 
@@ -1570,6 +1609,24 @@
       "MACRO", 
       "m?", 
       "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Sculpt: Select Linked (Mask)", 
+      "Sculpt", 
+      "LEFTMOUSE", 
+      [
+        [
+          "Mask Flood Fill", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.paint.mask_flood_fill(mode='VALUE', value=1.0)"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "DOUBLE_CLICK", 
       "", 
       ""
     ], 
@@ -1925,6 +1982,63 @@
       ""
     ], 
     [
+      "Sculpt: Visibility Pie", 
+      "Sculpt", 
+      "MIDDLEMOUSE", 
+      [
+        [
+          "Unhide", 
+          "COMMAND", 
+          "HIDE_OFF", 
+          "bpy.ops.paint.hide_show(action='SHOW', area='ALL')"
+        ], 
+        [
+          "Hide Masked", 
+          "COMMAND", 
+          "HIDE_ON", 
+          "bpy.ops.paint.hide_show(area='MASKED', action='HIDE')"
+        ], 
+        [
+          "View Selected/All", 
+          "MENU", 
+          "ZOOM_PREVIOUS", 
+          "3D: View Selected/All"
+        ], 
+        [
+          "Local", 
+          "HOTKEY", 
+          "GHOST_ENABLED", 
+          "NUMPAD_SLASH"
+        ], 
+        [
+          "Lock to Cursor", 
+          "PROP", 
+          "CURSOR", 
+          "bpy.context.space_data.lock_cursor"
+        ], 
+        [
+          "View Lock to Active/Clear", 
+          "MENU", 
+          "LOCKED", 
+          "View Lock to Active/Clear"
+        ], 
+        [
+          "Hide/Show", 
+          "COMMAND", 
+          "HIDE_ON", 
+          "bpy.ops.paint.hide_show(action='HIDE', area='INSIDE')"
+        ], 
+        [
+          ""
+        ]
+      ], 
+      "PMENU", 
+      "pm?", 
+      "TWEAK", 
+      "", 
+      ""
+    ], 
+    [
       "\u00d9V Shading Menu", 
       "UV Editor", 
       "Z", 
@@ -2111,24 +2225,6 @@
       ""
     ], 
     [
-      "Select Mesh Mode", 
-      "Mesh", 
-      "LEFTMOUSE", 
-      [
-        [
-          "Select", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.view3d.select(deselect_all=True)"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?", 
-      "PRESS", 
-      "", 
-      ""
-    ], 
-    [
       "Curve to Mesh & Remove Doubles", 
       "Curve, Object Mode", 
       "", 
@@ -2258,21 +2354,27 @@
       ""
     ], 
     [
-      "UV Select Linked", 
-      "Window", 
+      "Mesh: Select Sharp Edges", 
+      "Mesh", 
       "LEFTMOUSE", 
       [
         [
-          "Select Linked Pick", 
+          "Select Similar", 
           "COMMAND", 
           "", 
-          "bpy.ops.uv.select_linked_pick(extend=False, deselect=False, location=(0.46985501050949097, 0.6371889710426331))"
+          "bpy.ops.mesh.select_similar(type='FACE_ANGLE', threshold=0.01)"
+        ], 
+        [
+          "Select Linked", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.select_linked_pick(delimit={'SEAM'})"
         ]
       ], 
       "SCRIPT", 
       "s?", 
-      "HOLD", 
-      "", 
+      "DOUBLE_CLICK", 
+      "return C.scene.tool_settings.mesh_select_mode[1]", 
       ""
     ], 
     [
@@ -2491,30 +2593,6 @@
       "DIALOG", 
       "pd?pd_box=&pd_panel=0", 
       "PRESS", 
-      "", 
-      ""
-    ], 
-    [
-      "View Selected/All", 
-      "3D View", 
-      "alt+LEFTMOUSE", 
-      [
-        [
-          "View Selected", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.view3d.view_selected()"
-        ], 
-        [
-          "View All", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.view3d.view_all(center=False)"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?", 
-      "DOUBLE_CLICK", 
       "", 
       ""
     ], 
@@ -2903,6 +2981,24 @@
       ""
     ], 
     [
+      "UV: Loop Select + (change to click)", 
+      "UV Editor", 
+      "ctrl+shift+LEFTMOUSE", 
+      [
+        [
+          "Loop Select Add", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.uv.select_loop(extend=True, location=(0.7325509786605835, 0.5028539896011353))"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?s_undo=True", 
+      "DOUBLE_CLICK", 
+      "", 
+      ""
+    ], 
+    [
       "Snap", 
       "3D View Generic", 
       "shift+TAB", 
@@ -2963,24 +3059,6 @@
       ""
     ], 
     [
-      "Shrink Pattern", 
-      "Mesh", 
-      "alt+WHEELDOWNMOUSE", 
-      [
-        [
-          "Select Previous Element", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.select_prev_item()"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?", 
-      "PRESS", 
-      "", 
-      ""
-    ], 
-    [
       "UV Snap Cursor", 
       "UV Editor", 
       "shift+S", 
@@ -3036,6 +3114,24 @@
       ], 
       "PMENU", 
       "pm?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Shrink Pattern", 
+      "Mesh", 
+      "alt+WHEELDOWNMOUSE", 
+      [
+        [
+          "Select Previous Element", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.select_prev_item()"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
       "PRESS", 
       "", 
       ""
@@ -3254,6 +3350,66 @@
       ""
     ], 
     [
+      "Curve: Select menu", 
+      "Curve", 
+      "alt+A", 
+      [
+        [
+          "Select Bounded Loop", 
+          "COMMAND", 
+          "ARROW_LEFTRIGHT", 
+          "bpy.ops.mesh.z_select_bounded_loop()"
+        ], 
+        [
+          "Select Bounded Ring", 
+          "COMMAND", 
+          "COLLAPSEMENU", 
+          "bpy.ops.mesh.z_select_bounded_ring()"
+        ], 
+        [
+          "Invert Selection", 
+          "COMMAND", 
+          "FILE_REFRESH", 
+          "bpy.ops.mesh.select_all(action='INVERT')"
+        ], 
+        [
+          "Select Mirror", 
+          "COMMAND", 
+          "MOD_MIRROR", 
+          "bpy.ops.mesh.select_mirror(extend=True)"
+        ], 
+        [
+          "Select Boundary Loop", 
+          "COMMAND", 
+          "PROP_CON", 
+          "bpy.ops.mesh.region_to_loop()"
+        ], 
+        [
+          "Select Loop Inner-Region", 
+          "COMMAND", 
+          "PROP_ON", 
+          "bpy.ops.mesh.loop_to_region()"
+        ], 
+        [
+          "Select Tools", 
+          "MENU", 
+          "", 
+          "@Select Tools"
+        ], 
+        [
+          "Select Tools.001", 
+          "MENU", 
+          "", 
+          "@Select Tools.001"
+        ]
+      ], 
+      "PMENU", 
+      "pm?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
       "Bend Options", 
       "Window", 
       "", 
@@ -3419,24 +3575,6 @@
       ""
     ], 
     [
-      "Mesh: Select Linked +.001", 
-      "Mesh", 
-      "shift+LEFTMOUSE", 
-      [
-        [
-          "Select Linked", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.select_linked_pick()"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?", 
-      "HOLD", 
-      "", 
-      ""
-    ], 
-    [
       "Helpers Hide/Show", 
       "Curve, Grease Pencil Stroke Edit Mode, Image Paint, Lattice, Mesh, Object Mode, Sculpt, Vertex Paint, Weight Paint", 
       "", 
@@ -3508,6 +3646,24 @@
       "DIALOG", 
       "pd?pd_width=350", 
       "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "UV: Select Linked", 
+      "Window", 
+      "LEFTMOUSE", 
+      [
+        [
+          "Select Linked Pick", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.uv.select_linked_pick(extend=False, deselect=False, location=(0.46985501050949097, 0.6371889710426331))"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "DOUBLE_CLICK", 
       "", 
       ""
     ], 
@@ -3695,6 +3851,24 @@
       ""
     ], 
     [
+      "3D: Center View to Mouse", 
+      "3D View", 
+      "alt+MIDDLEMOUSE", 
+      [
+        [
+          "Center View to Mouse", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.view3d.view_center_pick()"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "DOUBLE_CLICK", 
+      "", 
+      ""
+    ], 
+    [
       "Apply Transforms", 
       "Object Mode", 
       "ctrl+A", 
@@ -3809,20 +3983,62 @@
       ""
     ], 
     [
-      "UV Loop Select", 
-      "UV Editor", 
-      "ctrl+LEFTMOUSE", 
+      "Curve: Visibility Pie", 
+      "Curve", 
+      "MIDDLEMOUSE", 
       [
         [
-          "Loop Select", 
+          "Unhide", 
           "COMMAND", 
-          "", 
-          "bpy.ops.uv.select_loop(extend=False, location=(0.732551, 0.502854))"
+          "HIDE_OFF", 
+          "bpy.ops.curve.select_all(action='INVERT');bpy.ops.curve.reveal();bpy.ops.curve.select_all(action='INVERT')"
+        ], 
+        [
+          "Hide", 
+          "COMMAND", 
+          "HIDE_ON", 
+          "bpy.ops.curve.hide()"
+        ], 
+        [
+          "View Selected/All", 
+          "MENU", 
+          "ZOOM_PREVIOUS", 
+          "3D: View Selected/All"
+        ], 
+        [
+          "Local", 
+          "HOTKEY", 
+          "GHOST_ENABLED", 
+          "NUMPAD_SLASH"
+        ], 
+        [
+          "Lock to Cursor", 
+          "PROP", 
+          "CURSOR", 
+          "bpy.context.space_data.lock_cursor"
+        ], 
+        [
+          "View Lock to Active/Clear", 
+          "MENU", 
+          "LOCKED", 
+          "View Lock to Active/Clear"
+        ], 
+        [
+          "Align Face / Front", 
+          "MENU", 
+          "ORIENTATION_NORMAL", 
+          "Align Face / Front"
+        ], 
+        [
+          "Hide Unselected", 
+          "COMMAND", 
+          "RESTRICT_SELECT_ON", 
+          "bpy.ops.curve.hide(unselected=True)"
         ]
       ], 
-      "SCRIPT", 
-      "s?s_undo=True", 
-      "DOUBLE_CLICK", 
+      "PMENU", 
+      "pm?", 
+      "TWEAK", 
       "", 
       ""
     ], 
@@ -4074,24 +4290,6 @@
       ], 
       "DIALOG", 
       "pd?", 
-      "PRESS", 
-      "", 
-      ""
-    ], 
-    [
-      "Snap View Ortho", 
-      "3D View Generic", 
-      "alt+LEFTMOUSE", 
-      [
-        [
-          "Snap View Ortho", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.view3d.view_snap()"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?", 
       "PRESS", 
       "", 
       ""
@@ -4400,6 +4598,24 @@
       ""
     ], 
     [
+      "Mesh: Select", 
+      "Mesh", 
+      "LEFTMOUSE", 
+      [
+        [
+          "Select", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.view3d.select(deselect_all=True)"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
       "Panel Group Armature", 
       "Window", 
       "", 
@@ -4637,24 +4853,6 @@
       "mo?confirm=True", 
       "PRESS", 
       "return \"wsphere\" in C.active_object.name.lower()", 
-      ""
-    ], 
-    [
-      "UV Select Linked Add", 
-      "Window", 
-      "shift+LEFTMOUSE", 
-      [
-        [
-          "Select Linked Pick", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.uv.select_linked_pick(extend=True, deselect=False, location=(0.469855, 0.637189))"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?", 
-      "HOLD", 
-      "", 
       ""
     ], 
     [
@@ -5486,6 +5684,24 @@
       ""
     ], 
     [
+      "UV: Select Linked -", 
+      "Window", 
+      "ctrl+LEFTMOUSE", 
+      [
+        [
+          "Select Linked Pick", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.uv.select_linked_pick(extend=True, deselect=True, location=(0.46985501050949097, 0.6371889710426331))"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "HOLD", 
+      "", 
+      ""
+    ], 
+    [
       "Align Cylinder", 
       "Window", 
       "", 
@@ -5572,24 +5788,6 @@
       "SCRIPT", 
       "s?", 
       "PRESS", 
-      "", 
-      ""
-    ], 
-    [
-      "Mesh: Select Drag +(Broken)", 
-      "Mesh", 
-      "shift+LEFTMOUSE", 
-      [
-        [
-          "Box Select", 
-          "COMMAND", 
-          "", 
-          "tool = C.workspace.tools.from_space_view3d_mode(C.mode); bpy.ops.view3d.select_lasso('INVOKE_DEFAULT', True) if tool and tool.idname == \"builtin.select_lasso\" else bpy.ops.view3d.select_box('INVOKE_DEFAULT', True, wait_for_input=False)"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?", 
-      "TWEAK", 
       "", 
       ""
     ], 
@@ -5912,6 +6110,24 @@
       ""
     ], 
     [
+      "Mesh: Select Drag +(Broken)", 
+      "Mesh", 
+      "shift+LEFTMOUSE", 
+      [
+        [
+          "Box Select", 
+          "COMMAND", 
+          "", 
+          "tool = C.workspace.tools.from_space_view3d_mode(C.mode); bpy.ops.view3d.select_lasso('INVOKE_DEFAULT', True) if tool and tool.idname == \"builtin.select_lasso\" else bpy.ops.view3d.select_box('INVOKE_DEFAULT', True, wait_for_input=False)"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "TWEAK", 
+      "", 
+      ""
+    ], 
+    [
       "Proportional Editing Mesh", 
       "Grease Pencil, Mesh", 
       "O", 
@@ -6048,6 +6264,24 @@
       ], 
       "DIALOG", 
       "pd?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Mesh: Loop Select - (Broken)", 
+      "Mesh", 
+      "ctrl+shift+alt+LEFTMOUSE", 
+      [
+        [
+          "Loop Select", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.loop_select(extend=True, deselect=True, toggle=False)"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?s_undo=True", 
       "PRESS", 
       "", 
       ""
@@ -6325,24 +6559,6 @@
       "SCRIPT", 
       "s?s_undo=True", 
       "PRESS", 
-      "", 
-      ""
-    ], 
-    [
-      "Fill Region", 
-      "Mesh", 
-      "ctrl+LEFTMOUSE", 
-      [
-        [
-          "Fill Region", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.shortest_path_pick(use_fill=True)"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?s_undo=True", 
-      "HOLD", 
       "", 
       ""
     ], 
@@ -6654,6 +6870,66 @@
       ], 
       "DIALOG", 
       "pd?pd_box=", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Sculpt: Select Menu", 
+      "Sculpt", 
+      "alt+A", 
+      [
+        [
+          "Shrink Mask", 
+          "COMMAND", 
+          "PROP_CON", 
+          "bpy.ops.sculpt.mask_filter(filter_type='SHRINK', auto_iteration_count=True)"
+        ], 
+        [
+          "Grow Mask", 
+          "COMMAND", 
+          "PROP_ON", 
+          "bpy.ops.sculpt.mask_filter(filter_type='GROW', auto_iteration_count=True)"
+        ], 
+        [
+          "Clear Mask", 
+          "COMMAND", 
+          "MOD_MIRROR", 
+          "bpy.ops.paint.mask_flood_fill(mode='VALUE', value=0.0)"
+        ], 
+        [
+          "Invert Mask", 
+          "COMMAND", 
+          "FILE_REFRESH", 
+          "bpy.ops.paint.mask_flood_fill(mode='INVERT')"
+        ], 
+        [
+          "Smooth Mask", 
+          "COMMAND", 
+          "ARROW_LEFTRIGHT", 
+          "bpy.ops.sculpt.mask_filter(filter_type='SMOOTH', auto_iteration_count=True)"
+        ], 
+        [
+          "Sharpen Mask", 
+          "COMMAND", 
+          "COLLAPSEMENU", 
+          "bpy.ops.sculpt.mask_filter(filter_type='SHARPEN', auto_iteration_count=True)"
+        ], 
+        [
+          "Decrease Contrast", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.sculpt.mask_filter(filter_type='CONTRAST_DECREASE', auto_iteration_count=False)"
+        ], 
+        [
+          "Increase Contrast", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.sculpt.mask_filter(filter_type='CONTRAST_INCREASE', auto_iteration_count=False)"
+        ]
+      ], 
+      "PMENU", 
+      "pm?", 
       "PRESS", 
       "", 
       ""
@@ -6991,6 +7267,24 @@
       "DIALOG", 
       "pd?", 
       "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "UV: Loop Select (change to click)", 
+      "UV Editor", 
+      "ctrl+LEFTMOUSE", 
+      [
+        [
+          "Loop Select", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.uv.select_loop(extend=False, location=(0.732551, 0.502854))"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?s_undo=True", 
+      "DOUBLE_CLICK", 
       "", 
       ""
     ], 
@@ -8087,24 +8381,6 @@
       ""
     ], 
     [
-      "UV Select Linked Remove", 
-      "Window", 
-      "ctrl+LEFTMOUSE", 
-      [
-        [
-          "Select Linked Pick", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.uv.select_linked_pick(extend=True, deselect=True, location=(0.46985501050949097, 0.6371889710426331))"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?", 
-      "HOLD", 
-      "", 
-      ""
-    ], 
-    [
       "Hierachy Up +", 
       "Object Mode", 
       "ctrl+shift+WHEELUPMOUSE", 
@@ -8450,30 +8726,6 @@
       "pd?pd_title=False", 
       "PRESS", 
       "", 
-      ""
-    ], 
-    [
-      "Select Sharp Edges", 
-      "Mesh", 
-      "LEFTMOUSE", 
-      [
-        [
-          "Select Similar", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.select_similar(type='FACE_ANGLE', threshold=0.01)"
-        ], 
-        [
-          "Select Linked", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.select_linked_pick(delimit={'SEAM'})"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?", 
-      "DOUBLE_CLICK", 
-      "return C.scene.tool_settings.mesh_select_mode[1]", 
       ""
     ], 
     [
@@ -9170,25 +9422,61 @@
       ""
     ], 
     [
-      "Tweak Brush", 
+      "Mesh: Select Menu", 
       "Mesh", 
-      "ONE", 
+      "alt+A", 
       [
         [
-          "Grab Brush", 
+          "Select Bounded Loop", 
           "COMMAND", 
-          "", 
-          "open_menu(\"Grab Brush\")"
+          "ARROW_LEFTRIGHT", 
+          "bpy.ops.mesh.z_select_bounded_loop()"
         ], 
         [
-          "Pme User Command Exec", 
+          "Select Bounded Ring", 
           "COMMAND", 
+          "COLLAPSEMENU", 
+          "bpy.ops.mesh.z_select_bounded_ring()"
+        ], 
+        [
+          "Invert Selection", 
+          "COMMAND", 
+          "FILE_REFRESH", 
+          "bpy.ops.mesh.select_all(action='INVERT')"
+        ], 
+        [
+          "Select Mirror", 
+          "COMMAND", 
+          "MOD_MIRROR", 
+          "bpy.ops.mesh.select_mirror(extend=True)"
+        ], 
+        [
+          "Select Boundary Loop", 
+          "COMMAND", 
+          "PROP_CON", 
+          "bpy.ops.mesh.region_to_loop()"
+        ], 
+        [
+          "Select Loop Inner-Region", 
+          "COMMAND", 
+          "PROP_ON", 
+          "bpy.ops.mesh.loop_to_region()"
+        ], 
+        [
+          "Select Tools", 
+          "MENU", 
           "", 
-          "bpy.ops.wm.pme_user_command_exec(cmd=\"bpy.ops.object.mode_set(mode='EDIT'); bpy.ops.wm.context_set_value(data_path=\\\"tool_settings.mesh_select_mode\\\", value= \\\"(True, False, False)\\\")\")"
+          "@Select Tools"
+        ], 
+        [
+          "Select Tools.001", 
+          "MENU", 
+          "", 
+          "@Select Tools.001"
         ]
       ], 
-      "STICKY", 
-      "sk?", 
+      "PMENU", 
+      "pm?", 
       "PRESS", 
       "", 
       ""
@@ -9213,6 +9501,30 @@
       ], 
       "MODAL", 
       "mo?confirm=True", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Tweak Brush", 
+      "Mesh", 
+      "ONE", 
+      [
+        [
+          "Grab Brush", 
+          "COMMAND", 
+          "", 
+          "open_menu(\"Grab Brush\")"
+        ], 
+        [
+          "Pme User Command Exec", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.wm.pme_user_command_exec(cmd=\"bpy.ops.object.mode_set(mode='EDIT'); bpy.ops.wm.context_set_value(data_path=\\\"tool_settings.mesh_select_mode\\\", value= \\\"(True, False, False)\\\")\")"
+        ]
+      ], 
+      "STICKY", 
+      "sk?", 
       "PRESS", 
       "", 
       ""
@@ -9244,6 +9556,63 @@
       "DIALOG", 
       "pd?pd_panel=0", 
       "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Object: Visibility Pie", 
+      "Object Mode", 
+      "MIDDLEMOUSE", 
+      [
+        [
+          "Unhide", 
+          "COMMAND", 
+          "HIDE_OFF", 
+          "bpy.ops.object.select_all(action='INVERT');bpy.ops.object.hide_view_clear();bpy.ops.object.select_all(action='INVERT')"
+        ], 
+        [
+          "Hide", 
+          "COMMAND", 
+          "HIDE_ON", 
+          "bpy.ops.object.hide_view_set(unselected=False)"
+        ], 
+        [
+          "View Selected/All", 
+          "MENU", 
+          "ZOOM_PREVIOUS", 
+          "3D: View Selected/All"
+        ], 
+        [
+          "Local", 
+          "HOTKEY", 
+          "GHOST_ENABLED", 
+          "NUMPAD_SLASH"
+        ], 
+        [
+          "Lock to Cursor", 
+          "PROP", 
+          "CURSOR", 
+          "bpy.context.space_data.lock_cursor"
+        ], 
+        [
+          "View Lock to Active/Clear", 
+          "MENU", 
+          "LOCKED", 
+          "View Lock to Active/Clear"
+        ], 
+        [
+          ""
+        ], 
+        [
+          "Hide Unselected", 
+          "COMMAND", 
+          "RESTRICT_SELECT_ON", 
+          "bpy.ops.object.hide_view_set(unselected=True)"
+        ]
+      ], 
+      "PMENU", 
+      "pm?", 
+      "TWEAK", 
       "", 
       ""
     ], 
@@ -9493,6 +9862,24 @@
       "PMENU", 
       "pm?", 
       "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "UV: Select Linked +", 
+      "Window", 
+      "shift+LEFTMOUSE", 
+      [
+        [
+          "Select Linked Pick", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.uv.select_linked_pick(extend=True, deselect=False, location=(0.469855, 0.637189))"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "HOLD", 
       "", 
       ""
     ], 
@@ -10205,62 +10592,26 @@
       ""
     ], 
     [
-      "Visibility Pie mesh", 
-      "Mesh", 
-      "MIDDLEMOUSE", 
+      "3D: View Selected/All", 
+      "3D View", 
+      "", 
       [
         [
-          "Unhide", 
+          "View Selected", 
           "COMMAND", 
-          "HIDE_OFF", 
-          "bpy.ops.mesh.select_all(action='INVERT');bpy.ops.mesh.reveal();bpy.ops.mesh.select_all(action='INVERT')"
+          "", 
+          "bpy.ops.view3d.view_selected()"
         ], 
         [
-          "Hide", 
+          "View All", 
           "COMMAND", 
-          "HIDE_ON", 
-          "bpy.ops.mesh.hide(unselected=False)"
-        ], 
-        [
-          "View Selected/All", 
-          "MENU", 
-          "ZOOM_PREVIOUS", 
-          "View Selected/All"
-        ], 
-        [
-          "Local", 
-          "HOTKEY", 
-          "GHOST_ENABLED", 
-          "NUMPAD_SLASH"
-        ], 
-        [
-          "Lock to Cursor", 
-          "PROP", 
-          "CURSOR", 
-          "bpy.context.space_data.lock_cursor"
-        ], 
-        [
-          "View Lock to Active/Clear", 
-          "MENU", 
-          "LOCKED", 
-          "View Lock to Active/Clear"
-        ], 
-        [
-          "Align Face / Front", 
-          "MENU", 
-          "ORIENTATION_NORMAL", 
-          "Align Face / Front"
-        ], 
-        [
-          "Hide Unselected", 
-          "HOTKEY", 
-          "RESTRICT_SELECT_ON", 
-          "shift+H"
+          "", 
+          "bpy.ops.view3d.view_all(center=False)"
         ]
       ], 
-      "PMENU", 
-      "pm?", 
-      "TWEAK", 
+      "SCRIPT", 
+      "s?", 
+      "DOUBLE_CLICK", 
       "", 
       ""
     ], 
@@ -10596,66 +10947,6 @@
       ], 
       "MACRO", 
       "m?", 
-      "PRESS", 
-      "", 
-      ""
-    ], 
-    [
-      "Select Mesh", 
-      "Mesh", 
-      "alt+A", 
-      [
-        [
-          "Select Bounded Loop", 
-          "COMMAND", 
-          "ARROW_LEFTRIGHT", 
-          "bpy.ops.mesh.z_select_bounded_loop()"
-        ], 
-        [
-          "Select Bounded Ring", 
-          "COMMAND", 
-          "COLLAPSEMENU", 
-          "bpy.ops.mesh.z_select_bounded_ring()"
-        ], 
-        [
-          "Invert Selection", 
-          "COMMAND", 
-          "FILE_REFRESH", 
-          "bpy.ops.mesh.select_all(action='INVERT')"
-        ], 
-        [
-          "Select Mirror", 
-          "COMMAND", 
-          "MOD_MIRROR", 
-          "bpy.ops.mesh.select_mirror(extend=True)"
-        ], 
-        [
-          "Select Boundary Loop", 
-          "COMMAND", 
-          "PROP_CON", 
-          "bpy.ops.mesh.region_to_loop()"
-        ], 
-        [
-          "Select Loop Inner-Region", 
-          "COMMAND", 
-          "PROP_ON", 
-          "bpy.ops.mesh.loop_to_region()"
-        ], 
-        [
-          "Select Tools", 
-          "MENU", 
-          "", 
-          "@Select Tools"
-        ], 
-        [
-          "Select Tools.001", 
-          "MENU", 
-          "", 
-          "@Select Tools.001"
-        ]
-      ], 
-      "PMENU", 
-      "pm?", 
       "PRESS", 
       "", 
       ""
@@ -11038,24 +11329,6 @@
       "PMENU", 
       "pm?", 
       "PRESS", 
-      "", 
-      ""
-    ], 
-    [
-      "UV Loop Select Add", 
-      "UV Editor", 
-      "ctrl+shift+LEFTMOUSE", 
-      [
-        [
-          "Loop Select Add", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.uv.select_loop(extend=True, location=(0.7325509786605835, 0.5028539896011353))"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?s_undo=True", 
-      "DOUBLE_CLICK", 
       "", 
       ""
     ]
