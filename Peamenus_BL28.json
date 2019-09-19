@@ -35,6 +35,30 @@
       ""
     ], 
     [
+      "Mesh: Select Linked", 
+      "Mesh", 
+      "LEFTMOUSE", 
+      [
+        [
+          "(De)select All", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.mesh.select_all(action='DESELECT')"
+        ], 
+        [
+          "Select Linked", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.mesh.select_linked_pick()"
+        ]
+      ], 
+      "MACRO", 
+      "m?", 
+      "DOUBLE_CLICK", 
+      "", 
+      ""
+    ], 
+    [
       "Align Orientation", 
       "Window", 
       "", 
@@ -194,6 +218,48 @@
       ""
     ], 
     [
+      "Mesh: Pick Shortest Path", 
+      "Mesh", 
+      "ctrl+LEFTMOUSE", 
+      [
+        [
+          "Pick Shortest Path", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.shortest_path_pick(use_fill=False)"
+        ], 
+        [
+          "Fill Region", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.shortest_path_pick(use_fill=True)"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?s_undo=True", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Object: Select Drag", 
+      "Object Mode", 
+      "LEFTMOUSE", 
+      [
+        [
+          "Box Select", 
+          "COMMAND", 
+          "", 
+          "tool = C.workspace.tools.from_space_view3d_mode(C.mode); bpy.ops.view3d.select_lasso('INVOKE_DEFAULT', True) if tool and tool.idname == \"builtin.select_lasso\" else bpy.ops.view3d.select_box('INVOKE_DEFAULT', True, wait_for_input=False)"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "TWEAK", 
+      "", 
+      ""
+    ], 
+    [
       "Panel Group Lattice", 
       "Window", 
       "", 
@@ -209,24 +275,6 @@
       "pg?pg_region=HEADER&pg_space=INFO", 
       "PRESS", 
       "return C.active_object and C.active_object.type == 'LATTICE'", 
-      ""
-    ], 
-    [
-      "Panel Group Empty", 
-      "Window", 
-      "", 
-      [
-        [
-          "Properties Empty", 
-          "MENU", 
-          "", 
-          "Properties Empty"
-        ]
-      ], 
-      "PANEL", 
-      "pg?pg_region=HEADER&pg_space=INFO", 
-      "PRESS", 
-      "return C.active_object and C.active_object.type == 'EMPTY'", 
       ""
     ], 
     [
@@ -257,6 +305,24 @@
       "m?", 
       "PRESS", 
       "", 
+      ""
+    ], 
+    [
+      "Panel Group Empty", 
+      "Window", 
+      "", 
+      [
+        [
+          "Properties Empty", 
+          "MENU", 
+          "", 
+          "Properties Empty"
+        ]
+      ], 
+      "PANEL", 
+      "pg?pg_region=HEADER&pg_space=INFO", 
+      "PRESS", 
+      "return C.active_object and C.active_object.type == 'EMPTY'", 
       ""
     ], 
     [
@@ -312,7 +378,7 @@
       ], 
       "PMENU", 
       "pm?", 
-      "PRESS", 
+      "TWEAK", 
       "", 
       ""
     ], 
@@ -977,6 +1043,24 @@
       ""
     ], 
     [
+      "Object: Select Dropdown", 
+      "Object Mode", 
+      "LEFTMOUSE", 
+      [
+        [
+          "Activate/Select", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.view3d.select(enumerate=True, toggle=False)"
+        ]
+      ], 
+      "MACRO", 
+      "m?", 
+      "HOLD", 
+      "", 
+      ""
+    ], 
+    [
       "Properties Tab", 
       "Property Editor", 
       "TAB", 
@@ -1190,6 +1274,24 @@
       ""
     ], 
     [
+      "Mesh: Select Linked +", 
+      "Mesh", 
+      "shift+LEFTMOUSE", 
+      [
+        [
+          "Select Linked", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.select_linked_pick(deselect=False)"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "DOUBLE_CLICK", 
+      "", 
+      ""
+    ], 
+    [
       "UV Translate", 
       "3D View", 
       "NUMPAD_ASTERIX+G", 
@@ -1304,26 +1406,26 @@
       ""
     ], 
     [
-      "Select Linked Replace", 
-      "Mesh", 
-      "LEFTMOUSE", 
+      "Solidify Modal", 
+      "3D View", 
+      "", 
       [
         [
-          "(De)select All", 
-          "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.mesh.select_all(action='DESELECT')"
+          "Add Modifier", 
+          "INVOKE", 
+          "", 
+          "a = bpy.context.active_object.modifiers.new(\"Solidify\", \"SOLIDIFY\").name;"
         ], 
         [
-          "Select Linked", 
-          "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.mesh.select_linked_pick()"
+          "Thickness", 
+          "PROP", 
+          "MOUSEMOVE;;;;", 
+          "bpy.context.object.modifiers[a].thickness"
         ]
       ], 
-      "MACRO", 
-      "m?", 
-      "HOLD", 
+      "MODAL", 
+      "mo?", 
+      "PRESS", 
       "", 
       ""
     ], 
@@ -1385,30 +1487,6 @@
       ""
     ], 
     [
-      "Solidify Modal", 
-      "3D View", 
-      "", 
-      [
-        [
-          "Add Modifier", 
-          "INVOKE", 
-          "", 
-          "a = bpy.context.active_object.modifiers.new(\"Solidify\", \"SOLIDIFY\").name;"
-        ], 
-        [
-          "Thickness", 
-          "PROP", 
-          "MOUSEMOVE;;;;", 
-          "bpy.context.object.modifiers[a].thickness"
-        ]
-      ], 
-      "MODAL", 
-      "mo?", 
-      "PRESS", 
-      "", 
-      ""
-    ], 
-    [
       "Shrink Selection", 
       "Mesh", 
       "shift+WHEELDOWNMOUSE", 
@@ -1423,6 +1501,24 @@
       "SCRIPT", 
       "s?", 
       "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Mesh: Loop Select", 
+      "Mesh", 
+      "ctrl+LEFTMOUSE", 
+      [
+        [
+          "Loop Select", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.loop_select(extend=False, deselect=False, toggle=False)"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?s_undo=True", 
+      "DOUBLE_CLICK", 
       "", 
       ""
     ], 
@@ -1601,6 +1697,24 @@
       "sk?", 
       "PRESS", 
       "", 
+      ""
+    ], 
+    [
+      "Mesh: Select Flat (Broken)", 
+      "Mesh", 
+      "LEFTMOUSE", 
+      [
+        [
+          "Select Linked Flat Faces", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.faces_select_linked_flat()"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "HOLD", 
+      "return C.scene.tool_settings.mesh_select_mode[2]", 
       ""
     ], 
     [
@@ -1997,6 +2111,24 @@
       ""
     ], 
     [
+      "Select Mesh Mode", 
+      "Mesh", 
+      "LEFTMOUSE", 
+      [
+        [
+          "Select", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.view3d.select(deselect_all=True)"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
       "Curve to Mesh & Remove Doubles", 
       "Curve, Object Mode", 
       "", 
@@ -2058,6 +2190,24 @@
       ], 
       "MACRO", 
       "m?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Object: Select", 
+      "Object Mode", 
+      "LEFTMOUSE", 
+      [
+        [
+          "Select", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.view3d.select(deselect_all=True)"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
       "PRESS", 
       "", 
       ""
@@ -2193,24 +2343,6 @@
       ], 
       "MACRO", 
       "m?", 
-      "PRESS", 
-      "", 
-      ""
-    ], 
-    [
-      "Select", 
-      "Object Mode", 
-      "LEFTMOUSE", 
-      [
-        [
-          "Select", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.view3d.select(deselect_all=True)"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?", 
       "PRESS", 
       "", 
       ""
@@ -2497,6 +2629,24 @@
       "SCRIPT", 
       "s?", 
       "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Object: Select Dropdown -", 
+      "Object Mode", 
+      "ctrl+LEFTMOUSE", 
+      [
+        [
+          "Deselect", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.view3d.select(enumerate=True, toggle=False, extend=False, deselect=True)"
+        ]
+      ], 
+      "MACRO", 
+      "m?", 
+      "HOLD", 
       "", 
       ""
     ], 
@@ -2891,6 +3041,24 @@
       ""
     ], 
     [
+      "Mesh: Loop Select +", 
+      "Mesh", 
+      "ctrl+shift+LEFTMOUSE", 
+      [
+        [
+          "Loop Select", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.loop_select(extend=True, deselect=False, toggle=False)"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?s_undo=True", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
       "Mirror Options", 
       "Window", 
       "", 
@@ -3063,30 +3231,6 @@
       ], 
       "SCRIPT", 
       "s?", 
-      "PRESS", 
-      "", 
-      ""
-    ], 
-    [
-      "Pick Shortest Path", 
-      "Mesh", 
-      "ctrl+LEFTMOUSE", 
-      [
-        [
-          "Pick Shortest Path", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.shortest_path_pick(use_fill=False)"
-        ], 
-        [
-          "Fill Region", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.shortest_path_pick(use_fill=True)"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?s_undo=True", 
       "PRESS", 
       "", 
       ""
@@ -3269,8 +3413,26 @@
         ]
       ], 
       "DIALOG", 
-      "pd?pd_panel=1", 
+      "pd?", 
       "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Mesh: Select Linked +.001", 
+      "Mesh", 
+      "shift+LEFTMOUSE", 
+      [
+        [
+          "Select Linked", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.select_linked_pick()"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "HOLD", 
       "", 
       ""
     ], 
@@ -3515,7 +3677,7 @@
       ""
     ], 
     [
-      "Select Collection", 
+      "Object: Select Linked", 
       "Object Mode", 
       "LEFTMOUSE", 
       [
@@ -3644,30 +3806,6 @@
       "pm?", 
       "PRESS", 
       "", 
-      ""
-    ], 
-    [
-      "Select Linked/Flat", 
-      "Mesh", 
-      "LEFTMOUSE", 
-      [
-        [
-          "Select Linked Flat Faces", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.faces_select_linked_flat()"
-        ], 
-        [
-          "Select Linked", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.select_linked_pick(delimit={'SEAM'})"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?", 
-      "DOUBLE_CLICK", 
-      "return C.scene.tool_settings.mesh_select_mode[2]", 
       ""
     ], 
     [
@@ -4019,24 +4157,6 @@
       ""
     ], 
     [
-      "Select Drag.001", 
-      "Object Mode", 
-      "LEFTMOUSE", 
-      [
-        [
-          "Box Select", 
-          "COMMAND", 
-          "", 
-          "tool = C.workspace.tools.from_space_view3d_mode(C.mode); bpy.ops.view3d.select_lasso('INVOKE_DEFAULT', True) if tool and tool.idname == \"builtin.select_lasso\" else bpy.ops.view3d.select_box('INVOKE_DEFAULT', True, wait_for_input=False)"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?", 
-      "TWEAK", 
-      "", 
-      ""
-    ], 
-    [
       "Face", 
       "Window", 
       "", 
@@ -4280,24 +4400,6 @@
       ""
     ], 
     [
-      "Select Dropdown Add", 
-      "Object Mode", 
-      "shift+LEFTMOUSE", 
-      [
-        [
-          "Add", 
-          "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.view3d.select(enumerate=True, toggle=True, extend=True)"
-        ]
-      ], 
-      "MACRO", 
-      "m?", 
-      "HOLD", 
-      "", 
-      ""
-    ], 
-    [
       "Panel Group Armature", 
       "Window", 
       "", 
@@ -4468,24 +4570,6 @@
       "DIALOG", 
       "pd?pd_panel=1", 
       "PRESS", 
-      "", 
-      ""
-    ], 
-    [
-      "Select Linked Remove", 
-      "Mesh", 
-      "ctrl+LEFTMOUSE", 
-      [
-        [
-          "Select Linked", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.select_linked_pick(deselect=True)"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?", 
-      "HOLD", 
       "", 
       ""
     ], 
@@ -5488,6 +5572,24 @@
       "SCRIPT", 
       "s?", 
       "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Mesh: Select Drag +(Broken)", 
+      "Mesh", 
+      "shift+LEFTMOUSE", 
+      [
+        [
+          "Box Select", 
+          "COMMAND", 
+          "", 
+          "tool = C.workspace.tools.from_space_view3d_mode(C.mode); bpy.ops.view3d.select_lasso('INVOKE_DEFAULT', True) if tool and tool.idname == \"builtin.select_lasso\" else bpy.ops.view3d.select_box('INVOKE_DEFAULT', True, wait_for_input=False)"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "TWEAK", 
       "", 
       ""
     ], 
@@ -6947,24 +7049,6 @@
       ""
     ], 
     [
-      "Select Dropdown", 
-      "Object Mode", 
-      "LEFTMOUSE", 
-      [
-        [
-          "Activate/Select", 
-          "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.view3d.select(enumerate=True, toggle=False)"
-        ]
-      ], 
-      "MACRO", 
-      "m?", 
-      "HOLD", 
-      "", 
-      ""
-    ], 
-    [
       "Viewport Fullscreen Macro", 
       "Window", 
       "SPACE", 
@@ -7025,15 +7109,15 @@
       [
         [
           "Gizmo", 
-          "MENU", 
+          "CUSTOM", 
           "GRID", 
-          "@Gizmo Settings"
+          "keep_pie_open(L); draw_menu(\"Gizmo Settings\")"
         ], 
         [
           "Overlay Settings", 
-          "MENU", 
+          "CUSTOM", 
           "MOD_WIREFRAME", 
-          "@Overlay Settings"
+          "keep_pie_open(L); draw_menu(\"Overlay Settings\")"
         ], 
         [
           "Shading 2 Panel", 
@@ -7079,6 +7163,24 @@
       "s?", 
       "PRESS", 
       "return C.scene.tool_settings.mesh_select_mode[0]", 
+      ""
+    ], 
+    [
+      "Mesh: Select +", 
+      "Mesh", 
+      "shift+LEFTMOUSE", 
+      [
+        [
+          "Select", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.view3d.select(deselect_all=True, extend=True)"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "PRESS", 
+      "", 
       ""
     ], 
     [
@@ -7169,59 +7271,20 @@
       ""
     ], 
     [
-      "Snap UV", 
-      "UV Editor", 
-      "shift+TAB", 
+      "Mesh: Select Linked -", 
+      "Mesh", 
+      "alt+LEFTMOUSE", 
       [
         [
-          "Vertex", 
+          "Select Linked", 
           "COMMAND", 
-          "SNAP_VERTEX", 
-          "bpy.context.scene.tool_settings.snap_uv_element = 'VERTEX'"
-        ], 
-        [
-          "Pixels", 
-          "PROP", 
           "", 
-          "bpy.context.space_data.uv_editor.use_snap_to_pixels"
-        ], 
-        [
-          ""
-        ], 
-        [
-          "Increment", 
-          "COMMAND", 
-          "SNAP_INCREMENT", 
-          "bpy.context.scene.tool_settings.snap_uv_element = 'INCREMENT'"
-        ], 
-        [
-          "Active", 
-          "COMMAND", 
-          "NONE", 
-          "bpy.context.scene.tool_settings.snap_target = 'ACTIVE'"
-        ], 
-        [
-          "Median", 
-          "COMMAND", 
-          "NONE", 
-          "bpy.context.scene.tool_settings.snap_target = 'MEDIAN'"
-        ], 
-        [
-          "Center", 
-          "COMMAND", 
-          "NONE", 
-          "bpy.context.scene.tool_settings.snap_target = 'CENTER'"
-        ], 
-        [
-          "Closest", 
-          "COMMAND", 
-          "NONE", 
-          "bpy.context.scene.tool_settings.snap_target = 'CLOSEST'"
+          "bpy.ops.mesh.select_linked_pick(deselect=True)"
         ]
       ], 
-      "PMENU", 
-      "pm?", 
-      "PRESS", 
+      "SCRIPT", 
+      "s?", 
+      "DOUBLE_CLICK", 
       "", 
       ""
     ], 
@@ -7298,6 +7361,63 @@
       ""
     ], 
     [
+      "Snap UV", 
+      "UV Editor", 
+      "shift+TAB", 
+      [
+        [
+          "Vertex", 
+          "COMMAND", 
+          "SNAP_VERTEX", 
+          "bpy.context.scene.tool_settings.snap_uv_element = 'VERTEX'"
+        ], 
+        [
+          "Pixels", 
+          "PROP", 
+          "", 
+          "bpy.context.space_data.uv_editor.use_snap_to_pixels"
+        ], 
+        [
+          ""
+        ], 
+        [
+          "Increment", 
+          "COMMAND", 
+          "SNAP_INCREMENT", 
+          "bpy.context.scene.tool_settings.snap_uv_element = 'INCREMENT'"
+        ], 
+        [
+          "Active", 
+          "COMMAND", 
+          "NONE", 
+          "bpy.context.scene.tool_settings.snap_target = 'ACTIVE'"
+        ], 
+        [
+          "Median", 
+          "COMMAND", 
+          "NONE", 
+          "bpy.context.scene.tool_settings.snap_target = 'MEDIAN'"
+        ], 
+        [
+          "Center", 
+          "COMMAND", 
+          "NONE", 
+          "bpy.context.scene.tool_settings.snap_target = 'CENTER'"
+        ], 
+        [
+          "Closest", 
+          "COMMAND", 
+          "NONE", 
+          "bpy.context.scene.tool_settings.snap_target = 'CLOSEST'"
+        ]
+      ], 
+      "PMENU", 
+      "pm?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
       "Mesh: Cut", 
       "Mesh, Object Mode", 
       "alt+X", 
@@ -7354,6 +7474,24 @@
       "PMENU", 
       "pm?", 
       "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Object: Select Dropdown +", 
+      "Object Mode", 
+      "shift+LEFTMOUSE", 
+      [
+        [
+          "Add", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.view3d.select(enumerate=True, toggle=True, extend=True)"
+        ]
+      ], 
+      "MACRO", 
+      "m?", 
+      "HOLD", 
       "", 
       ""
     ], 
@@ -7832,24 +7970,6 @@
       ""
     ], 
     [
-      "Select Dropdown Remove (broken)", 
-      "Object Mode", 
-      "ctrl+LEFTMOUSE", 
-      [
-        [
-          "Deselect", 
-          "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.view3d.select(enumerate=True, toggle=False, extend=False, deselect=True)"
-        ]
-      ], 
-      "MACRO", 
-      "m?", 
-      "HOLD", 
-      "", 
-      ""
-    ], 
-    [
       "Transform Orientation / Manipulator", 
       "3D View Generic", 
       "NUMPAD_ASTERIX+Q", 
@@ -7928,21 +8048,21 @@
       ""
     ], 
     [
-      "Select Linked Add", 
+      "Mesh: Select Flat +", 
       "Mesh", 
       "shift+LEFTMOUSE", 
       [
         [
-          "Select Linked", 
+          "Select Linked Flat Faces", 
           "COMMAND", 
           "", 
-          "bpy.ops.mesh.select_linked_pick()"
+          "bpy.ops.mesh.faces_select_linked_flat()"
         ]
       ], 
       "SCRIPT", 
       "s?", 
-      "HOLD", 
-      "", 
+      "DOUBLE_CLICK", 
+      "return C.scene.tool_settings.mesh_select_mode[2]", 
       ""
     ], 
     [
@@ -7963,24 +8083,6 @@
       "DIALOG", 
       "pd?pd_panel=1", 
       "PRESS", 
-      "", 
-      ""
-    ], 
-    [
-      "Loop Select", 
-      "Mesh", 
-      "ctrl+LEFTMOUSE", 
-      [
-        [
-          "Loop Select", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.loop_select(extend=False, deselect=False, toggle=False)"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?s_undo=True", 
-      "DOUBLE_CLICK", 
       "", 
       ""
     ], 
@@ -8375,30 +8477,6 @@
       ""
     ], 
     [
-      "Select Linked/Flat Add", 
-      "Mesh", 
-      "shift+LEFTMOUSE", 
-      [
-        [
-          "Select Linked Flat Faces", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.faces_select_linked_flat()"
-        ], 
-        [
-          "Select Linked", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.select_linked_pick(delimit={'SEAM'})"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?", 
-      "DOUBLE_CLICK", 
-      "return C.scene.tool_settings.mesh_select_mode[2]", 
-      ""
-    ], 
-    [
       "WRing Edit", 
       "Screen Editing", 
       "NUMPAD_ASTERIX+MIDDLEMOUSE", 
@@ -8675,7 +8753,7 @@
         ]
       ], 
       "DIALOG", 
-      "pd?pd_panel=1", 
+      "pd?", 
       "PRESS", 
       "", 
       ""
@@ -9785,6 +9863,30 @@
       ""
     ], 
     [
+      "Object: Select Add Drag", 
+      "Object Mode", 
+      "shift+LEFTMOUSE", 
+      [
+        [
+          "Box Select", 
+          "COMMAND", 
+          "", 
+          "tool = C.workspace.tools.from_space_view3d_mode(C.mode); bpy.ops.view3d.select_lasso('INVOKE_DEFAULT', True) if tool and tool.idname == \"builtin.select_lasso\" else bpy.ops.view3d.select_box('INVOKE_DEFAULT', True, wait_for_input=False)"
+        ], 
+        [
+          "Command 1", 
+          "COMMAND", 
+          "", 
+          ""
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "TWEAK", 
+      "", 
+      ""
+    ], 
+    [
       "WCone Edit", 
       "Screen Editing", 
       "NUMPAD_ASTERIX+MIDDLEMOUSE", 
@@ -10158,24 +10260,6 @@
       ], 
       "PMENU", 
       "pm?", 
-      "PRESS", 
-      "", 
-      ""
-    ], 
-    [
-      "Select Drag", 
-      "Object Mode", 
-      "LEFTMOUSE", 
-      [
-        [
-          "Box Select", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.view3d.select_box()"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?", 
       "TWEAK", 
       "", 
       ""
@@ -10379,6 +10463,24 @@
       ""
     ], 
     [
+      "Object: Select Add", 
+      "Object Mode", 
+      "shift+LEFTMOUSE", 
+      [
+        [
+          "Select Add", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.view3d.select(deselect_all=True, extend=True)"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
       "Displace Modifier Modal", 
       "3D View", 
       "", 
@@ -10559,24 +10661,6 @@
       ""
     ], 
     [
-      "Loop Select Add", 
-      "Mesh", 
-      "ctrl+shift+LEFTMOUSE", 
-      [
-        [
-          "Loop Select", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.loop_select(extend=True, deselect=False, toggle=False)"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?s_undo=True", 
-      "PRESS", 
-      "", 
-      ""
-    ], 
-    [
       "Pose", 
       "Window", 
       "", 
@@ -10593,42 +10677,6 @@
       ], 
       "DIALOG", 
       "pd?", 
-      "PRESS", 
-      "", 
-      ""
-    ], 
-    [
-      "Select inner faces", 
-      "3D View Generic", 
-      "ctrl+shift+BUTTON4MOUSE", 
-      [
-        [
-          "Select Boundary Loop", 
-          "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.mesh.region_to_loop()"
-        ], 
-        [
-          "Checker Deselect", 
-          "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.mesh.select_nth()"
-        ], 
-        [
-          "Select Loop Inner-Region", 
-          "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.mesh.loop_to_region()"
-        ], 
-        [
-          "Select Mode", 
-          "COMMAND", 
-          "TEXT", 
-          "bpy.ops.mesh.select_mode(type='FACE'); None"
-        ]
-      ], 
-      "MACRO", 
-      "m?", 
       "PRESS", 
       "", 
       ""
@@ -10893,6 +10941,42 @@
       ], 
       "HPANEL", 
       "hpg?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Select inner faces", 
+      "3D View Generic", 
+      "ctrl+shift+BUTTON4MOUSE", 
+      [
+        [
+          "Select Boundary Loop", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.mesh.region_to_loop()"
+        ], 
+        [
+          "Checker Deselect", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.mesh.select_nth()"
+        ], 
+        [
+          "Select Loop Inner-Region", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.mesh.loop_to_region()"
+        ], 
+        [
+          "Select Mode", 
+          "COMMAND", 
+          "TEXT", 
+          "bpy.ops.mesh.select_mode(type='FACE'); None"
+        ]
+      ], 
+      "MACRO", 
+      "m?", 
       "PRESS", 
       "", 
       ""
