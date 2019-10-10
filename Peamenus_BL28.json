@@ -125,6 +125,270 @@
       ""
     ], 
     [
+      "Create", 
+      "Mesh, Object Mode", 
+      "shift+A", 
+      [
+        [
+          "Align Cube", 
+          "MENU", 
+          "MESH_CUBE", 
+          "Align Cube"
+        ], 
+        [
+          "Align Sphere", 
+          "MENU", 
+          "MESH_UVSPHERE", 
+          "Align Sphere"
+        ], 
+        [
+          "Align Cylinder", 
+          "MENU", 
+          "MESH_CYLINDER", 
+          "Align Cylinder"
+        ], 
+        [
+          "Add Bezier", 
+          "COMMAND", 
+          "IPO_BEZIER", 
+          "bpy.ops.curve.primitive_bezier_curve_add(enter_editmode=False, location=(-1.10863, -3.83955, 0.140313))"
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ]
+      ], 
+      "PMENU", 
+      "pm?", 
+      "TWEAK", 
+      "", 
+      ""
+    ], 
+    [
+      "Align Cube", 
+      "Window", 
+      "", 
+      [
+        [
+          "Snap Cursor to Selected", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.view3d.snap_cursor_to_selected()"
+        ], 
+        [
+          "Create Orientation", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.transform.create_orientation(name='PeaPrim', overwrite=True, use=True)"
+        ], 
+        [
+          "Set Object Mode", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.object.mode_set(mode='OBJECT')"
+        ], 
+        [
+          "Add Cube", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.mesh.primitive_cube_add()"
+        ], 
+        [
+          "Move", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.transform.translate(value=(0.0, 0.0, 1.0), orient_type='LOCAL', orient_matrix_type='LOCAL', constraint_axis=[False, False, True], mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1.0, use_proportional_connected=False, use_proportional_projected=False)"
+        ], 
+        [
+          "Set Origin to 3d Cursor", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.object.origin_set(type='ORIGIN_CURSOR', center='MEDIAN')"
+        ], 
+        [
+          "Pivot To Bottom", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.object.pivotobottom()"
+        ], 
+        [
+          "Snap Selection to Cursor", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.view3d.snap_selected_to_cursor(use_offset=True)"
+        ], 
+        [
+          "Transform to Orientation", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.transform.transform(mode='ALIGN', value=(0.0, 0.0, 0.0, 0.0), mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1.0, use_proportional_connected=False, use_proportional_projected=False)"
+        ], 
+        [
+          "Delete Orientation", 
+          "COMMAND", 
+          "TEXT", 
+          "(bpy.ops.transform.delete_orientation())"
+        ], 
+        [
+          "Select Orientation Local", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.transform.select_orientation(orientation='LOCAL')"
+        ]
+      ], 
+      "MACRO", 
+      "m?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Align Sphere", 
+      "Window", 
+      "", 
+      [
+        [
+          "Snap Cursor to Selected", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.view3d.snap_cursor_to_selected()"
+        ], 
+        [
+          "Create Orientation", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.transform.create_orientation(name='PeaPrim', overwrite=True, use=True)"
+        ], 
+        [
+          "Toggle Editmode", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.object.editmode_toggle()"
+        ], 
+        [
+          "Add Wsphere", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.mesh.make_wsphere()"
+        ], 
+        [
+          "Smooth = False", 
+          "COMMAND", 
+          "TEXT", 
+          "C.object.data.WSphere.smoothed = False"
+        ], 
+        [
+          "Snap Selection to Cursor", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.view3d.snap_selected_to_cursor(use_offset=False)"
+        ], 
+        [
+          "Transform", 
+          "COMMAND", 
+          "TEXT", 
+          "(bpy.ops.transform.transform(mode='ALIGN', value=(0.0, 0.0, 0.0, 0.0), axis=(0.0, 0.0, 0.0), constraint_axis=[False, False, False], constraint_orientation='PeaPrim', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1.0))"
+        ], 
+        [
+          "Delete Orientation", 
+          "COMMAND", 
+          "TEXT", 
+          "(bpy.ops.transform.delete_orientation())"
+        ], 
+        [
+          "Transform Orientation = 'LOCAL'", 
+          "COMMAND", 
+          "TEXT", 
+          "bpy.context.space_data.transform_orientation = 'LOCAL'"
+        ]
+      ], 
+      "MACRO", 
+      "m?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Align Cylinder", 
+      "Window", 
+      "", 
+      [
+        [
+          "Snap Cursor to Selected", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.view3d.snap_cursor_to_selected()"
+        ], 
+        [
+          "Create Orientation", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.transform.create_orientation(name='PeaPrim', overwrite=True, use=True)"
+        ], 
+        [
+          "Toggle Editmode", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.object.editmode_toggle()"
+        ], 
+        [
+          "Add WTube", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.mesh.make_wtube()"
+        ], 
+        [
+          "Perimeter = 8", 
+          "COMMAND", 
+          "TEXT", 
+          "C.object.data.WTube.seg_perimeter = 8"
+        ], 
+        [
+          "Centered = False", 
+          "COMMAND", 
+          "TEXT", 
+          "C.object.data.WTube.centered = False"
+        ], 
+        [
+          "Snap Selection to Cursor", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.view3d.snap_selected_to_cursor(use_offset=False)"
+        ], 
+        [
+          "Transform", 
+          "COMMAND", 
+          "TEXT", 
+          "(bpy.ops.transform.transform(mode='ALIGN', value=(0.0, 0.0, 0.0, 0.0), axis=(0.0, 0.0, 0.0), constraint_axis=[False, False, False], constraint_orientation='PeaPrim', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1.0))"
+        ], 
+        [
+          "Delete Orientation", 
+          "COMMAND", 
+          "TEXT", 
+          "(bpy.ops.transform.delete_orientation())"
+        ], 
+        [
+          "Transform Orientation = 'LOCAL'", 
+          "COMMAND", 
+          "TEXT", 
+          "bpy.context.space_data.transform_orientation = 'LOCAL'"
+        ]
+      ], 
+      "MACRO", 
+      "m?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
       "Curve: Invert", 
       "Curve", 
       "alt+A", 
@@ -2101,20 +2365,20 @@
       "", 
       [
         [
-          "Align to Active", 
+          "Align to Selected", 
           "COMMAND", 
           "", 
-          "bpy.ops.view3d.viewnumpad(type='TOP', align_active=True)"
+          "bpy.ops.view3d.view_axis(type='TOP', align_active=True)"
         ], 
         [
-          "Align to Active Back", 
+          "Align to Selected Back", 
           "COMMAND", 
           "", 
-          "bpy.ops.view3d.viewnumpad(type='BOTTOM', align_active=True)"
+          "bpy.ops.view3d.view_axis(type='BOTTOM', align_active=True)"
         ]
       ], 
       "SCRIPT", 
-      "s?", 
+      "s?s_state=True", 
       "PRESS", 
       "", 
       ""
@@ -3310,10 +3574,10 @@
       "shift+S", 
       [
         [
-          "Command 1", 
+          "Set 3D Cursor", 
           "COMMAND", 
           "", 
-          "bpy.ops.view3d.cursor3d()"
+          "bpy.ops.view3d.cursor3d(use_depth=True, orientation='GEOM')"
         ]
       ], 
       "SCRIPT", 
@@ -3352,15 +3616,15 @@
           "bpy.ops.object.origin_set(type='ORIGIN_CURSOR')"
         ], 
         [
-          "Origin to Selection", 
+          "To Selection", 
           "COMMAND", 
-          "", 
-          "bpy.ops.object.pivot2selection()"
+          "RESTRICT_SELECT_OFF", 
+          "bpy.ops.mesh.quick_pivot()"
         ], 
         [
           "Origin to Geometry", 
           "COMMAND", 
-          "", 
+          "MESH_CUBE", 
           "bpy.ops.object.origin_set(type='ORIGIN_GEOMETRY')"
         ], 
         [
@@ -3887,33 +4151,174 @@
       ""
     ], 
     [
-      "Modeselektor", 
-      "Image Paint, Lattice, Mesh, Object Mode, Sculpt, Vertex Paint, Weight Paint", 
+      "Curve: Mode", 
+      "3D View", 
+      "TAB", 
+      [
+        [
+          ""
+        ], 
+        [
+          ""
+        ], 
+        [
+          "Set Object Mode", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.object.mode_set(mode='EDIT')"
+        ], 
+        [
+          "Set Object Mode", 
+          "COMMAND", 
+          "OBJECT_DATAMODE", 
+          "bpy.ops.object.mode_set(mode='OBJECT')"
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ]
+      ], 
+      "PMENU", 
+      "pm?", 
+      "TWEAK", 
+      "return C.active_object and C.active_object.type == 'CURVE'", 
+      ""
+    ], 
+    [
+      "Grease Pencil: Mode", 
+      "3D View", 
+      "TAB", 
+      [
+        [
+          "Points", 
+          "COMMAND", 
+          "GP_SELECT_POINTS", 
+          "bpy.ops.object.mode_set(mode='EDIT_GPENCIL'); C.scene.tool_settings.gpencil_selectmode_edit = 'POINT'"
+        ], 
+        [
+          "Segment", 
+          "COMMAND", 
+          "GP_SELECT_BETWEEN_STROKES", 
+          "bpy.ops.object.mode_set(mode='EDIT_GPENCIL'); C.scene.tool_settings.gpencil_selectmode_edit = 'SEGMENT'"
+        ], 
+        [
+          "Stroke", 
+          "COMMAND", 
+          "GP_SELECT_STROKES", 
+          "bpy.ops.object.mode_set(mode='EDIT_GPENCIL'); C.scene.tool_settings.gpencil_selectmode_edit = 'STROKE'"
+        ], 
+        [
+          "Set Object Mode", 
+          "COMMAND", 
+          "OBJECT_DATAMODE", 
+          "bpy.ops.object.mode_set(mode='OBJECT')"
+        ], 
+        [
+          ""
+        ], 
+        [
+          "Sculpt", 
+          "COMMAND", 
+          "SCULPTMODE_HLT", 
+          "bpy.ops.object.mode_set(mode='SCULPT_GPENCIL')"
+        ], 
+        [
+          "Weight Paint", 
+          "COMMAND", 
+          "WPAINT_HLT", 
+          "bpy.ops.object.mode_set(mode='WEIGHT_GPENCIL')"
+        ], 
+        [
+          "Draw", 
+          "COMMAND", 
+          "GREASEPENCIL", 
+          "bpy.ops.object.mode_set(mode='PAINT_GPENCIL')"
+        ]
+      ], 
+      "PMENU", 
+      "pm?", 
+      "TWEAK", 
+      "return C.active_object and C.active_object.type == 'GPENCIL'", 
+      ""
+    ], 
+    [
+      "Lattice: Mode", 
+      "3D View", 
+      "TAB", 
+      [
+        [
+          ""
+        ], 
+        [
+          ""
+        ], 
+        [
+          "Set Object Mode", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.object.mode_set(mode='EDIT')"
+        ], 
+        [
+          "Set Object Mode", 
+          "COMMAND", 
+          "OBJECT_DATAMODE", 
+          "bpy.ops.object.mode_set(mode='OBJECT')"
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ]
+      ], 
+      "PMENU", 
+      "pm?", 
+      "TWEAK", 
+      "return C.active_object and C.active_object.type == 'LATTICE'", 
+      ""
+    ], 
+    [
+      "Mesh: Mode", 
+      "3D View", 
       "TAB", 
       [
         [
           "Vertices", 
           "COMMAND", 
           "VERTEXSEL", 
-          "bpy.ops.mesh.quick_selection_vert()"
+          "bpy.ops.object.mode_set(mode='EDIT'); bpy.ops.wm.context_set_value(data_path=\"tool_settings.mesh_select_mode\", value= \"(True, False, False)\"); redraw_screen()"
         ], 
         [
           "Faces", 
           "COMMAND", 
           "FACESEL", 
-          "bpy.ops.mesh.quick_selection_face()"
+          "bpy.ops.object.mode_set(mode='EDIT'); bpy.ops.wm.context_set_value(data_path=\"tool_settings.mesh_select_mode\", value= \"(False, False, True)\"); redraw_screen()"
         ], 
         [
           "Edges", 
           "COMMAND", 
           "EDGESEL", 
-          "bpy.ops.mesh.quick_selection_edge()"
+          "bpy.ops.object.mode_set(mode='EDIT'); bpy.ops.wm.context_set_value(data_path=\"tool_settings.mesh_select_mode\", value= \"(False, True, False)\"); redraw_screen()"
         ], 
         [
-          "Object Mode", 
+          "Set Object Mode", 
           "COMMAND", 
           "OBJECT_DATAMODE", 
-          "bpy.ops.object.editmode_toggle()"
+          "bpy.ops.object.mode_set(mode='OBJECT')"
         ], 
         [
           "Texture Paint", 
@@ -3942,98 +4347,8 @@
       ], 
       "PMENU", 
       "pm?", 
-      "PRESS", 
-      "", 
-      ""
-    ], 
-    [
-      "Modeselektor Curve", 
-      "Window", 
-      "TAB", 
-      [
-        [
-          ""
-        ], 
-        [
-          ""
-        ], 
-        [
-          ""
-        ], 
-        [
-          "Object Mode", 
-          "COMMAND", 
-          "OBJECT_DATAMODE", 
-          "bpy.ops.object.editmode_toggle()"
-        ], 
-        [
-          ""
-        ], 
-        [
-          ""
-        ], 
-        [
-          ""
-        ], 
-        [
-          ""
-        ]
-      ], 
-      "PMENU", 
-      "pm?", 
-      "PRESS", 
-      "return C.active_object and C.active_object.type == 'CURVE'", 
-      ""
-    ], 
-    [
-      "Modeselektor GP", 
-      "3D View", 
-      "TAB", 
-      [
-        [
-          ""
-        ], 
-        [
-          ""
-        ], 
-        [
-          "Set Object Mode", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.object.mode_set(mode='EDIT_GPENCIL')"
-        ], 
-        [
-          "Set Object Mode", 
-          "COMMAND", 
-          "OBJECT_DATAMODE", 
-          "bpy.ops.object.mode_set(mode='OBJECT')"
-        ], 
-        [
-          ""
-        ], 
-        [
-          "Set Object Mode", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.object.mode_set(mode='SCULPT_GPENCIL')"
-        ], 
-        [
-          "Set Object Mode", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.object.mode_set(mode='WEIGHT_GPENCIL')"
-        ], 
-        [
-          "Set Object Mode", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.object.mode_set(mode='PAINT_GPENCIL')"
-        ]
-      ], 
-      "PMENU", 
-      "pm?", 
-      "PRESS", 
-      "return C.active_object and C.active_object.type == 'GREASE'", 
+      "TWEAK", 
+      "return C.active_object and C.active_object.type == 'MESH'", 
       ""
     ], 
     [
@@ -4658,8 +4973,50 @@
       ""
     ], 
     [
-      "UV Modeselektor", 
-      "Image Generic, Image Paint, UV Editor", 
+      "Surface: Mode", 
+      "3D View", 
+      "TAB", 
+      [
+        [
+          ""
+        ], 
+        [
+          ""
+        ], 
+        [
+          "Set Object Mode", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.object.mode_set(mode='EDIT')"
+        ], 
+        [
+          "Set Object Mode", 
+          "COMMAND", 
+          "OBJECT_DATAMODE", 
+          "bpy.ops.object.mode_set(mode='OBJECT')"
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ]
+      ], 
+      "PMENU", 
+      "pm?", 
+      "TWEAK", 
+      "return C.active_object and C.active_object.type == 'SURFACE'", 
+      ""
+    ], 
+    [
+      "UV: Mode", 
+      "Image Generic, UV Editor", 
       "TAB", 
       [
         [
@@ -4713,7 +5070,7 @@
       ], 
       "PMENU", 
       "pm?", 
-      "PRESS", 
+      "TWEAK", 
       "", 
       ""
     ], 
@@ -6905,150 +7262,6 @@
       ""
     ], 
     [
-      "Align Cube", 
-      "Window", 
-      "", 
-      [
-        [
-          "Snap Cursor to Selected", 
-          "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.view3d.snap_cursor_to_selected()"
-        ], 
-        [
-          "Create Orientation", 
-          "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.transform.create_orientation(name='PeaPrim', overwrite=True, use=True)"
-        ], 
-        [
-          "Toggle Editmode", 
-          "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.object.editmode_toggle()"
-        ], 
-        [
-          "Add WBox", 
-          "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.mesh.make_wbox()"
-        ], 
-        [
-          "Pivot To Bottom", 
-          "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.object.pivotobottom()"
-        ], 
-        [
-          "Toggle Editmode", 
-          "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.object.editmode_toggle()"
-        ], 
-        [
-          "Snap Selection to Cursor", 
-          "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.view3d.snap_selected_to_cursor(use_offset=False)"
-        ], 
-        [
-          "Transform", 
-          "COMMAND", 
-          "TEXT", 
-          "(bpy.ops.transform.transform(mode='ALIGN', value=(0.0, 0.0, 0.0, 0.0), axis=(0.0, 0.0, 0.0), constraint_axis=[False, False, False], constraint_orientation='PeaPrim', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1.0))"
-        ], 
-        [
-          "Delete Orientation", 
-          "COMMAND", 
-          "TEXT", 
-          "(bpy.ops.transform.delete_orientation())"
-        ], 
-        [
-          "Transform Orientation = 'LOCAL'", 
-          "COMMAND", 
-          "TEXT", 
-          "bpy.context.space_data.transform_orientation = 'LOCAL'"
-        ]
-      ], 
-      "MACRO", 
-      "m?", 
-      "PRESS", 
-      "", 
-      ""
-    ], 
-    [
-      "Align Cylinder", 
-      "Window", 
-      "", 
-      [
-        [
-          "Snap Cursor to Selected", 
-          "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.view3d.snap_cursor_to_selected()"
-        ], 
-        [
-          "Create Orientation", 
-          "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.transform.create_orientation(name='PeaPrim', overwrite=True, use=True)"
-        ], 
-        [
-          "Toggle Editmode", 
-          "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.object.editmode_toggle()"
-        ], 
-        [
-          "Add WTube", 
-          "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.mesh.make_wtube()"
-        ], 
-        [
-          "Perimeter = 8", 
-          "COMMAND", 
-          "TEXT", 
-          "C.object.data.WTube.seg_perimeter = 8"
-        ], 
-        [
-          "Centered = False", 
-          "COMMAND", 
-          "TEXT", 
-          "C.object.data.WTube.centered = False"
-        ], 
-        [
-          "Snap Selection to Cursor", 
-          "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.view3d.snap_selected_to_cursor(use_offset=False)"
-        ], 
-        [
-          "Transform", 
-          "COMMAND", 
-          "TEXT", 
-          "(bpy.ops.transform.transform(mode='ALIGN', value=(0.0, 0.0, 0.0, 0.0), axis=(0.0, 0.0, 0.0), constraint_axis=[False, False, False], constraint_orientation='PeaPrim', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1.0))"
-        ], 
-        [
-          "Delete Orientation", 
-          "COMMAND", 
-          "TEXT", 
-          "(bpy.ops.transform.delete_orientation())"
-        ], 
-        [
-          "Transform Orientation = 'LOCAL'", 
-          "COMMAND", 
-          "TEXT", 
-          "bpy.context.space_data.transform_orientation = 'LOCAL'"
-        ]
-      ], 
-      "MACRO", 
-      "m?", 
-      "PRESS", 
-      "", 
-      ""
-    ], 
-    [
       "Align Mesh", 
       "Mesh", 
       "", 
@@ -7124,72 +7337,6 @@
           "COMMAND", 
           "BLENDER", 
           "bpy.ops.object.editmode_toggle()"
-        ], 
-        [
-          "Snap Selection to Cursor", 
-          "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.view3d.snap_selected_to_cursor(use_offset=False)"
-        ], 
-        [
-          "Transform", 
-          "COMMAND", 
-          "TEXT", 
-          "(bpy.ops.transform.transform(mode='ALIGN', value=(0.0, 0.0, 0.0, 0.0), axis=(0.0, 0.0, 0.0), constraint_axis=[False, False, False], constraint_orientation='PeaPrim', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1.0))"
-        ], 
-        [
-          "Delete Orientation", 
-          "COMMAND", 
-          "TEXT", 
-          "(bpy.ops.transform.delete_orientation())"
-        ], 
-        [
-          "Transform Orientation = 'LOCAL'", 
-          "COMMAND", 
-          "TEXT", 
-          "bpy.context.space_data.transform_orientation = 'LOCAL'"
-        ]
-      ], 
-      "MACRO", 
-      "m?", 
-      "PRESS", 
-      "", 
-      ""
-    ], 
-    [
-      "Align Sphere", 
-      "Window", 
-      "", 
-      [
-        [
-          "Snap Cursor to Selected", 
-          "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.view3d.snap_cursor_to_selected()"
-        ], 
-        [
-          "Create Orientation", 
-          "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.transform.create_orientation(name='PeaPrim', overwrite=True, use=True)"
-        ], 
-        [
-          "Toggle Editmode", 
-          "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.object.editmode_toggle()"
-        ], 
-        [
-          "Add Wsphere", 
-          "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.mesh.make_wsphere()"
-        ], 
-        [
-          "Smooth = False", 
-          "COMMAND", 
-          "TEXT", 
-          "C.object.data.WSphere.smoothed = False"
         ], 
         [
           "Snap Selection to Cursor", 
