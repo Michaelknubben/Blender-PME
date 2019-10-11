@@ -3592,27 +3592,27 @@
       "shift+S", 
       [
         [
-          "Pivot To Bottom", 
+          "Selection to Cursor", 
           "COMMAND", 
-          "TRIA_DOWN", 
-          "bpy.ops.object.pivotobottom()"
+          "RESTRICT_SELECT_OFF", 
+          "bpy.ops.sfc.cursor_tools(cursor_tools='selection_to_cursor')"
         ], 
         [
           "Cursor to Selected", 
           "COMMAND", 
-          "HAND", 
+          "ORIENTATION_CURSOR", 
           "bpy.ops.view3d.snap_cursor_to_selected()"
         ], 
         [
-          "Selection To Cursor", 
+          "Origin To Bottom", 
           "COMMAND", 
-          "", 
-          "bpy.ops.view3d.snap_selected_to_cursor(use_offset=False)"
+          "TRIA_DOWN", 
+          "execute_script(\"scripts/Pivot_To_Bottom.py\")"
         ], 
         [
           "Origin to 3D Cursor", 
           "COMMAND", 
-          "CURSOR", 
+          "PIVOT_CURSOR", 
           "bpy.ops.object.origin_set(type='ORIGIN_CURSOR')"
         ], 
         [
@@ -3635,14 +3635,35 @@
         ], 
         [
           "Others", 
-          "COMMAND", 
+          "MENU", 
           "GROUP_VERTEX", 
-          "bpy.ops.wm.call_menu_pie(name=\"origin.pivotmenu\")"
+          "@Origin Menu"
         ]
       ], 
       "PMENU", 
       "pm?", 
       "TWEAK", 
+      "", 
+      ""
+    ], 
+    [
+      "Origin Menu", 
+      "Window", 
+      "", 
+      [
+        [
+          "row"
+        ], 
+        [
+          "Button 1", 
+          "COMMAND", 
+          "", 
+          ""
+        ]
+      ], 
+      "DIALOG", 
+      "pd?pd_panel=1", 
+      "PRESS", 
       "", 
       ""
     ], 
@@ -4349,6 +4370,48 @@
       "pm?", 
       "TWEAK", 
       "return C.active_object and C.active_object.type == 'MESH'", 
+      ""
+    ], 
+    [
+      "Metaball: Mode", 
+      "3D View", 
+      "TAB", 
+      [
+        [
+          ""
+        ], 
+        [
+          ""
+        ], 
+        [
+          "Set Object Mode", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.object.mode_set(mode='EDIT')"
+        ], 
+        [
+          "Set Object Mode", 
+          "COMMAND", 
+          "OBJECT_DATAMODE", 
+          "bpy.ops.object.mode_set(mode='OBJECT')"
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ]
+      ], 
+      "PMENU", 
+      "pm?", 
+      "TWEAK", 
+      "return C.active_object and C.active_object.type == 'META'", 
       ""
     ], 
     [
@@ -6214,10 +6277,10 @@
           "C.space_data.overlay.show_wireframes"
         ], 
         [
-          "Smooth", 
+          "Smooth/Sharp", 
           "MENU", 
           "MESH_CIRCLE", 
-          "Shade Smooth"
+          "Smooth/Sharp"
         ], 
         [
           "Gizmos", 
@@ -6281,31 +6344,25 @@
       ""
     ], 
     [
-      "Shade Smooth", 
+      "Smooth/Sharp", 
       "Window", 
       "", 
       [
         [
           "Shade Smooth", 
           "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.object.shade_smooth()"
+          "", 
+          "bpy.ops.object.shade_smooth(); C.object.data.use_auto_smooth = True; C.object.data.auto_smooth_angle = 3.1415927410125732"
         ], 
         [
-          "Auto Smooth = True", 
+          "Shade Flat", 
           "COMMAND", 
-          "TEXT", 
-          "C.object.data.use_auto_smooth = True"
-        ], 
-        [
-          "Auto Smooth Angle = 3.1415927410125732", 
-          "COMMAND", 
-          "TEXT", 
-          "C.object.data.auto_smooth_angle = 3.1415927410125732"
+          "", 
+          "bpy.ops.object.shade_flat()"
         ]
       ], 
-      "MACRO", 
-      "m?", 
+      "SCRIPT", 
+      "s?s_state=True", 
       "PRESS", 
       "", 
       ""
@@ -10739,6 +10796,96 @@
       ""
     ], 
     [
+      "Set Orientation to Selection", 
+      "Window", 
+      "", 
+      [
+        [
+          "Create Orientation", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.transform.create_orientation(use=True, name='Orientation_TMP', overwrite=True)"
+        ], 
+        [
+          "Set Object Mode", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.object.mode_set(mode='OBJECT')"
+        ], 
+        [
+          "Transform Origins = True", 
+          "COMMAND", 
+          "TEXT", 
+          "bpy.context.scene.tool_settings.use_transform_data_origin = True"
+        ], 
+        [
+          "Transform", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.transform.transform(mode='ALIGN', value=(0, 0, 0, 0), mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)"
+        ], 
+        [
+          "Rotate", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.transform.rotate(value=-3.14159, orient_axis='X', orient_type='<UNKNOWN ENUM>', orient_matrix=((0.0659635, 0.987541, 0.142868), (0.59485, -0.153875, 0.788971), (0.801125, 0.032942, -0.597589)), orient_matrix_type='<UNKNOWN ENUM>', constraint_axis=(True, False, False), mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False, release_confirm=True)"
+        ], 
+        [
+          "Transform Origins = False", 
+          "COMMAND", 
+          "TEXT", 
+          "bpy.context.scene.tool_settings.use_transform_data_origin = False"
+        ], 
+        [
+          "Delete Orientation", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.transform.delete_orientation()"
+        ], 
+        [
+          "scene.type = 'LOCAL'", 
+          "COMMAND", 
+          "TEXT", 
+          "bpy.context.scene.type = 'LOCAL'"
+        ]
+      ], 
+      "MACRO", 
+      "m?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Shade Smooth", 
+      "Window", 
+      "", 
+      [
+        [
+          "Shade Smooth", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.object.shade_smooth()"
+        ], 
+        [
+          "Auto Smooth = True", 
+          "COMMAND", 
+          "TEXT", 
+          "C.object.data.use_auto_smooth = True"
+        ], 
+        [
+          "Auto Smooth Angle = 3.1415927410125732", 
+          "COMMAND", 
+          "TEXT", 
+          "C.object.data.auto_smooth_angle = 3.1415927410125732"
+        ]
+      ], 
+      "MACRO", 
+      "m?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
       "Snap Cursor list", 
       "Mesh, Object Mode", 
       "", 
@@ -11066,6 +11213,24 @@
           "PROP", 
           "NONE", 
           "C.object.modifiers[\"Subdivision\"].levels"
+        ], 
+        [
+          "Resolution", 
+          "PROP", 
+          "NONE", 
+          "C.object.data.resolution"
+        ], 
+        [
+          "Threshold", 
+          "PROP", 
+          "NONE", 
+          "C.object.data.threshold"
+        ], 
+        [
+          "Negative", 
+          "PROP", 
+          "NONE", 
+          "C.object.data.elements[0].use_negative"
         ]
       ], 
       "RMENU", 
