@@ -809,6 +809,54 @@
       ""
     ], 
     [
+      "Node: Create", 
+      "Node Editor", 
+      "shift+A", 
+      [
+        [
+          "Noise", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.node.add_node(type='ShaderNodeTexNoise', use_transform=True)"
+        ], 
+        [
+          "ColourRamp", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.node.add_node(type='ShaderNodeValToRGB', use_transform=True)"
+        ], 
+        [
+          "RGB", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.node.add_node(type='ShaderNodeRGB', use_transform=True)"
+        ], 
+        [
+          "Mix", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.node.add_node(type='ShaderNodeMixRGB', use_transform=True)"
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ]
+      ], 
+      "PMENU", 
+      "pm?", 
+      "TWEAK", 
+      "", 
+      ""
+    ], 
+    [
       "Object: Invert", 
       "Object Mode", 
       "alt+A", 
@@ -2485,7 +2533,10 @@
           "View Lock to Active/Clear"
         ], 
         [
-          ""
+          "Align View to Cursor Rotation", 
+          "MENU", 
+          "CURSOR", 
+          "Align View to Cursor Rotation"
         ], 
         [
           "Hide Unselected", 
@@ -2497,6 +2548,30 @@
       "PMENU", 
       "pm?", 
       "TWEAK", 
+      "", 
+      ""
+    ], 
+    [
+      "Align View to Cursor Rotation", 
+      "Window", 
+      "", 
+      [
+        [
+          "Align View to Cursor Rotation", 
+          "COMMAND", 
+          "CURSOR", 
+          "bpy.ops.sfc.cursor_tools(cursor_tools='align_view_to_cursor_rot')"
+        ], 
+        [
+          "View Orbit Opposite", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.view3d.view_orbit(angle=3.14159, type='ORBITRIGHT')"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?s_state=True", 
+      "PRESS", 
       "", 
       ""
     ], 
@@ -3271,16 +3346,16 @@
       "RIGHTMOUSE", 
       [
         [
-          "SubD-", 
+          "Subd -", 
           "COMMAND", 
-          "", 
-          ""
+          "NONE", 
+          "C.object.modifiers[\"Subdivision\"].levels = -1"
         ], 
         [
-          "SubD+", 
+          "Levels = 2", 
           "COMMAND", 
-          "", 
-          ""
+          "NONE", 
+          "bpy.context.object.modifiers[\"Subdivision\"].levels = 2"
         ], 
         [
           "Context Menu", 
@@ -3598,10 +3673,10 @@
           "bpy.ops.sfc.cursor_tools(cursor_tools='selection_to_cursor')"
         ], 
         [
-          "Cursor to Selected", 
+          "Cursor to Selection", 
           "COMMAND", 
           "ORIENTATION_CURSOR", 
-          "bpy.ops.view3d.snap_cursor_to_selected()"
+          "bpy.ops.sfc.cursor_tools(cursor_tools='cursor_to_selection_rot')"
         ], 
         [
           "Origin To Bottom", 
@@ -3655,10 +3730,10 @@
           "row"
         ], 
         [
-          "Button 1", 
+          "Cursor Tools", 
           "COMMAND", 
           "", 
-          ""
+          "bpy.ops.sfc.cursor_tools(cursor_tools='copy_cursor_rot')"
         ]
       ], 
       "DIALOG", 
@@ -6260,6 +6335,174 @@
       ""
     ], 
     [
+      "Popup Dialog", 
+      "3D View", 
+      "shift+Z", 
+      [
+        [
+          "row?fixed_col=True"
+        ], 
+        [
+          "spacer?hsep=COLUMN"
+        ], 
+        [
+          "Gizmo Settings", 
+          "MENU", 
+          "", 
+          "@Gizmo Settings"
+        ], 
+        [
+          "spacer?hsep=COLUMN"
+        ], 
+        [
+          "Shading 2 Panel.002", 
+          "MENU", 
+          "", 
+          "@View / Collections"
+        ], 
+        [
+          "row?fixed_col=True"
+        ], 
+        [
+          "Button 6", 
+          "COMMAND", 
+          "", 
+          ""
+        ], 
+        [
+          "spacer?hsep=COLUMN"
+        ], 
+        [
+          "Shading 2 Panel.002", 
+          "MENU", 
+          "", 
+          "@Shading Panel 3"
+        ]
+      ], 
+      "DIALOG", 
+      "pd?pd_panel=2&pd_title=False&pd_width=616", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Gizmo Settings", 
+      "Window", 
+      "", 
+      [
+        [
+          "row"
+        ], 
+        [
+          "Gizmo", 
+          "CUSTOM", 
+          "", 
+          "panel(\"VIEW3D_PT_gizmo_display\", frame=False, header=False, expand=None)"
+        ]
+      ], 
+      "DIALOG", 
+      "pd?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "View / Collections", 
+      "Window", 
+      "", 
+      [
+        [
+          "row?vspacer=NONE"
+        ], 
+        [
+          "View", 
+          "CUSTOM", 
+          "", 
+          "L.label(text=text, icon=icon, icon_value=icon_value)"
+        ], 
+        [
+          "row?vspacer=NONE"
+        ], 
+        [
+          "Clip:", 
+          "CUSTOM", 
+          "", 
+          "L.label(text=text, icon=icon, icon_value=icon_value)"
+        ], 
+        [
+          "0.1", 
+          "COMMAND", 
+          "NONE", 
+          "bpy.context.space_data.clip_start = 0.1"
+        ], 
+        [
+          "0.01", 
+          "COMMAND", 
+          "NONE", 
+          "bpy.context.space_data.clip_start = 0.01"
+        ], 
+        [
+          "0.001", 
+          "COMMAND", 
+          "NONE", 
+          "bpy.context.space_data.clip_start = 0.001"
+        ], 
+        [
+          "row?vspacer=NONE"
+        ], 
+        [
+          "View", 
+          "CUSTOM", 
+          "", 
+          "panel(\"VIEW3D_PT_view3d_properties\", frame=True, header=False, expand=None)"
+        ], 
+        [
+          "row?"
+        ], 
+        [
+          "Collections", 
+          "CUSTOM", 
+          "", 
+          "L.label(text=text, icon=icon, icon_value=icon_value)"
+        ], 
+        [
+          "row?vspacer=NONE"
+        ], 
+        [
+          "Collections", 
+          "CUSTOM", 
+          "", 
+          "panel(\"VIEW3D_PT_collections\", frame=True, header=False, expand=None)"
+        ]
+      ], 
+      "DIALOG", 
+      "pd?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Shading Panel 3", 
+      "Window", 
+      "", 
+      [
+        [
+          "row"
+        ], 
+        [
+          "Overlays", 
+          "CUSTOM", 
+          "", 
+          "panel(\"VIEW3D_PT_overlay\", frame=True, header=True, expand=None)"
+        ]
+      ], 
+      "DIALOG", 
+      "pd?pd_panel=1", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
       "Shading Menu 1", 
       "3D View", 
       "Z", 
@@ -6379,10 +6622,10 @@
           "keep_pie_open(L); draw_menu(\"Gizmo Settings\")"
         ], 
         [
-          "Overlay Settings", 
-          "CUSTOM", 
-          "MOD_WIREFRAME", 
-          "keep_pie_open(L); draw_menu(\"Overlay Settings\")"
+          "Shading Panel 3", 
+          "MENU", 
+          "", 
+          "@@Shading Panel 3"
         ], 
         [
           "Shading 2 Panel", 
@@ -6391,10 +6634,16 @@
           "@Shading 2 Panel"
         ], 
         [
-          ""
+          "Shading 2 Panel.002", 
+          "MENU", 
+          "", 
+          "@View / Collections"
         ], 
         [
-          ""
+          "Overlay Settings", 
+          "CUSTOM", 
+          "MOD_WIREFRAME", 
+          "keep_pie_open(L); draw_menu(\"Overlay Settings\")"
         ], 
         [
           ""
@@ -8708,27 +8957,6 @@
           "CUSTOM", 
           "", 
           "panel(\"DATA_PT_geometry_curve\", frame=False, header=False, expand=None)"
-        ]
-      ], 
-      "DIALOG", 
-      "pd?", 
-      "PRESS", 
-      "", 
-      ""
-    ], 
-    [
-      "Gizmo Settings", 
-      "Window", 
-      "", 
-      [
-        [
-          "row"
-        ], 
-        [
-          "Gizmo", 
-          "CUSTOM", 
-          "", 
-          "panel(\"VIEW3D_PT_gizmo_display\", frame=False, header=False, expand=None)"
         ]
       ], 
       "DIALOG", 
