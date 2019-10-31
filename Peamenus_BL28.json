@@ -3181,13 +3181,16 @@
           ""
         ], 
         [
-          ""
+          "Only Locations", 
+          "PROP", 
+          "EMPTY_ARROWS", 
+          "C.scene.tool_settings.use_transform_pivot_point_align"
         ], 
         [
           "Only Origins", 
           "PROP", 
-          "CENTER_ONLY", 
-          "C.scene.tool_settings.use_transform_pivot_point_align"
+          "RADIOBUT_ON", 
+          "C.scene.tool_settings.use_transform_data_origin"
         ]
       ], 
       "PMENU", 
@@ -3318,6 +3321,30 @@
       ], 
       "SCRIPT", 
       "s?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Spin", 
+      "Mesh", 
+      "alt+R", 
+      [
+        [
+          "Spin 90\u00b0", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.spin(angle=1.5707963705062866)"
+        ], 
+        [
+          "Spin -90\u00b0", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.spin(angle=-1.5707963705062866)"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?s_undo=True", 
       "PRESS", 
       "", 
       ""
@@ -6605,7 +6632,7 @@
         ]
       ], 
       "SCRIPT", 
-      "s?s_state=True", 
+      "s?", 
       "PRESS", 
       "", 
       ""
@@ -9620,6 +9647,30 @@
       ""
     ], 
     [
+      "Mesh Check Toggle", 
+      "Window", 
+      "", 
+      [
+        [
+          "Mesh Check ON", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.object.add_materials()"
+        ], 
+        [
+          "Mesh Check OFF", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.object.remove_materials()"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?s_state=True", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
       "Meta", 
       "Mesh, Metaball, Object Mode", 
       "", 
@@ -11401,10 +11452,22 @@
       "", 
       [
         [
-          "Use Simplify", 
+          ""
+        ], 
+        [
+          "", 
           "PROP", 
           "FREEZE", 
           "C.scene.render.use_simplify"
+        ], 
+        [
+          ""
+        ], 
+        [
+          "", 
+          "MENU", 
+          "KEYFRAME_HLT", 
+          "Mesh Check Toggle"
         ]
       ], 
       "RMENU", 
