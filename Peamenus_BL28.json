@@ -2432,6 +2432,66 @@
       ""
     ], 
     [
+      "GP: Visibility Pie", 
+      "Grease Pencil", 
+      "MIDDLEMOUSE", 
+      [
+        [
+          "Unhide", 
+          "COMMAND", 
+          "HIDE_OFF", 
+          "bpy.ops.mesh.select_all(action='INVERT');bpy.ops.mesh.reveal();bpy.ops.mesh.select_all(action='INVERT')"
+        ], 
+        [
+          "Hide", 
+          "COMMAND", 
+          "HIDE_ON", 
+          "bpy.ops.mesh.hide(unselected=False)"
+        ], 
+        [
+          "View Selected/All", 
+          "MENU", 
+          "ZOOM_PREVIOUS", 
+          "3D: View Selected/All"
+        ], 
+        [
+          "Local", 
+          "HOTKEY", 
+          "GHOST_ENABLED", 
+          "NUMPAD_SLASH"
+        ], 
+        [
+          "Lock to Cursor", 
+          "PROP", 
+          "CURSOR", 
+          "bpy.context.space_data.lock_cursor"
+        ], 
+        [
+          "View Lock to Active/Clear", 
+          "MENU", 
+          "LOCKED", 
+          "View Lock to Active/Clear"
+        ], 
+        [
+          "Align Face / Front", 
+          "MENU", 
+          "ORIENTATION_NORMAL", 
+          "Align Face / Front"
+        ], 
+        [
+          "Hide Unselected", 
+          "COMMAND", 
+          "RESTRICT_SELECT_ON", 
+          "bpy.ops.mesh.hide(unselected=True)"
+        ]
+      ], 
+      "PMENU", 
+      "pm?", 
+      "TWEAK", 
+      "return C.active_object and C.active_object.type == 'GPENCIL'", 
+      ""
+    ], 
+    [
       "Mesh: Visibility Pie", 
       "Mesh", 
       "MIDDLEMOUSE", 
@@ -4415,66 +4475,6 @@
       ""
     ], 
     [
-      "Mesh: Mode", 
-      "3D View", 
-      "TAB", 
-      [
-        [
-          "Vertices", 
-          "COMMAND", 
-          "VERTEXSEL", 
-          "bpy.ops.object.mode_set(mode='EDIT'); bpy.ops.wm.context_set_value(data_path=\"tool_settings.mesh_select_mode\", value= \"(True, False, False)\"); redraw_screen()"
-        ], 
-        [
-          "Faces", 
-          "COMMAND", 
-          "FACESEL", 
-          "bpy.ops.object.mode_set(mode='EDIT'); bpy.ops.wm.context_set_value(data_path=\"tool_settings.mesh_select_mode\", value= \"(False, False, True)\"); redraw_screen()"
-        ], 
-        [
-          "Edges", 
-          "COMMAND", 
-          "EDGESEL", 
-          "bpy.ops.object.mode_set(mode='EDIT'); bpy.ops.wm.context_set_value(data_path=\"tool_settings.mesh_select_mode\", value= \"(False, True, False)\"); redraw_screen()"
-        ], 
-        [
-          "Set Object Mode", 
-          "COMMAND", 
-          "OBJECT_DATAMODE", 
-          "bpy.ops.object.mode_set(mode='OBJECT')"
-        ], 
-        [
-          "Texture Paint", 
-          "COMMAND", 
-          "TPAINT_HLT", 
-          "bpy.ops.object.mode_set(mode='TEXTURE_PAINT')"
-        ], 
-        [
-          "Sculpt Mode", 
-          "COMMAND", 
-          "SCULPTMODE_HLT", 
-          "bpy.ops.object.mode_set(mode='SCULPT')"
-        ], 
-        [
-          "Weight Paint", 
-          "COMMAND", 
-          "GREASEPENCIL", 
-          "bpy.ops.object.mode_set(mode='WEIGHT_PAINT')"
-        ], 
-        [
-          "Vertex Paint Mode", 
-          "COMMAND", 
-          "VPAINT_HLT", 
-          "bpy.ops.object.mode_set(mode='VERTEX_PAINT')"
-        ]
-      ], 
-      "PMENU", 
-      "pm?", 
-      "TWEAK", 
-      "return C.active_object and C.active_object.type == 'MESH'", 
-      ""
-    ], 
-    [
       "Metaball: Mode", 
       "3D View", 
       "TAB", 
@@ -4514,6 +4514,84 @@
       "pm?", 
       "TWEAK", 
       "return C.active_object and C.active_object.type == 'META'", 
+      ""
+    ], 
+    [
+      "Object Mode: Tab Edit", 
+      "Object Mode", 
+      "TAB", 
+      [
+        [
+          "Set Object Mode", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.object.mode_set(mode='EDIT')"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "PRESS", 
+      "return C.active_object and C.active_object.type == 'MESH'", 
+      ""
+    ], 
+    [
+      "Object, Mesh, Sculpt: mode", 
+      "Mesh, Object Mode, Sculpt", 
+      "TAB", 
+      [
+        [
+          "Vertices", 
+          "COMMAND", 
+          "VERTEXSEL", 
+          "bpy.ops.object.mode_set(mode='EDIT'); bpy.ops.wm.context_set_value(data_path=\"tool_settings.mesh_select_mode\", value= \"(True, False, False)\"); redraw_screen()"
+        ], 
+        [
+          "Faces", 
+          "COMMAND", 
+          "FACESEL", 
+          "bpy.ops.object.mode_set(mode='EDIT'); bpy.ops.wm.context_set_value(data_path=\"tool_settings.mesh_select_mode\", value= \"(False, False, True)\"); redraw_screen()"
+        ], 
+        [
+          "Edges", 
+          "COMMAND", 
+          "EDGESEL", 
+          "bpy.ops.object.mode_set(mode='EDIT'); bpy.ops.wm.context_set_value(data_path=\"tool_settings.mesh_select_mode\", value= \"(False, True, False)\"); redraw_screen()"
+        ], 
+        [
+          "Sculpt Mode", 
+          "COMMAND", 
+          "SCULPTMODE_HLT", 
+          "bpy.ops.object.mode_set(mode='SCULPT')"
+        ], 
+        [
+          "Texture Paint", 
+          "COMMAND", 
+          "TPAINT_HLT", 
+          "bpy.ops.object.mode_set(mode='TEXTURE_PAINT')"
+        ], 
+        [
+          "Particle Edit", 
+          "COMMAND", 
+          "PARTICLEMODE", 
+          "bpy.ops.object.mode_set(mode='PARTICLE_EDIT')"
+        ], 
+        [
+          "Weight Paint", 
+          "COMMAND", 
+          "GREASEPENCIL", 
+          "bpy.ops.object.mode_set(mode='WEIGHT_PAINT')"
+        ], 
+        [
+          "Vertex Paint Mode", 
+          "COMMAND", 
+          "VPAINT_HLT", 
+          "bpy.ops.object.mode_set(mode='VERTEX_PAINT')"
+        ]
+      ], 
+      "PMENU", 
+      "pm?", 
+      "TWEAK", 
+      "return C.active_object and C.active_object.type == 'MESH'", 
       ""
     ], 
     [
@@ -4560,7 +4638,7 @@
       ], 
       "PMENU", 
       "pm?pm_radius=32", 
-      "PRESS", 
+      "TWEAK", 
       "", 
       ""
     ], 
@@ -4582,16 +4660,16 @@
           "C.space_data.context = 'DATA'"
         ], 
         [
-          "Modifier", 
-          "COMMAND", 
-          "MODIFIER", 
-          "C.space_data.context = 'MODIFIER'"
-        ], 
-        [
           "Material", 
           "COMMAND", 
           "MATERIAL_DATA", 
           "C.space_data.context = 'MATERIAL'"
+        ], 
+        [
+          "Modifier", 
+          "COMMAND", 
+          "MODIFIER", 
+          "C.space_data.context = 'MODIFIER'"
         ], 
         [
           "Render", 
@@ -4611,6 +4689,24 @@
       ], 
       "PMENU", 
       "pm?pm_radius=45", 
+      "TWEAK", 
+      "", 
+      ""
+    ], 
+    [
+      "Sculpt, Particle: TAB Object", 
+      "Particle, Sculpt", 
+      "TAB", 
+      [
+        [
+          "Set Object Mode", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.object.mode_set(mode='OBJECT')"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
       "PRESS", 
       "", 
       ""
@@ -11468,6 +11564,15 @@
           "MENU", 
           "KEYFRAME_HLT", 
           "Mesh Check Toggle"
+        ], 
+        [
+          ""
+        ], 
+        [
+          "Autolock Layers", 
+          "PROP", 
+          "", 
+          "C.object.data.use_autolock_layers"
         ]
       ], 
       "RMENU", 
