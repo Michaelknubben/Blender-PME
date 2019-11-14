@@ -1,5 +1,5 @@
 {
-  "version": "1.16.2", 
+  "version": "1.16.4", 
   "menus": [
     [
       "Tweak Brush", 
@@ -3071,7 +3071,7 @@
       ""
     ], 
     [
-      "Proportional Editing Mesh", 
+      "Mesh, GP: Proportional Pie", 
       "Grease Pencil, Mesh", 
       "O", 
       [
@@ -4517,24 +4517,6 @@
       ""
     ], 
     [
-      "Object Mode: Tab Edit", 
-      "Object Mode", 
-      "TAB", 
-      [
-        [
-          "Set Object Mode", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.object.mode_set(mode='EDIT')"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?", 
-      "PRESS", 
-      "return C.active_object and C.active_object.type == 'MESH'", 
-      ""
-    ], 
-    [
       "Object, Mesh, Sculpt: mode", 
       "Mesh, Object Mode, Sculpt", 
       "TAB", 
@@ -4600,28 +4582,25 @@
       "TAB", 
       [
         [
+          "VIEW_LAYER", 
+          "MENU", 
+          "RENDERLAYERS", 
+          "Outliner: View"
+        ], 
+        [
+          "View Filter", 
+          "MENU", 
+          "FILTER", 
+          "View Filter Outliner"
+        ], 
+        [
           "Sort", 
           "PROP", 
           "OUTLINER_OB_FONT", 
           "C.space_data.use_sort_alpha"
         ], 
         [
-          "ALL", 
-          "COMMAND", 
-          "NONE", 
-          "C.space_data.filter_state = 'ALL'"
-        ], 
-        [
-          "HIDDEN", 
-          "COMMAND", 
-          "NONE", 
-          "bpy.context.space_data.filter_state = 'HIDDEN'"
-        ], 
-        [
-          "SELECTED", 
-          "COMMAND", 
-          "NONE", 
-          "bpy.context.space_data.filter_state = 'SELECTED'"
+          ""
         ], 
         [
           ""
@@ -4639,6 +4618,60 @@
       "PMENU", 
       "pm?pm_radius=32", 
       "TWEAK", 
+      "", 
+      ""
+    ], 
+    [
+      "Outliner: View", 
+      "Window", 
+      "", 
+      [
+        [
+          "'SCENES'", 
+          "COMMAND", 
+          "", 
+          "bpy.context.space_data.display_mode = 'SCENES'"
+        ], 
+        [
+          "'VIEW_LAYER'", 
+          "COMMAND", 
+          "", 
+          "bpy.context.space_data.display_mode = 'VIEW_LAYER'"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?s_state=True", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "View Filter Outliner", 
+      "Window", 
+      "", 
+      [
+        [
+          " 'ALL'", 
+          "COMMAND", 
+          "", 
+          "bpy.context.space_data.filter_state = 'ALL'"
+        ], 
+        [
+          "'SELECTED'", 
+          "COMMAND", 
+          "", 
+          "bpy.context.space_data.filter_state = 'SELECTED'"
+        ], 
+        [
+          "'HIDDEN'", 
+          "COMMAND", 
+          "", 
+          "bpy.context.space_data.filter_state = 'HIDDEN'"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?s_state=True", 
+      "PRESS", 
       "", 
       ""
     ], 
@@ -4694,8 +4727,8 @@
       ""
     ], 
     [
-      "Sculpt, Particle: TAB Object", 
-      "Particle, Sculpt", 
+      "Sculpt: Tab", 
+      "Sculpt", 
       "TAB", 
       [
         [
