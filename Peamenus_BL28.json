@@ -700,7 +700,7 @@
     [
       "Mesh: Select Menu", 
       "Mesh", 
-      "alt+A", 
+      "A", 
       [
         [
           "Select Bounded Loop", 
@@ -877,52 +877,52 @@
     [
       "Object: Select Menu", 
       "Object Mode", 
-      "alt+A", 
+      "A", 
       [
         [
-          "Select Less", 
+          "Less", 
           "COMMAND", 
           "REMOVE", 
           "bpy.ops.object.select_less()"
         ], 
         [
-          "Select More", 
+          "More", 
           "COMMAND", 
           "ADD", 
           "bpy.ops.object.select_more()"
         ], 
         [
-          "Invert Selection", 
-          "COMMAND", 
-          "FILE_REFRESH", 
-          "bpy.ops.object.select_all(action='INVERT')"
-        ], 
-        [
-          "(De)select All", 
+          "Type", 
           "COMMAND", 
           "", 
-          "bpy.ops.object.select_all(action='TOGGLE')"
+          "bpy.ops.object.select_grouped(type='TYPE')"
         ], 
         [
-          "Select Child", 
+          "Mirror", 
+          "COMMAND", 
+          "FILE_REFRESH", 
+          "bpy.ops.object.select_mirror()"
+        ], 
+        [
+          "Child", 
           "COMMAND", 
           "OUTLINER_DATA_ARMATURE", 
           "bpy.ops.object.select_hierarchy(direction='CHILD', extend=False)"
         ], 
         [
-          "Select Parent", 
+          "Parent", 
           "COMMAND", 
           "OUTLINER_OB_ARMATURE", 
           "bpy.ops.object.select_hierarchy(direction='PARENT', extend=False)"
         ], 
         [
-          "Select Pattern", 
+          "Pattern", 
           "COMMAND", 
           "TRACKING_FORWARDS", 
           "bpy.ops.object.select_pattern()"
         ], 
         [
-          "Select Random", 
+          "Random", 
           "COMMAND", 
           "RNDCURVE", 
           "bpy.ops.object.select_random()"
@@ -1315,7 +1315,7 @@
     [
       "Mesh: Fill Region", 
       "Mesh", 
-      "ctrl+LEFTMOUSE", 
+      "ctrl+shift+alt+LEFTMOUSE", 
       [
         [
           "Fill Region", 
@@ -1333,7 +1333,7 @@
     [
       "Mesh: Loop Select", 
       "Mesh", 
-      "ctrl+LEFTMOUSE", 
+      "LEFTMOUSE", 
       [
         [
           "Loop Select", 
@@ -1344,14 +1344,14 @@
       ], 
       "SCRIPT", 
       "s?s_undo=True", 
-      "PRESS", 
+      "DOUBLE_CLICK", 
       "", 
       ""
     ], 
     [
       "Mesh: Loop Select +", 
       "Mesh", 
-      "ctrl+shift+LEFTMOUSE", 
+      "shift+LEFTMOUSE", 
       [
         [
           "Loop Select", 
@@ -1362,7 +1362,7 @@
       ], 
       "SCRIPT", 
       "s?s_undo=True", 
-      "PRESS", 
+      "DOUBLE_CLICK", 
       "", 
       ""
     ], 
@@ -1385,10 +1385,16 @@
       ""
     ], 
     [
-      "Mesh: Pick Shortest Path", 
+      "Mesh: Pick Loop/ Shortest Path", 
       "Mesh", 
       "ctrl+LEFTMOUSE", 
       [
+        [
+          "Loop Select", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.loop_select(extend=False, deselect=False, toggle=False)"
+        ], 
         [
           "Pick Shortest Path", 
           "COMMAND", 
@@ -1403,8 +1409,38 @@
         ]
       ], 
       "SCRIPT", 
-      "s?s_undo=True", 
-      "DOUBLE_CLICK", 
+      "s?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Mesh: Pick Loop/ Shortest Path+", 
+      "Mesh", 
+      "ctrl+shift+LEFTMOUSE", 
+      [
+        [
+          "Loop Select", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.loop_select(extend=True, deselect=False, toggle=False)"
+        ], 
+        [
+          "Pick Shortest Path", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.shortest_path_pick(use_fill=False)"
+        ], 
+        [
+          "Fill Region", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.shortest_path_pick(use_fill=True)"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "PRESS", 
       "", 
       ""
     ], 
@@ -1463,42 +1499,6 @@
       ""
     ], 
     [
-      "Mesh: Select Flat (Broken)", 
-      "Mesh", 
-      "LEFTMOUSE", 
-      [
-        [
-          "Select Linked Flat Faces", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.faces_select_linked_flat()"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?", 
-      "HOLD", 
-      "return C.scene.tool_settings.mesh_select_mode[2]", 
-      ""
-    ], 
-    [
-      "Mesh: Select Flat +", 
-      "Mesh", 
-      "shift+LEFTMOUSE", 
-      [
-        [
-          "Select Linked Flat Faces", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.faces_select_linked_flat()"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?", 
-      "DOUBLE_CLICK", 
-      "return C.scene.tool_settings.mesh_select_mode[2]", 
-      ""
-    ], 
-    [
       "Mesh: Select Linked", 
       "Mesh", 
       "LEFTMOUSE", 
@@ -1518,7 +1518,7 @@
       ], 
       "MACRO", 
       "m?", 
-      "DOUBLE_CLICK", 
+      "HOLD", 
       "", 
       ""
     ], 
@@ -1528,22 +1528,28 @@
       "shift+LEFTMOUSE", 
       [
         [
-          "Select Linked", 
+          "Select Linked +", 
           "COMMAND", 
           "", 
           "bpy.ops.mesh.select_linked_pick(deselect=False)"
+        ], 
+        [
+          "Select Linked -", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.select_linked_pick(deselect=True)"
         ]
       ], 
       "SCRIPT", 
       "s?", 
-      "DOUBLE_CLICK", 
+      "HOLD", 
       "", 
       ""
     ], 
     [
       "Mesh: Select Linked -", 
       "Mesh", 
-      "alt+LEFTMOUSE", 
+      "ctrl+shift+LEFTMOUSE", 
       [
         [
           "Select Linked", 
@@ -1554,7 +1560,7 @@
       ], 
       "SCRIPT", 
       "s?", 
-      "DOUBLE_CLICK", 
+      "HOLD", 
       "", 
       ""
     ], 
@@ -1724,6 +1730,24 @@
           "COMMAND", 
           "", 
           "bpy.ops.object.select_grouped(type='COLLECTION')"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "DOUBLE_CLICK", 
+      "", 
+      ""
+    ], 
+    [
+      "Object: Select Linked+", 
+      "Object Mode", 
+      "shift+LEFTMOUSE", 
+      [
+        [
+          "Select Grouped +", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.object.select_grouped(type='COLLECTION', extend=True)"
         ]
       ], 
       "SCRIPT", 
