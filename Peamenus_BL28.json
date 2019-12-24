@@ -26,6 +26,30 @@
       ""
     ], 
     [
+      "Grab Brush.002", 
+      "Sculpt", 
+      "TWO", 
+      [
+        [
+          "Set Tool By Name", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.wm.tool_set_by_id(name=\"builtin_brush.Grab\")"
+        ], 
+        [
+          "Set Tool By Name", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.wm.tool_set_by_id(name=\"builtin_brush.Clay\")"
+        ]
+      ], 
+      "STICKY", 
+      "sk?", 
+      "HOLD", 
+      "", 
+      ""
+    ], 
+    [
       "Tweak Brush.Grab", 
       "Mesh", 
       "TWO", 
@@ -46,6 +70,30 @@
       "STICKY", 
       "sk?", 
       "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Mask Box", 
+      "Sculpt", 
+      "THREE", 
+      [
+        [
+          "Set Tool By Name", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.wm.tool_set_by_id(name=\"builtin.box_mask\")"
+        ], 
+        [
+          "Set Tool By Name", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.wm.tool_set_by_id(name=\"builtin_brush.Clay\")"
+        ]
+      ], 
+      "STICKY", 
+      "sk?", 
+      "HOLD", 
       "", 
       ""
     ], 
@@ -664,6 +712,15 @@
           ""
         ], 
         [
+          "spacer?hsep=SPACER"
+        ], 
+        [
+          "Button 6", 
+          "COMMAND", 
+          "!", 
+          ""
+        ], 
+        [
           "spacer?hsep=COLUMN"
         ], 
         [
@@ -671,6 +728,15 @@
           "COMMAND", 
           "SHADERFX", 
           "bpy.ops.mesh.select_random(seed=1)"
+        ], 
+        [
+          "spacer?hsep=SPACER"
+        ], 
+        [
+          "Select Linked Flat Faces", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.faces_select_linked_flat()"
         ]
       ], 
       "DIALOG", 
@@ -1313,24 +1379,6 @@
       ""
     ], 
     [
-      "Mesh: Fill Region", 
-      "Mesh", 
-      "ctrl+shift+alt+LEFTMOUSE", 
-      [
-        [
-          "Fill Region", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.shortest_path_pick(use_fill=True)"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?s_undo=True", 
-      "HOLD", 
-      "", 
-      ""
-    ], 
-    [
       "Mesh: Loop Select", 
       "Mesh", 
       "LEFTMOUSE", 
@@ -1369,78 +1417,18 @@
     [
       "Mesh: Loop Select - (Broken)", 
       "Mesh", 
-      "ctrl+shift+alt+LEFTMOUSE", 
-      [
-        [
-          "Loop Select", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.loop_select(extend=True, deselect=True, toggle=False)"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?s_undo=True", 
-      "PRESS", 
-      "", 
-      ""
-    ], 
-    [
-      "Mesh: Pick Loop/ Shortest Path", 
-      "Mesh", 
       "ctrl+LEFTMOUSE", 
       [
         [
           "Loop Select", 
           "COMMAND", 
           "", 
-          "bpy.ops.mesh.loop_select(extend=False, deselect=False, toggle=False)"
-        ], 
-        [
-          "Pick Shortest Path", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.shortest_path_pick(use_fill=False)"
-        ], 
-        [
-          "Fill Region", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.shortest_path_pick(use_fill=True)"
+          "bpy.ops.mesh.loop_select(extend=False, deselect=True, toggle=False)"
         ]
       ], 
       "SCRIPT", 
-      "s?", 
-      "PRESS", 
-      "", 
-      ""
-    ], 
-    [
-      "Mesh: Pick Loop/ Shortest Path+", 
-      "Mesh", 
-      "ctrl+shift+LEFTMOUSE", 
-      [
-        [
-          "Loop Select", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.loop_select(extend=True, deselect=False, toggle=False)"
-        ], 
-        [
-          "Pick Shortest Path", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.shortest_path_pick(use_fill=False)"
-        ], 
-        [
-          "Fill Region", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.shortest_path_pick(use_fill=True)"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?", 
-      "PRESS", 
+      "s?s_undo=True", 
+      "DOUBLE_CLICK", 
       "", 
       ""
     ], 
@@ -1495,72 +1483,6 @@
       "SCRIPT", 
       "s?", 
       "TWEAK", 
-      "", 
-      ""
-    ], 
-    [
-      "Mesh: Select Linked", 
-      "Mesh", 
-      "LEFTMOUSE", 
-      [
-        [
-          "(De)select All", 
-          "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.mesh.select_all(action='DESELECT')"
-        ], 
-        [
-          "Select Linked", 
-          "COMMAND", 
-          "BLENDER", 
-          "bpy.ops.mesh.select_linked_pick()"
-        ]
-      ], 
-      "MACRO", 
-      "m?", 
-      "HOLD", 
-      "", 
-      ""
-    ], 
-    [
-      "Mesh: Select Linked +", 
-      "Mesh", 
-      "shift+LEFTMOUSE", 
-      [
-        [
-          "Select Linked +", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.select_linked_pick(deselect=False)"
-        ], 
-        [
-          "Select Linked -", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.select_linked_pick(deselect=True)"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?", 
-      "HOLD", 
-      "", 
-      ""
-    ], 
-    [
-      "Mesh: Select Linked -", 
-      "Mesh", 
-      "ctrl+shift+LEFTMOUSE", 
-      [
-        [
-          "Select Linked", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.mesh.select_linked_pick(deselect=True)"
-        ]
-      ], 
-      "SCRIPT", 
-      "s?", 
-      "HOLD", 
       "", 
       ""
     ], 
@@ -1967,305 +1889,188 @@
       ""
     ], 
     [
-      "Sculpting Pie", 
-      "Sculpt", 
+      "Mesh: Fill Region", 
+      "Mesh", 
       "BUTTON4MOUSE", 
       [
         [
-          "Dynamic Topology", 
+          "(De)select All", 
           "COMMAND", 
-          "MOD_TRIANGULATE", 
-          "bpy.ops.sculpt.dynamic_topology_toggle()"
+          "TEXT", 
+          "bpy.ops.object.select_all(action='DESELECT'); bpy.context.active_object.select_set(state=True)"
         ], 
         [
-          "Sculpt Curves", 
-          "MENU", 
-          "", 
-          "@@Sculpt East"
-        ], 
-        [
-          "Sculpt South", 
-          "MENU", 
-          "", 
-          "@@Sculpt South"
-        ], 
-        [
-          "Sculpt North", 
-          "MENU", 
-          "", 
-          "@@Sculpt North"
-        ], 
-        [
-          "Sculpt Symmetry", 
-          "MENU", 
-          "", 
-          "@@Sculpt NorthWest"
-        ], 
-        [
-          "Sculpt Stroke Method", 
-          "MENU", 
-          "", 
-          "@@Sculpt Stroke Method"
-        ], 
-        [
-          ""
-        ], 
-        [
-          ""
+          "Fill Region", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.mesh.shortest_path_pick(use_fill=True)"
         ]
       ], 
-      "PMENU", 
-      "pm?pm_radius=120", 
+      "MACRO", 
+      "m?", 
+      "HOLD", 
+      "", 
+      ""
+    ], 
+    [
+      "Mesh: Fill Region+", 
+      "Mesh", 
+      "shift+BUTTON4MOUSE", 
+      [
+        [
+          "Fill Region", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.shortest_path_pick(use_fill=True)"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?s_undo=True", 
+      "HOLD", 
+      "", 
+      ""
+    ], 
+    [
+      "Mesh: Pick Loop/ Shortest Path", 
+      "Mesh", 
+      "BUTTON4MOUSE", 
+      [
+        [
+          "Loop Select", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.loop_select(extend=False, deselect=False, toggle=False)"
+        ], 
+        [
+          "Pick Shortest Path", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.shortest_path_pick(use_fill=False)"
+        ], 
+        [
+          "Fill Region", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.shortest_path_pick(use_fill=True)"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
       "PRESS", 
       "", 
       ""
     ], 
     [
-      "Sculpt East", 
-      "Sculpt", 
-      "", 
+      "Mesh: Pick Loop/ Shortest Path+", 
+      "Mesh", 
+      "shift+BUTTON4MOUSE", 
       [
         [
-          "row"
-        ], 
-        [
-          "Curves:", 
-          "CUSTOM", 
+          "Loop Select", 
+          "COMMAND", 
           "", 
-          "L.label(text, icon=icon, icon_value=icon_value)"
+          "bpy.ops.mesh.loop_select(extend=True, deselect=False, toggle=False)"
         ], 
         [
-          "row?vspacer=NONE"
-        ], 
-        [
-          "Preset", 
+          "Pick Shortest Path", 
           "COMMAND", 
-          "#SMOOTHCURVE", 
-          "bpy.ops.brush.curve_preset(shape='SMOOTH')"
+          "", 
+          "bpy.ops.mesh.shortest_path_pick(use_fill=False)"
         ], 
         [
-          "Preset", 
+          "Fill Region", 
           "COMMAND", 
-          "#SPHERECURVE", 
-          "bpy.ops.brush.curve_preset(shape='ROUND')"
-        ], 
-        [
-          "Preset", 
-          "COMMAND", 
-          "#ROOTCURVE", 
-          "bpy.ops.brush.curve_preset(shape='ROOT')"
-        ], 
-        [
-          "Preset", 
-          "COMMAND", 
-          "#SHARPCURVE", 
-          "bpy.ops.brush.curve_preset(shape='SHARP')"
-        ], 
-        [
-          "Preset", 
-          "COMMAND", 
-          "#LINCURVE", 
-          "bpy.ops.brush.curve_preset(shape='LINE')"
-        ], 
-        [
-          "Preset", 
-          "COMMAND", 
-          "#NOCURVE", 
-          "bpy.ops.brush.curve_preset(shape='MAX')"
+          "", 
+          "bpy.ops.mesh.shortest_path_pick(use_fill=True)"
         ]
       ], 
-      "DIALOG", 
-      "pd?pd_panel=0", 
+      "SCRIPT", 
+      "s?", 
       "PRESS", 
       "", 
       ""
     ], 
     [
-      "Sculpt South", 
-      "Sculpt", 
-      "", 
+      "Mesh: Select Linked", 
+      "Mesh", 
+      "BUTTON4MOUSE", 
       [
         [
-          "row"
+          "(De)select All", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.mesh.select_all(action='DESELECT')"
         ], 
         [
-          "Autosmooth", 
-          "PROP", 
-          "NONE", 
-          "bpy.data.brushes[\"SculptDraw\"].auto_smooth_factor"
-        ], 
-        [
-          "row?vspacer=NONE"
-        ], 
-        [
-          "Original Normal", 
-          "PROP", 
-          "#UNLOCKED", 
-          "bpy.data.brushes[\"SculptDraw\"].use_original_normal"
-        ], 
-        [
-          "Sculpt Plane", 
-          "PROP", 
-          "NONE", 
-          "bpy.data.brushes[\"SculptDraw\"].sculpt_plane"
-        ], 
-        [
-          "row?vspacer=NONE"
-        ], 
-        [
-          "Use Front-Face", 
-          "PROP", 
-          "NONE", 
-          "bpy.data.brushes[\"SculptDraw\"].use_frontface"
-        ], 
-        [
-          "row?vspacer=NONE"
-        ], 
-        [
-          "Accumulate", 
-          "PROP", 
-          "NONE", 
-          "bpy.data.brushes[\"SculptDraw\"].use_accumulate"
+          "Select Linked", 
+          "COMMAND", 
+          "BLENDER", 
+          "bpy.ops.mesh.select_linked_pick()"
         ]
       ], 
-      "DIALOG", 
-      "pd?pd_panel=0", 
-      "PRESS", 
+      "MACRO", 
+      "m?", 
+      "TWEAK", 
       "", 
       ""
     ], 
     [
-      "Sculpt North", 
-      "Sculpt", 
-      "", 
+      "Mesh: Select Linked +", 
+      "Mesh", 
+      "shift+BUTTON4MOUSE", 
       [
         [
-          "row"
+          "Select Linked +", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.select_linked_pick(deselect=False)"
         ], 
         [
-          "Use Blender Units", 
-          "PROP", 
-          "#UNLOCKED", 
-          "bpy.context.scene.tool_settings.unified_paint_settings.use_locked_size"
-        ], 
-        [
-          "Radius", 
-          "PROP", 
-          "NONE", 
-          "bpy.context.scene.tool_settings.unified_paint_settings.size"
-        ], 
-        [
-          "row?vspacer=NONE"
-        ], 
-        [
-          "Use Automatic Strength Adjustment", 
-          "PROP", 
-          "#UNLOCKED", 
-          "bpy.data.brushes[\"SculptDraw\"].use_space_attenuation"
-        ], 
-        [
-          "Strength", 
-          "PROP", 
-          "NONE", 
-          "bpy.data.brushes[\"SculptDraw\"].strength"
+          "Select Linked -", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.mesh.select_linked_pick(deselect=True)"
         ]
       ], 
-      "DIALOG", 
-      "pd?pd_panel=0", 
-      "PRESS", 
+      "SCRIPT", 
+      "s?", 
+      "TWEAK", 
       "", 
       ""
     ], 
     [
-      "Sculpt NorthWest", 
-      "Sculpt", 
-      "", 
+      "Mesh: Select Linked -", 
+      "Mesh", 
+      "ctrl+BUTTON4MOUSE", 
       [
         [
-          "row"
-        ], 
-        [
-          "Detail Size", 
-          "PROP", 
-          "NONE", 
-          "bpy.context.scene.tool_settings.sculpt.constant_detail"
-        ], 
-        [
-          "Sample Detail Size", 
-          "COMMAND", 
-          "#EYEDROPPER", 
-          "bpy.ops.sculpt.sample_detail_size(location=(365, 538))"
-        ], 
-        [
-          "Update Dyntopo", 
-          "COMMAND", 
-          "#FILE_TICK", 
-          "bpy.ops.object.update_dyntopo()"
-        ], 
-        [
-          "row"
-        ], 
-        [
-          "Symmetry", 
-          "CUSTOM", 
-          "MOD_MIRROR", 
-          "L.label(text, icon=icon, icon_value=icon_value)"
-        ], 
-        [
-          "row?vspacer=NONE"
-        ], 
-        [
-          "Y", 
+          "Select Linked", 
           "COMMAND", 
           "", 
-          "bpy.ops.sculpt.sculptusesymmetryx()"
-        ], 
-        [
-          "Y", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.sculpt.sculptusesymmetryy()"
-        ], 
-        [
-          "Z", 
-          "COMMAND", 
-          "", 
-          "bpy.ops.sculpt.sculptusesymmetryz()"
+          "bpy.ops.mesh.select_linked_pick(deselect=True)"
         ]
       ], 
-      "DIALOG", 
-      "pd?pd_panel=0", 
-      "PRESS", 
+      "SCRIPT", 
+      "s?", 
+      "TWEAK", 
       "", 
       ""
     ], 
     [
-      "Sculpt Stroke Method", 
-      "Sculpt", 
-      "", 
+      "Select Coplanar", 
+      "Mesh", 
+      "BUTTON4MOUSE", 
       [
         [
-          "row"
-        ], 
-        [
-          "Stroke Method:", 
-          "CUSTOM", 
+          "Select Similar", 
+          "COMMAND", 
           "", 
-          "L.label(text, icon=icon, icon_value=icon_value)"
-        ], 
-        [
-          "row?vspacer=NONE"
-        ], 
-        [
-          "Stroke Method", 
-          "PROP", 
-          "NONE", 
-          "bpy.data.brushes[\"SculptDraw\"].stroke_method"
+          "bpy.ops.mesh.select_similar(type='COPLANAR', threshold=0.01)"
         ]
       ], 
-      "DIALOG", 
-      "pd?pd_panel=0", 
-      "PRESS", 
+      "SCRIPT", 
+      "s?", 
+      "DOUBLE_CLICK", 
       "", 
       ""
     ], 
@@ -3563,6 +3368,327 @@
       ""
     ], 
     [
+      "Reset Cursor", 
+      "3D View", 
+      "shift+RIGHTMOUSE", 
+      [
+        [
+          "Reset 3D Cursor", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.machin3.cursor_to_origin()"
+        ]
+      ], 
+      "SCRIPT", 
+      "s?", 
+      "DOUBLE_CLICK", 
+      "", 
+      ""
+    ], 
+    [
+      "Sculpting Pie", 
+      "Sculpt", 
+      "RIGHTMOUSE", 
+      [
+        [
+          "Dynamic Topology", 
+          "COMMAND", 
+          "MOD_TRIANGULATE", 
+          "bpy.ops.sculpt.dynamic_topology_toggle()"
+        ], 
+        [
+          "Sculpt Curves", 
+          "MENU", 
+          "", 
+          "@@Sculpt East"
+        ], 
+        [
+          "Sculpt South", 
+          "MENU", 
+          "", 
+          "@@Sculpt South"
+        ], 
+        [
+          "Sculpt North", 
+          "MENU", 
+          "", 
+          "@@Sculpt North"
+        ], 
+        [
+          "Sculpt Symmetry", 
+          "MENU", 
+          "", 
+          "@@Sculpt NorthWest"
+        ], 
+        [
+          "Sculpt Stroke Method", 
+          "MENU", 
+          "", 
+          "@@Sculpt Stroke Method"
+        ], 
+        [
+          ""
+        ], 
+        [
+          ""
+        ]
+      ], 
+      "PMENU", 
+      "pm?pm_radius=120", 
+      "TWEAK", 
+      "", 
+      ""
+    ], 
+    [
+      "Sculpt East", 
+      "Sculpt", 
+      "", 
+      [
+        [
+          "row"
+        ], 
+        [
+          "Curves:", 
+          "CUSTOM", 
+          "", 
+          "L.label(text, icon=icon, icon_value=icon_value)"
+        ], 
+        [
+          "row?vspacer=NONE"
+        ], 
+        [
+          "Preset", 
+          "COMMAND", 
+          "#SMOOTHCURVE", 
+          "bpy.ops.brush.curve_preset(shape='SMOOTH')"
+        ], 
+        [
+          "Preset", 
+          "COMMAND", 
+          "#SPHERECURVE", 
+          "bpy.ops.brush.curve_preset(shape='ROUND')"
+        ], 
+        [
+          "Preset", 
+          "COMMAND", 
+          "#ROOTCURVE", 
+          "bpy.ops.brush.curve_preset(shape='ROOT')"
+        ], 
+        [
+          "Preset", 
+          "COMMAND", 
+          "#SHARPCURVE", 
+          "bpy.ops.brush.curve_preset(shape='SHARP')"
+        ], 
+        [
+          "Preset", 
+          "COMMAND", 
+          "#LINCURVE", 
+          "bpy.ops.brush.curve_preset(shape='LINE')"
+        ], 
+        [
+          "Preset", 
+          "COMMAND", 
+          "#NOCURVE", 
+          "bpy.ops.brush.curve_preset(shape='MAX')"
+        ]
+      ], 
+      "DIALOG", 
+      "pd?pd_panel=0", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Sculpt South", 
+      "Sculpt", 
+      "", 
+      [
+        [
+          "row"
+        ], 
+        [
+          "Autosmooth", 
+          "PROP", 
+          "NONE", 
+          "bpy.data.brushes[\"SculptDraw\"].auto_smooth_factor"
+        ], 
+        [
+          "row?vspacer=NONE"
+        ], 
+        [
+          "Original Normal", 
+          "PROP", 
+          "#UNLOCKED", 
+          "bpy.data.brushes[\"SculptDraw\"].use_original_normal"
+        ], 
+        [
+          "Sculpt Plane", 
+          "PROP", 
+          "NONE", 
+          "bpy.data.brushes[\"SculptDraw\"].sculpt_plane"
+        ], 
+        [
+          "row?vspacer=NONE"
+        ], 
+        [
+          "Use Front-Face", 
+          "PROP", 
+          "NONE", 
+          "bpy.data.brushes[\"SculptDraw\"].use_frontface"
+        ], 
+        [
+          "row?vspacer=NONE"
+        ], 
+        [
+          "Accumulate", 
+          "PROP", 
+          "NONE", 
+          "bpy.data.brushes[\"SculptDraw\"].use_accumulate"
+        ]
+      ], 
+      "DIALOG", 
+      "pd?pd_panel=0", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Sculpt North", 
+      "Sculpt", 
+      "", 
+      [
+        [
+          "row"
+        ], 
+        [
+          "Use Blender Units", 
+          "PROP", 
+          "#UNLOCKED", 
+          "bpy.context.scene.tool_settings.unified_paint_settings.use_locked_size"
+        ], 
+        [
+          "Radius", 
+          "PROP", 
+          "NONE", 
+          "bpy.context.scene.tool_settings.unified_paint_settings.size"
+        ], 
+        [
+          "row?vspacer=NONE"
+        ], 
+        [
+          "Use Automatic Strength Adjustment", 
+          "PROP", 
+          "#UNLOCKED", 
+          "bpy.data.brushes[\"SculptDraw\"].use_space_attenuation"
+        ], 
+        [
+          "Strength", 
+          "PROP", 
+          "NONE", 
+          "bpy.data.brushes[\"SculptDraw\"].strength"
+        ]
+      ], 
+      "DIALOG", 
+      "pd?pd_panel=0", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Sculpt NorthWest", 
+      "Sculpt", 
+      "", 
+      [
+        [
+          "row"
+        ], 
+        [
+          "Detail Size", 
+          "PROP", 
+          "NONE", 
+          "bpy.context.scene.tool_settings.sculpt.constant_detail"
+        ], 
+        [
+          "Sample Detail Size", 
+          "COMMAND", 
+          "#EYEDROPPER", 
+          "bpy.ops.sculpt.sample_detail_size(location=(365, 538))"
+        ], 
+        [
+          "Update Dyntopo", 
+          "COMMAND", 
+          "#FILE_TICK", 
+          "bpy.ops.object.update_dyntopo()"
+        ], 
+        [
+          "row"
+        ], 
+        [
+          "Symmetry", 
+          "CUSTOM", 
+          "MOD_MIRROR", 
+          "L.label(text, icon=icon, icon_value=icon_value)"
+        ], 
+        [
+          "row?vspacer=NONE"
+        ], 
+        [
+          "Y", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.sculpt.sculptusesymmetryx()"
+        ], 
+        [
+          "Y", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.sculpt.sculptusesymmetryy()"
+        ], 
+        [
+          "Z", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.sculpt.sculptusesymmetryz()"
+        ]
+      ], 
+      "DIALOG", 
+      "pd?pd_panel=0", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
+      "Sculpt Stroke Method", 
+      "Sculpt", 
+      "", 
+      [
+        [
+          "row"
+        ], 
+        [
+          "Stroke Method:", 
+          "CUSTOM", 
+          "", 
+          "L.label(text, icon=icon, icon_value=icon_value)"
+        ], 
+        [
+          "row?vspacer=NONE"
+        ], 
+        [
+          "Stroke Method", 
+          "PROP", 
+          "NONE", 
+          "bpy.data.brushes[\"SculptDraw\"].stroke_method"
+        ]
+      ], 
+      "DIALOG", 
+      "pd?pd_panel=0", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
       "UV Pea", 
       "UV Editor", 
       "RIGHTMOUSE", 
@@ -3755,19 +3881,31 @@
       ""
     ], 
     [
-      "Place Cursor", 
+      "Show Cursor", 
       "Mesh, Object Non-modal", 
       "shift+S", 
       [
         [
-          "Set 3D Cursor", 
+          "Show Cursor", 
           "COMMAND", 
           "", 
-          "bpy.ops.view3d.cursor3d(use_depth=True, orientation='GEOM')"
+          "bpy.context.space_data.overlay.show_cursor = True"
+        ], 
+        [
+          "Hide Cursor", 
+          "COMMAND", 
+          "", 
+          "bpy.context.space_data.overlay.show_cursor = False"
+        ], 
+        [
+          "Center View to Cursor", 
+          "COMMAND", 
+          "", 
+          "bpy.ops.view3d.view_center_cursor()"
         ]
       ], 
       "SCRIPT", 
-      "s?", 
+      "s?s_state=True", 
       "PRESS", 
       "", 
       ""
@@ -3787,7 +3925,7 @@
           "Cursor to Selection", 
           "COMMAND", 
           "ORIENTATION_CURSOR", 
-          "bpy.ops.sfc.cursor_tools(cursor_tools='cursor_to_selection_rot')"
+          "bpy.ops.machin3.cursor_to_selected()"
         ], 
         [
           "Origin To Bottom", 
@@ -5896,7 +6034,7 @@
     [
       "Mesh: Shrink Loop", 
       "Mesh", 
-      "ctrl+WHEELDOWNMOUSE", 
+      "WHEELDOWNMOUSE", 
       [
         [
           "Shrink Loop", 
@@ -6022,7 +6160,7 @@
     [
       "Mesh: Grow Loop", 
       "Mesh", 
-      "ctrl+WHEELUPMOUSE", 
+      "WHEELUPMOUSE", 
       [
         [
           "Grow Loop", 
@@ -6285,7 +6423,7 @@
       ], 
       "PMENU", 
       "pm?", 
-      "PRESS", 
+      "TWEAK", 
       "", 
       ""
     ], 
@@ -11600,6 +11738,36 @@
       ""
     ], 
     [
+      "VIEW3D_MT_edit_mesh_context_menu_pre", 
+      "Window", 
+      "", 
+      [
+        [
+          "Curve", 
+          "COMMAND", 
+          "IPO_EASE_IN_OUT", 
+          "bpy.ops.mesh.looptools_curve(boundaries=False, influence=100, interpolation='cubic', lock_x=False, lock_y=False, lock_z=False, regular=False, restriction='none')"
+        ], 
+        [
+          "Curve", 
+          "COMMAND", 
+          "IPO_CONSTANT", 
+          "bpy.ops.mesh.looptools_curve(boundaries=False, influence=100, interpolation='linear', lock_x=False, lock_y=False, lock_z=False, regular=False, restriction='none')"
+        ], 
+        [
+          "Mira Cstretch", 
+          "COMMAND", 
+          "IPO_CUBIC", 
+          "bpy.ops.mira.curve_stretch()"
+        ]
+      ], 
+      "RMENU", 
+      "rm?", 
+      "PRESS", 
+      "", 
+      ""
+    ], 
+    [
       "VIEW3D_MT_editor_menus", 
       "Window", 
       "", 
@@ -11640,7 +11808,7 @@
     ], 
     [
       "VIEW3D_MT_object_context_menu_pre", 
-      "Curve", 
+      "Window", 
       "", 
       [
         [
